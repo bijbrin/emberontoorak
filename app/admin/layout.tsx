@@ -4,7 +4,12 @@ import { BookingProvider } from '../contexts/BookingContext'
 import Header from '../components/Header'
 import BookingPanel from '../components/BookingPanel'
 
-export const metadata = { title: 'Admin — Ember on Toorak' }
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Admin',
+  robots: { index: false, follow: false },
+}
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
   const user = await currentUser()

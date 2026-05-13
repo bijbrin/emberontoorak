@@ -1,7 +1,21 @@
+import type { Metadata } from 'next'
 import { prisma } from '@/lib/prisma'
 import MenuPageClient, { type MenuSectionData, type CellarSectionData } from './MenuPageClient'
 
 export const dynamic = 'force-dynamic'
+
+export const metadata: Metadata = {
+  title: 'Menu',
+  description:
+    'Explore the Ember on Toorak menu — fire-roasted dishes, 28-day dry-aged beef, seasonal sides, and a curated wine cellar from the finest Australian and international producers.',
+  openGraph: {
+    title: 'Menu — Ember on Toorak',
+    description: 'Fire-roasted dishes, dry-aged beef, and a curated wine cellar.',
+    url: 'https://www.emberontoorak.com.au/menu',
+    images: [{ url: '/og-image.jpg', width: 1200, height: 630 }],
+  },
+  alternates: { canonical: '/menu' },
+}
 function formatPrice(price: { toNumber(): number }): string {
   return price.toNumber().toLocaleString('en-AU')
 }

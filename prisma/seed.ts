@@ -5,12 +5,11 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient({ adapter: new PrismaNeonHttp(process.env.DATABASE_URL!, {}) })
 
 async function main() {
-  // Raw SQL deletes avoid implicit transactions
-  await prisma.$executeRaw`DELETE FROM "Reservation"`
-  await prisma.$executeRaw`DELETE FROM "MenuItem"`
-  await prisma.$executeRaw`DELETE FROM "MenuSection"`
-  await prisma.$executeRaw`DELETE FROM "WineItem"`
-  await prisma.$executeRaw`DELETE FROM "WineSection"`
+  await prisma.reservation.deleteMany({})
+  await prisma.menuItem.deleteMany({})
+  await prisma.menuSection.deleteMany({})
+  await prisma.wineItem.deleteMany({})
+  await prisma.wineSection.deleteMany({})
 
   const sections = [
     {
