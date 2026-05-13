@@ -66,7 +66,7 @@ export default function WineList() {
 
   return (
     <section id="cellar" ref={ref} className="bg-smoke overflow-hidden section-y">
-      <div className="max-w-7xl mx-auto section-x mb-10 sm:mb-14">
+      <div className="max-w-7xl mx-auto section-x mb-6 sm:mb-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}

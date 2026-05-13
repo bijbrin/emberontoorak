@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { revalidatePath } from 'next/cache'
 import { currentUser } from '@clerk/nextjs/server'
 import { prisma } from '@/lib/prisma'
 
@@ -21,6 +22,7 @@ export async function PATCH(
   if (body.price !== undefined) data.price = parseFloat(body.price)
 
   const item = await prisma.menuItem.update({ where: { id }, data })
+  revalidatePath('/menu')
 
   return NextResponse.json({
     id: item.id,

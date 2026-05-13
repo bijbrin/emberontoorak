@@ -30,32 +30,31 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-[100svh] flex items-center justify-center overflow-hidden">
+    <section className='relative min-h-[100svh] flex items-center justify-center overflow-hidden'>
       {/* Looping fire video background with subtle parallax */}
       <div
         ref={bgRef}
-        className="absolute inset-0 will-change-transform"
+        className='absolute inset-0 will-change-transform'
         style={{ transform: 'scale(1.15)' }}
       >
         <video
           ref={videoRef}
-          src="/fire.mov"
-          poster="/hero.png"
+          src='/fire.mov'
           autoPlay
           loop
           muted
           playsInline
-          preload="auto"
-          aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover object-center"
+          preload='auto'
+          aria-hidden='true'
+          className='absolute inset-0 w-full h-full object-cover object-center'
         />
       </div>
 
       {/* Layered overlays for legibility and atmosphere */}
-      <div className="absolute inset-0 bg-black/30" />
-      <div className="absolute inset-0 bg-linear-to-b from-black/60 via-black/10 to-obsidian" />
+      <div className='absolute inset-0 bg-black/30' />
+      <div className='absolute inset-0 bg-linear-to-b from-black/60 via-black/10 to-obsidian' />
       <div
-        className="absolute inset-0 pointer-events-none"
+        className='absolute inset-0 pointer-events-none'
         style={{
           background:
             'radial-gradient(ellipse at center, transparent 35%, rgba(0,0,0,0.5) 100%)',
@@ -63,9 +62,9 @@ export default function Hero() {
       />
 
       {/* Subtle ember glow drifting on top of photo */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+      <div className='absolute inset-0 pointer-events-none overflow-hidden'>
         <div
-          className="absolute rounded-full animate-drift1"
+          className='absolute rounded-full animate-drift1'
           style={{
             width: '65vw',
             height: '65vw',
@@ -78,7 +77,7 @@ export default function Hero() {
           }}
         />
         <div
-          className="absolute rounded-full animate-drift3"
+          className='absolute rounded-full animate-drift3'
           style={{
             width: '40vw',
             height: '40vw',
@@ -92,12 +91,12 @@ export default function Hero() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 w-full max-w-5xl mx-auto px-6 sm:px-8 lg:px-12 text-center select-none pt-28 sm:pt-32 pb-20">
+      <div className='relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center select-none pt-16 sm:pt-20 pb-4'>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.8 }}
-          className="text-[10px] sm:text-xs tracking-[0.5em] uppercase text-gold/90 mb-8 sm:mb-12"
+          className='text-[8px] sm:text-[9px] tracking-[0.45em] uppercase text-gold/90 mb-1'
         >
           Est. Toorak · Melbourne
         </motion.p>
@@ -108,13 +107,14 @@ export default function Hero() {
           transition={{ delay: 0.5, duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
         >
           <h1
-            className="uppercase leading-none"
+            className='uppercase leading-none'
             style={{
               fontFamily: 'var(--font-display)',
               fontWeight: 700,
-              fontSize: 'clamp(72px, 16vw, 200px)',
+              fontSize: 'clamp(56px, 12vw, 150px)',
               color: '#FE7743',
-              textShadow: '0 4px 60px rgba(254,119,67,0.35), 0 8px 80px rgba(0,0,0,0.6)',
+              textShadow:
+                '0 4px 60px rgba(254,119,67,0.35), 0 8px 80px rgba(0,0,0,0.6)',
               letterSpacing: '0.04em',
             }}
           >
@@ -126,14 +126,14 @@ export default function Hero() {
           initial={{ opacity: 0, scaleX: 0 }}
           animate={{ opacity: 1, scaleX: 1 }}
           transition={{ delay: 0.9, duration: 0.8 }}
-          className="my-7 sm:my-9 mx-auto h-px w-24 sm:w-32 bg-gradient-to-r from-transparent via-gold to-transparent"
+          className='my-4 sm:my-5 mx-auto h-px w-24 sm:w-32 bg-gradient-to-r from-transparent via-gold to-transparent'
         />
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.0, duration: 0.8 }}
-          className="font-serif italic text-cream/95 text-xl sm:text-2xl tracking-wide"
+          className='font-serif italic text-cream/95 text-xl sm:text-2xl tracking-wide'
           style={{ textShadow: '0 2px 20px rgba(0,0,0,0.55)' }}
         >
           Theatre of Fire
@@ -143,10 +143,10 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2, duration: 0.8 }}
-          className="text-cream/65 text-xs sm:text-sm tracking-[0.08em] mt-5 max-w-md mx-auto leading-relaxed"
+          className='text-cream/65 text-xs sm:text-sm tracking-[0.08em] mt-3 max-w-md mx-auto leading-relaxed'
         >
           The ritual of fire. The architecture of flavour.
-          <br className="hidden sm:inline" />
+          <br className='hidden sm:inline' />
           In the heart of Toorak.
         </motion.p>
 
@@ -154,39 +154,41 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.5, duration: 0.8 }}
-          className="mt-10 sm:mt-14 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 max-w-sm sm:max-w-none mx-auto"
+          className='mt-6 sm:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 max-w-sm sm:max-w-none mx-auto'
         >
           <motion.button
             onClick={open}
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.97 }}
-            className="btn-shimmer px-8 py-4 rounded-full bg-gold text-obsidian text-[11px] sm:text-xs tracking-[0.25em] uppercase font-medium hover:shadow-[0_0_40px_rgba(254,119,67,0.55)] transition-shadow duration-500"
+            className='btn-shimmer px-8 py-4 rounded-full bg-gold text-obsidian text-[11px] sm:text-xs tracking-[0.25em] uppercase font-medium hover:shadow-[0_0_40px_rgba(254,119,67,0.55)] transition-shadow duration-500'
           >
             Reserve a Table
           </motion.button>
           <a
-            href="#menu"
-            className="px-8 py-4 rounded-full border border-cream/30 text-cream/90 text-[11px] sm:text-xs tracking-[0.25em] uppercase hover:border-gold/60 hover:text-gold hover:bg-gold/10 transition-all duration-300 backdrop-blur-[2px]"
+            href='#menu'
+            className='px-8 py-4 rounded-full border border-cream/30 text-cream/90 text-[11px] sm:text-xs tracking-[0.25em] uppercase hover:border-gold/60 hover:text-gold hover:bg-gold/10 transition-all duration-300 backdrop-blur-[2px]'
           >
             Explore the Menu
           </a>
         </motion.div>
-      </div>
 
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2, duration: 1 }}
-        className="hidden sm:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-2 z-10"
-      >
-        <span className="text-[9px] tracking-[0.4em] uppercase text-cream/45">Scroll</span>
+        {/* Scroll indicator — inline below CTA */}
         <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ repeat: Infinity, duration: 1.5, ease: 'easeInOut' }}
-          className="w-px h-8 bg-gradient-to-b from-gold/70 to-transparent"
-        />
-      </motion.div>
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2, duration: 1 }}
+          className='hidden sm:flex flex-col items-center gap-2 mt-6'
+        >
+          <span className='text-[9px] tracking-[0.4em] uppercase text-cream/45'>
+            Scroll
+          </span>
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ repeat: Infinity, duration: 1.5, ease: 'easeInOut' }}
+            className='w-px h-8 bg-gradient-to-b from-gold/70 to-transparent'
+          />
+        </motion.div>
+      </div>
     </section>
   );
 }

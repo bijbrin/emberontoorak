@@ -194,19 +194,19 @@ body::after {
 
 /* Section spacing helper */
 .section-y {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
 }
 @media (min-width: 768px) {
   .section-y {
-    padding-top: 7rem;
-    padding-bottom: 7rem;
+    padding-top: 4.5rem;
+    padding-bottom: 4.5rem;
   }
 }
 @media (min-width: 1024px) {
   .section-y {
-    padding-top: 9rem;
-    padding-bottom: 9rem;
+    padding-top: 5.5rem;
+    padding-bottom: 5.5rem;
   }
 }
 

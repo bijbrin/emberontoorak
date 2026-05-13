@@ -85,7 +85,7 @@ export default function TheatreOfFire() {
             initial={{ scaleX: 0 }}
             animate={isInView ? { scaleX: 1 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="w-12 sm:w-16 h-px bg-gold mb-8 sm:mb-10 origin-left"
+            className="w-12 sm:w-16 h-px bg-gold mb-5 sm:mb-6 origin-left"
           />
 
           <motion.p

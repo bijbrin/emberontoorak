@@ -34,7 +34,7 @@ export default function SignatureDishes() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="mb-12 sm:mb-16 lg:mb-20 max-w-2xl"
+          className="mb-8 sm:mb-10 max-w-2xl"
         >
           <p className="text-gold text-[10px] sm:text-xs tracking-[0.4em] uppercase mb-4 sm:mb-5">
             The Menu
@@ -194,7 +194,7 @@ export default function SignatureDishes() {
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="mt-12 sm:mt-16 text-center"
+          className="mt-8 sm:mt-10 text-center"
         >
           <Link
             href="/menu"
