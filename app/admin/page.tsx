@@ -29,7 +29,7 @@ export default async function AdminPage() {
     })),
   }))
 
-  const serialisedReservations = reservations.map((r) => ({
+  const serialisedReservations = reservations.map((r: (typeof reservations)[number]) => ({
     ...r,
     createdAt: r.createdAt.toISOString(),
     updatedAt: r.updatedAt.toISOString(),
