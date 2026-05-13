@@ -1,0 +1,82 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model MenuSection {
+  id        String     @id @default(cuid())
+  slug      String     @unique
+  label     String
+  subtitle  String
+  note      String?
+  sortOrder Int        @default(0)
+  items     MenuItem[]
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
+
+model MenuItem {
+  id          String      @id @default(cuid())
+  name        String
+  description String
+  price       Decimal     @db.Decimal(10, 2)
+  highlight   Boolean     @default(false)
+  available   Boolean     @default(true)
+  sortOrder   Int         @default(0)
+  section     MenuSection @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+  sectionId   String
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+}
+
+model WineSection {
+  id        String     @id @default(cuid())
+  slug      String     @unique
+  label     String
+  sortOrder Int        @default(0)
+  items     WineItem[]
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
+
+model WineItem {
+  id         String      @id @default(cuid())
+  name       String
+  varietal   String
+  region     String
+  year       String
+  price      Decimal     @db.Decimal(10, 2)
+  highlight  Boolean     @default(false)
+  available  Boolean     @default(true)
+  sortOrder  Int         @default(0)
+  section    WineSection @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+  sectionId  String
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+}
+
+model Reservation {
+  id        String            @id @default(cuid())
+  firstName String
+  lastName  String
+  email     String
+  phone     String?
+  date      String
+  time      String
+  guests    Int
+  occasion  String?
+  dietary   String?
+  notes     String?
+  status    ReservationStatus @default(PENDING)
+  createdAt DateTime          @default(now())
+  updatedAt DateTime          @updatedAt
+}
+
+enum ReservationStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+}

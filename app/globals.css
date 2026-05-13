@@ -1,26 +1,239 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-obsidian: #273F4F;
+  --color-smoke: #1E2F3C;
+  --color-surface: #2A4255;
+  --color-steel: #447D9B;
+  --color-gold: #FE7743;
+  --color-ember: #FE7743;
+  --color-cream: #F0EAE0;
+  --font-serif: var(--font-cormorant);
   --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-oswald);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --background: #273F4F;
+  --foreground: #F0EAE0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: auto;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Grain overlay */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+  opacity: 0.035;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: #1E2F3C;
+}
+::-webkit-scrollbar-thumb {
+  background: #FE7743;
+  border-radius: 2px;
+}
+
+/* Ember drift animations */
+@keyframes drift1 {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.5; }
+  33% { transform: translate(40px, -30px) scale(1.15); opacity: 0.7; }
+  66% { transform: translate(-20px, 20px) scale(0.9); opacity: 0.4; }
+}
+
+@keyframes drift2 {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.4; }
+  33% { transform: translate(-50px, 30px) scale(0.85); opacity: 0.6; }
+  66% { transform: translate(30px, -40px) scale(1.1); opacity: 0.3; }
+}
+
+@keyframes drift3 {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+  50% { transform: translate(20px, 50px) scale(1.2); opacity: 0.5; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes pulse-gold {
+  0%, 100% { box-shadow: 0 0 20px rgba(254, 119, 67, 0.2); }
+  50% { box-shadow: 0 0 40px rgba(254, 119, 67, 0.5); }
+}
+
+.animate-drift1 {
+  animation: drift1 12s ease-in-out infinite;
+}
+
+.animate-drift2 {
+  animation: drift2 16s ease-in-out infinite;
+}
+
+.animate-drift3 {
+  animation: drift3 10s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-pulse-gold {
+  animation: pulse-gold 3s ease-in-out infinite;
+}
+
+.shimmer-text {
+  background: linear-gradient(
+    105deg,
+    #FE7743 20%,
+    #FFB89A 40%,
+    #FE7743 60%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+}
+
+/* Permanent blur layer — always on, prevents compositing flash on class toggle */
+.navbar-blur {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* Glass background — activated when scrolled; no border (replaced by fire glow box-shadow) */
+.glass {
+  background: rgba(39, 63, 79, 0.65);
+}
+
+/* Fire border animation — box-shadow only (GPU-composited, no layout reflow).
+   Asymmetric keyframes cycle ember orange → amber → red coal → bright flame. */
+@keyframes fire-glow {
+  0%   { box-shadow: 0 0 0 1px rgba(254,119,67,0.25), 0 0 12px 2px rgba(254,119,67,0.28), 0 0 32px 4px rgba(254,119,67,0.08); }
+  22%  { box-shadow: 0 0 0 1px rgba(255,148,60,0.55), 0 0 20px 4px rgba(255,168,60,0.48), 0 0 55px 10px rgba(254,119,67,0.20); }
+  47%  { box-shadow: 0 0 0 1px rgba(210,55,15,0.38), 0 0 9px 1px rgba(210,70,15,0.28), 0 0 20px 2px rgba(254,80,30,0.09); }
+  63%  { box-shadow: 0 0 0 1px rgba(255,185,80,0.60), 0 0 22px 5px rgba(255,165,60,0.52), 0 0 65px 12px rgba(254,119,67,0.22); }
+  82%  { box-shadow: 0 0 0 1px rgba(254,100,40,0.35), 0 0 13px 2px rgba(240,90,30,0.32), 0 0 38px 6px rgba(200,45,10,0.11); }
+  100% { box-shadow: 0 0 0 1px rgba(254,119,67,0.25), 0 0 12px 2px rgba(254,119,67,0.28), 0 0 32px 4px rgba(254,119,67,0.08); }
+}
+
+.glass-fire {
+  animation: fire-glow 4.5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glass-fire {
+    animation: none;
+    box-shadow: 0 0 0 1px rgba(254,119,67,0.2), 0 0 8px 1px rgba(254,119,67,0.15);
+  }
+}
+
+/* Inner glow for bento cards */
+.inner-glow {
+  box-shadow: inset 0 0 60px rgba(254, 119, 67, 0.04),
+              0 0 0 1px rgba(254, 119, 67, 0.08);
+}
+
+.inner-glow-hover:hover {
+  box-shadow: inset 0 0 80px rgba(254, 119, 67, 0.08),
+              0 0 0 1px rgba(254, 119, 67, 0.2);
+}
+
+/* Shimmer button effect */
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.btn-shimmer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.35) 50%,
+    transparent 70%
+  );
+  transform: translateX(-110%);
+  transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+.btn-shimmer:hover::before {
+  transform: translateX(110%);
+}
+
+/* Section spacing helper */
+.section-y {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+@media (min-width: 768px) {
+  .section-y {
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+  }
+}
+@media (min-width: 1024px) {
+  .section-y {
+    padding-top: 9rem;
+    padding-bottom: 9rem;
+  }
+}
+
+.section-x {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+@media (min-width: 640px) {
+  .section-x {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+@media (min-width: 1024px) {
+  .section-x {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
