@@ -18,7 +18,7 @@ export default async function AdminPage() {
     slug: s.slug,
     label: s.label,
     subtitle: s.subtitle,
-    items: s.items.map((item) => ({
+    items: s.items.map((item: (typeof s.items)[number]) => ({
       id: item.id,
       name: item.name,
       description: item.description,
