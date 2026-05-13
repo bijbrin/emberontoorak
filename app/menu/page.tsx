@@ -1,5 +1,7 @@
 import { prisma } from '@/lib/prisma'
 import MenuPageClient, { type MenuSectionData, type CellarSectionData } from './MenuPageClient'
+
+export const dynamic = 'force-dynamic'
 function formatPrice(price: { toNumber(): number }): string {
   return price.toNumber().toLocaleString('en-AU')
 }
