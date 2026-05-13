@@ -13,7 +13,7 @@ export default async function AdminPage() {
     prisma.reservation.findMany({ orderBy: { createdAt: 'desc' }, take: 100 }),
   ])
 
-  const serialisedSections = menuSections.map((s) => ({
+  const serialisedSections = menuSections.map((s: (typeof menuSections)[number]) => ({
     id: s.id,
     slug: s.slug,
     label: s.label,
