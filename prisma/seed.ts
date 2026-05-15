@@ -10,6 +10,7 @@ async function main() {
   await prisma.menuSection.deleteMany({})
   await prisma.wineItem.deleteMany({})
   await prisma.wineSection.deleteMany({})
+  await prisma.job.deleteMany({})
 
   const sections = [
     {
@@ -147,7 +148,149 @@ async function main() {
     await prisma.reservation.create({ data: r })
   }
 
-  console.log('✓ Seeded menu, wine list, and reservations.')
+  const jobs = [
+    {
+      slug: 'head-chef',
+      title: 'Head Chef de Cuisine',
+      department: 'Kitchen',
+      type: 'Full-time',
+      location: 'Toorak, VIC',
+      salary: '$120k – $140k + super',
+      summary: 'Lead the brigade, drive the seasonal menu, and uphold the precision and theatre that define every plate at Ember.',
+      responsibilities: [
+        'Own daily kitchen operations, service standards, and food cost targets.',
+        'Develop seasonal menus in collaboration with the Executive Chef and Sommelier.',
+        'Mentor a brigade of twelve across all sections, from larder to wood-fire.',
+        'Maintain supplier relationships and weekly produce sourcing.',
+      ],
+      requirements: [
+        '5+ years in a senior role within a hatted or fine-dining kitchen.',
+        'Demonstrated experience leading a brigade of ten or more.',
+        'Deep understanding of wood-fire and live-flame cookery.',
+        'Australian work rights and unrestricted availability across evenings and weekends.',
+      ],
+      sortOrder: 0,
+    },
+    {
+      slug: 'sommelier',
+      title: 'Head Sommelier',
+      department: 'Beverage',
+      type: 'Full-time',
+      location: 'Toorak, VIC',
+      salary: '$95k – $110k + tips',
+      summary: 'Curate a 600-bin cellar, host pairing journeys, and guide our floor team through the language of the list.',
+      responsibilities: [
+        'Curate and rotate the wine list across Old World, New World, and rare verticals.',
+        'Host nightly pairing tables and tasting menu progressions.',
+        'Train floor staff weekly on varietals, regions, and service technique.',
+        'Manage cellar inventory, par levels, and supplier negotiations.',
+      ],
+      requirements: [
+        'Court of Master Sommeliers Level 2 (or WSET Diploma equivalent).',
+        '4+ years on a premium floor, ideally within a hatted venue.',
+        'Confident host with strong table-side presence and storytelling.',
+        'RSA, Victorian liquor knowledge, and Australian work rights.',
+      ],
+      sortOrder: 1,
+    },
+    {
+      slug: 'floor-manager',
+      title: 'Floor Manager / Maître d’',
+      department: 'Front of House',
+      type: 'Full-time',
+      location: 'Toorak, VIC',
+      salary: '$85k – $95k + tips',
+      summary: 'Set the tone of the room. Run service with quiet authority, anticipate every need, and remember every name.',
+      responsibilities: [
+        'Lead nightly service across forty covers and a twelve-seat chef’s table.',
+        'Manage reservations, VIP relationships, and private dining bookings.',
+        'Coach a floor team of eight on technique, sequence, and pace.',
+        'Liaise with kitchen and bar leadership on flow and timing.',
+      ],
+      requirements: [
+        '3+ years floor management in a premium dining environment.',
+        'Exceptional memory for guests, preferences, and detail.',
+        'Calm under pressure with a hospitable, unflappable presence.',
+        'RSA and Australian work rights.',
+      ],
+      sortOrder: 2,
+    },
+    {
+      slug: 'bartender',
+      title: 'Bartender / Mixologist',
+      department: 'Bar',
+      type: 'Full-time',
+      location: 'Toorak, VIC',
+      salary: '$70k – $80k + tips',
+      summary: 'Build a cocktail program inspired by fire, smoke, and citrus. Make every guest at the bar feel like a regular.',
+      responsibilities: [
+        'Craft and refresh a seasonal cocktail menu of ten signature drinks.',
+        'Run service behind a four-seat bar plus floor cocktail orders.',
+        'Maintain bar par levels, glassware, and weekly inventory.',
+        'Collaborate with the Sommelier on aperitif and digestif pairings.',
+      ],
+      requirements: [
+        '3+ years behind a cocktail-led bar.',
+        'Strong classics foundation with creative flair on modern technique.',
+        'RSA and Australian work rights.',
+      ],
+      sortOrder: 3,
+    },
+    {
+      slug: 'pastry-chef',
+      title: 'Pastry Chef',
+      department: 'Kitchen',
+      type: 'Full-time',
+      location: 'Toorak, VIC',
+      salary: '$80k – $95k + super',
+      summary: 'Lead the pastry section. Close every meal with a memory — plated desserts, petit fours, and house breads.',
+      responsibilities: [
+        'Develop and execute the seasonal dessert menu and petit fours.',
+        'Manage daily bread program and viennoiserie.',
+        'Mentor two commis pastry chefs.',
+        'Maintain pastry costs, ordering, and section mise en place.',
+      ],
+      requirements: [
+        '4+ years pastry experience, including a senior role.',
+        'Strong chocolate, sugar, and plated dessert technique.',
+        'Australian work rights and weekend availability.',
+      ],
+      sortOrder: 4,
+    },
+    {
+      slug: 'senior-server',
+      title: 'Senior Server',
+      department: 'Front of House',
+      type: 'Full or part-time',
+      location: 'Toorak, VIC',
+      salary: '$32 – $38 / hr + tips',
+      summary: 'Carry the rhythm of the room. Read tables, time courses, and bring the menu to life with confidence and warmth.',
+      responsibilities: [
+        'Run six to eight tables per service across tasting and à la carte menus.',
+        'Articulate menu, provenance, and pairings with precision.',
+        'Support junior staff and runners during peak service.',
+      ],
+      requirements: [
+        '2+ years in a hatted or premium dining venue.',
+        'Strong wine and food knowledge.',
+        'RSA and Australian work rights.',
+      ],
+      sortOrder: 5,
+    },
+  ] as const
+
+  for (const j of jobs) {
+    await prisma.job.create({
+      data: {
+        ...j,
+        responsibilities: [...j.responsibilities],
+        requirements: [...j.requirements],
+        published: true,
+      },
+    })
+  }
+
+  console.log('✓ Seeded menu, wine list, reservations, and jobs.')
 }
 
 main()

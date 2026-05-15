@@ -1,6 +1,7 @@
 'use client';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useBooking } from '../contexts/BookingContext';
+import { useLenis } from 'lenis/react';
 import { useState, useEffect } from 'react';
 
 const inputClass =
@@ -8,18 +9,14 @@ const inputClass =
 
 export default function BookingPanel() {
   const { isOpen, close } = useBooking();
+  const lenis = useLenis();
   const [submitted, setSubmitted] = useState(false);
 
-  // Lock body scroll while open
   useEffect(() => {
-    if (isOpen) {
-      const prev = document.body.style.overflow;
-      document.body.style.overflow = 'hidden';
-      return () => {
-        document.body.style.overflow = prev;
-      };
-    }
-  }, [isOpen]);
+    if (!isOpen) return;
+    lenis?.stop();
+    return () => lenis?.start();
+  }, [isOpen, lenis]);
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -49,9 +46,9 @@ export default function BookingPanel() {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-            className="fixed inset-0 sm:left-auto sm:top-0 sm:right-0 sm:bottom-0 z-[1001] w-full sm:max-w-md bg-surface sm:border-l border-gold/10 overflow-y-auto"
+            className="fixed inset-0 sm:left-auto sm:top-0 sm:right-0 sm:bottom-0 z-[1001] w-full sm:max-w-md bg-surface sm:border-l border-gold/10 flex flex-col"
           >
-            <div className="p-6 sm:p-8 md:p-10 min-h-full flex flex-col">
+            <div data-lenis-prevent className="p-6 sm:p-8 md:p-10 flex-1 overflow-y-auto overscroll-contain flex flex-col">
               {/* Header */}
               <div className="flex items-start justify-between mb-8 sm:mb-10">
                 <div>

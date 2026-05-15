@@ -1,41 +1,33 @@
 'use client';
-import { useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { useBooking } from '../contexts/BookingContext';
 
 export default function Hero() {
   const { open } = useBooking();
-  const bgRef = useRef<HTMLDivElement>(null);
+  const heroRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  useEffect(() => {
-    // Subtle parallax on scroll
-    const onScroll = () => {
-      if (bgRef.current) {
-        bgRef.current.style.transform = `translate3d(0, ${window.scrollY * -0.18}px, 0) scale(1.15)`;
-      }
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ['start start', 'end start'],
+  });
 
-  useEffect(() => {
-    // Some mobile browsers (iOS Safari) need an explicit play() call after mount
-    const v = videoRef.current;
-    if (v) {
-      v.play().catch(() => {
-        /* autoplay blocked — poster will show */
-      });
-    }
-  }, []);
+  // Background drifts up as you scroll out
+  const bgY = useTransform(scrollYProgress, [0, 1], ['0%', '20%']);
+  // Content rises slightly faster — creates depth
+  const contentY = useTransform(scrollYProgress, [0, 1], ['0%', '8%']);
+  // Overlay darkens as hero leaves view
+  const overlayOpacity = useTransform(scrollYProgress, [0, 0.6], [0.3, 0.7]);
+  // Hero content fades as it scrolls away
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   return (
-    <section className='relative min-h-[100svh] flex items-center justify-center overflow-hidden'>
-      {/* Looping fire video background with subtle parallax */}
-      <div
-        ref={bgRef}
+    <section ref={heroRef} className='relative min-h-svh flex items-center justify-center overflow-hidden'>
+      {/* Looping fire video background with Lenis-driven parallax */}
+      <motion.div
         className='absolute inset-0 will-change-transform'
-        style={{ transform: 'scale(1.15)' }}
+        style={{ y: bgY, scale: 1.15 }}
       >
         <video
           ref={videoRef}
@@ -47,29 +39,28 @@ export default function Hero() {
           preload='auto'
           aria-hidden='true'
           className='absolute inset-0 w-full h-full object-cover object-center'
+          onCanPlay={(e) => (e.currentTarget as HTMLVideoElement).play().catch(() => {})}
         />
-      </div>
+      </motion.div>
 
-      {/* Layered overlays for legibility and atmosphere */}
-      <div className='absolute inset-0 bg-black/30' />
+      {/* Layered overlays */}
+      <motion.div className='absolute inset-0 bg-black/30' style={{ opacity: overlayOpacity }} />
       <div className='absolute inset-0 bg-linear-to-b from-black/60 via-black/10 to-obsidian' />
       <div
         className='absolute inset-0 pointer-events-none'
         style={{
-          background:
-            'radial-gradient(ellipse at center, transparent 35%, rgba(0,0,0,0.5) 100%)',
+          background: 'radial-gradient(ellipse at center, transparent 35%, rgba(0,0,0,0.5) 100%)',
         }}
       />
 
-      {/* Subtle ember glow drifting on top of photo */}
+      {/* Ember glow particles */}
       <div className='absolute inset-0 pointer-events-none overflow-hidden'>
         <div
           className='absolute rounded-full animate-drift1'
           style={{
             width: '65vw',
             height: '65vw',
-            background:
-              'radial-gradient(circle, rgba(254,119,67,0.18) 0%, transparent 65%)',
+            background: 'radial-gradient(circle, rgba(254,119,67,0.18) 0%, transparent 65%)',
             top: '55%',
             left: '50%',
             transform: 'translate(-50%, -50%)',
@@ -81,8 +72,7 @@ export default function Hero() {
           style={{
             width: '40vw',
             height: '40vw',
-            background:
-              'radial-gradient(circle, rgba(68,125,155,0.15) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(68,125,155,0.15) 0%, transparent 70%)',
             top: '0%',
             left: '0%',
             mixBlendMode: 'screen',
@@ -90,8 +80,11 @@ export default function Hero() {
         />
       </div>
 
-      {/* Content */}
-      <div className='relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center select-none pt-16 sm:pt-20 pb-4'>
+      {/* Content with its own parallax + fade-out on scroll */}
+      <motion.div
+        className='relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center select-none pt-16 sm:pt-20 pb-4'
+        style={{ y: contentY, opacity: contentOpacity }}
+      >
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -113,8 +106,7 @@ export default function Hero() {
               fontWeight: 700,
               fontSize: 'clamp(56px, 12vw, 150px)',
               color: '#FE7743',
-              textShadow:
-                '0 4px 60px rgba(254,119,67,0.35), 0 8px 80px rgba(0,0,0,0.6)',
+              textShadow: '0 4px 60px rgba(254,119,67,0.35), 0 8px 80px rgba(0,0,0,0.6)',
               letterSpacing: '0.04em',
             }}
           >
@@ -126,7 +118,7 @@ export default function Hero() {
           initial={{ opacity: 0, scaleX: 0 }}
           animate={{ opacity: 1, scaleX: 1 }}
           transition={{ delay: 0.9, duration: 0.8 }}
-          className='my-4 sm:my-5 mx-auto h-px w-24 sm:w-32 bg-gradient-to-r from-transparent via-gold to-transparent'
+          className='my-4 sm:my-5 mx-auto h-px w-24 sm:w-32 bg-linear-to-r from-transparent via-gold to-transparent'
         />
 
         <motion.p
@@ -172,23 +164,21 @@ export default function Hero() {
           </a>
         </motion.div>
 
-        {/* Scroll indicator — inline below CTA */}
+        {/* Scroll indicator */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2, duration: 1 }}
           className='hidden sm:flex flex-col items-center gap-2 mt-6'
         >
-          <span className='text-[9px] tracking-[0.4em] uppercase text-cream/45'>
-            Scroll
-          </span>
+          <span className='text-[9px] tracking-[0.4em] uppercase text-cream/45'>Scroll</span>
           <motion.div
             animate={{ y: [0, 8, 0] }}
             transition={{ repeat: Infinity, duration: 1.5, ease: 'easeInOut' }}
-            className='w-px h-8 bg-gradient-to-b from-gold/70 to-transparent'
+            className='w-px h-8 bg-linear-to-b from-gold/70 to-transparent'
           />
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 }

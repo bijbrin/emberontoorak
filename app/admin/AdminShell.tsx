@@ -2,8 +2,9 @@
 import { useState } from 'react'
 import ReservationManager from './ReservationManager'
 import MenuManager from './MenuManager'
+import JobManager, { type JobRow } from './JobManager'
 
-type Tab = 'reservations' | 'menu'
+type Tab = 'reservations' | 'menu' | 'jobs'
 
 interface Reservation {
   id: string
@@ -49,15 +50,18 @@ interface Stats {
 const tabs: { id: Tab; label: string; sub: string }[] = [
   { id: 'reservations', label: 'Reservations', sub: 'Bookings & status' },
   { id: 'menu', label: 'Menu Items', sub: 'Visibility & order' },
+  { id: 'jobs', label: 'Careers', sub: 'Open positions' },
 ]
 
 export default function AdminShell({
   reservations,
   sections,
+  jobs,
   stats,
 }: {
   reservations: Reservation[]
   sections: MenuSectionRow[]
+  jobs: JobRow[]
   stats: Stats
 }) {
   const [active, setActive] = useState<Tab>('reservations')
@@ -125,6 +129,17 @@ export default function AdminShell({
               <p className="text-cream/30 text-sm mt-1">Hide items to remove them from the public menu without deleting.</p>
             </div>
             <MenuManager sections={sections} />
+          </>
+        )}
+
+        {active === 'jobs' && (
+          <>
+            <div className="mb-6 pb-4 border-b border-gold/10">
+              <p className="text-[10px] tracking-[0.4em] uppercase text-gold/55 mb-1">Manage</p>
+              <h2 className="font-serif italic text-cream text-3xl">Careers</h2>
+              <p className="text-cream/30 text-sm mt-1">Edit, publish, or remove the roles shown on the public /hire page.</p>
+            </div>
+            <JobManager jobs={jobs} />
           </>
         )}
       </main>

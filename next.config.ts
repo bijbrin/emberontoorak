@@ -4,12 +4,13 @@ const isProd = process.env.NODE_ENV === "production";
 
 const csp = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' https://*.clerk.accounts.dev",
+  `script-src 'self' 'unsafe-inline' https://*.clerk.accounts.dev${isProd ? "" : " 'unsafe-eval'"}`,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob: https://img.clerk.com",
   "font-src 'self'",
   "connect-src 'self' https://*.clerk.accounts.dev wss://*.clerk.accounts.dev",
   "frame-src https://*.clerk.accounts.dev",
+  "worker-src blob:",
   "frame-ancestors 'none'",
 ].join("; ");
 

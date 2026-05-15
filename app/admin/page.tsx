@@ -2,7 +2,7 @@ import { prisma } from '@/lib/prisma'
 import AdminShell from './AdminShell'
 
 export default async function AdminPage() {
-  const [pending, confirmed, cancelled, menuSections, reservations] = await Promise.all([
+  const [pending, confirmed, cancelled, menuSections, reservations, jobs] = await Promise.all([
     prisma.reservation.count({ where: { status: 'PENDING' } }),
     prisma.reservation.count({ where: { status: 'CONFIRMED' } }),
     prisma.reservation.count({ where: { status: 'CANCELLED' } }),
@@ -11,6 +11,7 @@ export default async function AdminPage() {
       orderBy: { sortOrder: 'asc' },
     }),
     prisma.reservation.findMany({ orderBy: { createdAt: 'desc' }, take: 100 }),
+    prisma.job.findMany({ orderBy: [{ sortOrder: 'asc' }, { createdAt: 'asc' }] }),
   ])
 
   const serialisedSections = menuSections.map((s: (typeof menuSections)[number]) => ({
@@ -35,12 +36,28 @@ export default async function AdminPage() {
     updatedAt: r.updatedAt.toISOString(),
   }))
 
+  const serialisedJobs = jobs.map((j: (typeof jobs)[number]) => ({
+    id: j.id,
+    slug: j.slug,
+    title: j.title,
+    department: j.department,
+    type: j.type,
+    location: j.location,
+    salary: j.salary,
+    summary: j.summary,
+    responsibilities: j.responsibilities,
+    requirements: j.requirements,
+    published: j.published,
+    sortOrder: j.sortOrder,
+  }))
+
   return (
     <main className="min-h-screen bg-obsidian pt-24">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-10">
         <AdminShell
           reservations={serialisedReservations}
           sections={serialisedSections}
+          jobs={serialisedJobs}
           stats={{ total: pending + confirmed + cancelled, pending, confirmed, cancelled }}
         />
       </div>
