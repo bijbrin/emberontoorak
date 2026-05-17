@@ -192,6 +192,88 @@ body::after {
   transform: translateX(110%);
 }
 
+/* Semantic form classes — single source of truth for all inputs/labels */
+.form-input {
+  width: 100%;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  color: #F0EAE0;
+  background: rgba(30, 47, 60, 0.72);
+  border: 1px solid rgba(254, 119, 67, 0.22);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: border-color 300ms ease, box-shadow 300ms ease, background 300ms ease;
+  appearance: none;
+  outline: none;
+}
+.form-input::placeholder {
+  color: rgba(240, 234, 224, 0.35);
+}
+.form-input:focus {
+  border-color: rgba(254, 119, 67, 0.65);
+  background: rgba(30, 47, 60, 0.88);
+  box-shadow: 0 0 0 3px rgba(254, 119, 67, 0.08),
+              0 0 18px rgba(254, 119, 67, 0.14);
+}
+
+.form-label {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(240, 234, 224, 0.60);
+  margin-bottom: 0.5rem;
+}
+
+.form-section-label {
+  font-size: 10px;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: rgba(254, 119, 67, 0.70);
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(254, 119, 67, 0.12);
+}
+
+/* Nav links with center-outward underline slide */
+.nav-link {
+  position: relative;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(240, 234, 224, 0.65);
+  transition: color 280ms ease;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  transform-origin: center;
+  width: 100%;
+  height: 1px;
+  background: #FE7743;
+  transition: transform 220ms ease-out;
+}
+.nav-link:hover,
+.nav-link-active {
+  color: #FE7743;
+}
+.nav-link:hover::after,
+.nav-link-active::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+/* Date/time picker icon — tint amber so it's visible on dark backgrounds */
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(55%) sepia(80%) saturate(500%) hue-rotate(330deg) brightness(1.1);
+  opacity: 0.75;
+  cursor: pointer;
+}
+
 /* Section spacing helper */
 .section-y {
   padding-top: 3rem;

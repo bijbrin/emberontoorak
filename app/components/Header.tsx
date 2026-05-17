@@ -1,6 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Show, UserButton, SignInButton } from '@clerk/nextjs';
 import { useUser } from '@clerk/nextjs';
@@ -18,6 +19,7 @@ export default function Header() {
   const { open } = useBooking();
   const { user } = useUser();
   const isAdmin = user?.publicMetadata?.role === 'admin';
+  const pathname = usePathname();
 
   useEffect(() => {
     const onScroll = () => {
@@ -59,17 +61,22 @@ export default function Header() {
 
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-7 lg:gap-10">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-[11px] tracking-[0.2em] uppercase text-cream/60 hover:text-gold transition-colors duration-300"
-              >
-                {link.label}
-              </Link>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = link.href.startsWith('/#')
+                ? pathname === '/'
+                : pathname === link.href || pathname.startsWith(link.href + '/');
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`nav-link${isActive ? ' nav-link-active' : ''}`}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
             {isAdmin && (
-              <Link href="/admin" className="text-[11px] tracking-[0.2em] uppercase text-gold/60 hover:text-gold transition-colors duration-300">
+              <Link href="/admin" className={`nav-link${pathname.startsWith('/admin') ? ' nav-link-active' : ''}`}>
                 Admin
               </Link>
             )}

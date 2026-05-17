@@ -71,9 +71,8 @@ function draftIsDirty(d: Draft, j: JobRow): boolean {
   return false
 }
 
-const inputClass =
-  'w-full bg-obsidian/60 border border-gold/15 rounded-lg px-3 py-2 text-sm text-cream/85 placeholder:text-cream/25 focus:outline-none focus:border-gold/45 focus:bg-obsidian/80 transition-colors'
-const labelClass = 'block text-[9px] tracking-[0.25em] uppercase text-cream/35 mb-1.5'
+const inputClass = 'form-input'
+const labelClass = 'form-label'
 
 export default function JobManager({ jobs: initial }: { jobs: JobRow[] }) {
   const [jobs, setJobs] = useState<JobRow[]>(initial)
