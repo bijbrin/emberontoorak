@@ -6,23 +6,32 @@ datasource db {
   provider = "postgresql"
 }
 
+enum MenuType {
+  A_LA_CARTE
+  LUNCH
+  DRINKS
+}
+
 model MenuSection {
-  id        String     @id @default(cuid())
-  slug      String     @unique
-  label     String
-  subtitle  String
-  note      String?
-  sortOrder Int        @default(0)
-  items     MenuItem[]
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
+  id         String     @id @default(cuid())
+  slug       String     @unique
+  label      String
+  subtitle   String
+  note       String?
+  menuType   MenuType   @default(A_LA_CARTE)
+  parentSlug String?
+  sortOrder  Int        @default(0)
+  items      MenuItem[]
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
 }
 
 model MenuItem {
   id          String      @id @default(cuid())
   name        String
-  description String
-  price       Decimal     @db.Decimal(10, 2)
+  description String      @default("")
+  price       Decimal?    @db.Decimal(10, 2)
+  priceNote   String?
   highlight   Boolean     @default(false)
   available   Boolean     @default(true)
   sortOrder   Int         @default(0)
@@ -79,6 +88,12 @@ enum ReservationStatus {
   PENDING
   CONFIRMED
   CANCELLED
+}
+
+model SiteSettings {
+  key       String   @id
+  value     String
+  updatedAt DateTime @updatedAt
 }
 
 model Job {
