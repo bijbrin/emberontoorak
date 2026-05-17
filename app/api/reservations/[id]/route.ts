@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { currentUser } from '@clerk/nextjs/server'
 import { prisma } from '@/lib/prisma'
+import { sendStatusEmail } from '@/lib/sendgrid'
 import { z } from 'zod'
 
 const ReservationPatchSchema = z.object({
@@ -45,8 +46,30 @@ export async function PATCH(
   try {
     const reservation = await prisma.reservation.update({
       where: { id },
-      data: { status: parsed.data.status },
+      data:  { status: parsed.data.status },
     })
+
+    // Send status email to guest for CONFIRMED or CANCELLED (non-blocking)
+    if (parsed.data.status === 'CONFIRMED' || parsed.data.status === 'CANCELLED') {
+      sendStatusEmail(
+        {
+          firstName: reservation.firstName,
+          lastName:  reservation.lastName,
+          email:     reservation.email,
+          phone:     reservation.phone ?? undefined,
+          date:      reservation.date,
+          time:      reservation.time,
+          guests:    reservation.guests,
+          occasion:  reservation.occasion ?? undefined,
+          dietary:   reservation.dietary ?? undefined,
+          notes:     reservation.notes ?? undefined,
+        },
+        parsed.data.status,
+      ).catch((err) => {
+        const detail = err?.response?.body?.errors ?? err?.message ?? err
+        console.error('[sendgrid status] email failed:', JSON.stringify(detail))
+      })
+    }
 
     return NextResponse.json({
       ...reservation,

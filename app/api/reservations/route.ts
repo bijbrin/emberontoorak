@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { currentUser } from '@clerk/nextjs/server'
 import { prisma } from '@/lib/prisma'
+import { sendReservationEmails } from '@/lib/sendgrid'
 import { z } from 'zod'
 
 const ReservationSchema = z.object({
@@ -68,6 +69,23 @@ export async function POST(req: NextRequest) {
         dietary:   parsed.data.dietary ?? null,
         notes:     parsed.data.notes ?? null,
       },
+    })
+
+    // Fire emails non-blocking — reservation creation still succeeds if email fails
+    sendReservationEmails({
+      firstName: reservation.firstName,
+      lastName:  reservation.lastName,
+      email:     reservation.email,
+      phone:     reservation.phone ?? undefined,
+      date:      reservation.date,
+      time:      reservation.time,
+      guests:    reservation.guests,
+      occasion:  reservation.occasion ?? undefined,
+      dietary:   reservation.dietary ?? undefined,
+      notes:     reservation.notes ?? undefined,
+    }).catch((err) => {
+      const detail = err?.response?.body?.errors ?? err?.message ?? err
+      console.error('[sendgrid] email failed:', JSON.stringify(detail))
     })
 
     return NextResponse.json(
