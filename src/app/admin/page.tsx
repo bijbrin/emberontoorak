@@ -59,7 +59,7 @@ export default async function AdminPage() {
 
   return (
     <main className="min-h-screen bg-obsidian pt-24">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 py-6 sm:py-10">
         <AdminShell
           reservations={serialisedReservations}
           sections={serialisedSections}

@@ -198,12 +198,12 @@ export default function ThemeManager({ initial }: { initial: ThemeSettings }) {
       {settings.mode === 'auto' && (
         <div>
           <p className="text-[9px] tracking-[0.35em] uppercase text-gold/40 mb-4">Weekly schedule</p>
-          <div className="space-y-2">
+          <div className="space-y-4 sm:space-y-2">
             {DAYS.map(({ index, label }) => {
               const selectedId = settings.schedule?.[index] ?? 'rose-pine-moon'
               return (
-                <div key={index} className="flex items-center gap-4">
-                  <span className="w-24 text-[10px] tracking-[0.15em] uppercase text-cream/35 shrink-0">
+                <div key={index} className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+                  <span className="sm:w-24 text-[10px] tracking-[0.15em] uppercase text-cream/35 sm:shrink-0">
                     {label}
                   </span>
                   <div className="flex-1 flex flex-wrap gap-2">
@@ -241,7 +241,7 @@ export default function ThemeManager({ initial }: { initial: ThemeSettings }) {
       {settings.mode === 'manual' && (
         <div>
           <p className="text-[9px] tracking-[0.35em] uppercase text-gold/40 mb-4">Select theme</p>
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {THEMES.map(t => {
               const isActive = settings.manual === t.id
               return (

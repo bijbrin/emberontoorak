@@ -360,7 +360,7 @@ export default function MenuPageClient({ sections }: { sections: MenuSectionData
             <h2 className="font-serif italic text-cream mb-6" style={{ fontSize: 'clamp(28px, 4vw, 48px)' }}>
               Join us at the table
             </h2>
-            <Link href="/reservations" className="btn-shimmer inline-flex items-center gap-3 px-10 py-4 rounded-full bg-gold text-obsidian text-[11px] tracking-[0.25em] uppercase font-medium hover:shadow-[0_0_40px_color-mix(in_srgb,var(--color-ember)_40%,transparent)] transition-shadow duration-500">
+            <Link href="/reservations" className="btn-shimmer inline-flex items-center gap-3 px-7 py-3 sm:px-10 sm:py-4 rounded-full bg-gold text-obsidian text-[11px] tracking-[0.25em] uppercase font-medium hover:shadow-[0_0_40px_color-mix(in_srgb,var(--color-ember)_40%,transparent)] transition-shadow duration-500">
               Reserve a Table
             </Link>
           </FadeIn>

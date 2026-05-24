@@ -37,6 +37,18 @@ export default function ChatWidget() {
     }
   }, [messages, open]);
 
+  // Lock body scroll on mobile when chat is open
+  useEffect(() => {
+    if (!open) return;
+    const isMobile = window.matchMedia('(max-width: 639px)').matches;
+    if (!isMobile) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [open]);
+
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!input.trim() || isLoading) return;
@@ -45,32 +57,34 @@ export default function ChatWidget() {
   }
 
   return (
-    <div className="fixed bottom-6 right-6 z-[998] flex flex-col items-end gap-3">
+    <>
       <AnimatePresence>
         {open && (
           <motion.div
             key="chat-panel"
-            initial={{ opacity: 0, y: 20, scale: 0.95 }}
+            initial={{ opacity: 0, y: 20, scale: 0.97 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-            className="w-[360px] rounded-2xl overflow-hidden shadow-2xl border border-steel/30 flex flex-col"
-            style={{ maxHeight: '520px', background: 'var(--color-surface)' }}
+            exit={{ opacity: 0, y: 20, scale: 0.97 }}
+            transition={{ type: 'spring', stiffness: 320, damping: 30 }}
+            className="fixed z-[998] flex flex-col overflow-hidden shadow-2xl border border-steel/30
+              inset-x-3 top-20 bottom-3 rounded-2xl
+              sm:inset-auto sm:top-auto sm:bottom-24 sm:right-6 sm:w-[360px] sm:max-h-[520px]"
+            style={{ background: 'var(--color-surface)' }}
           >
             {/* Header */}
             <div
-              className="flex items-center justify-between px-4 py-3 border-b border-steel/20"
+              className="flex items-center justify-between px-4 py-3 border-b border-steel/20 shrink-0"
               style={{ background: 'var(--color-smoke)' }}
             >
               <div>
-                <p className="font-display text-xs uppercase tracking-widest text-ember">
+                <p className="font-display text-[11px] uppercase tracking-widest text-ember">
                   Ember on Toorak
                 </p>
-                <p className="text-cream/70 text-xs mt-0.5">Ask us anything</p>
+                <p className="text-cream/70 text-[10px] mt-0.5">Ask us anything</p>
               </div>
               <button
                 onClick={() => setOpen(false)}
-                className="text-cream/50 hover:text-cream transition-colors w-7 h-7 flex items-center justify-center rounded-full hover:bg-white/5"
+                className="text-cream/60 hover:text-cream transition-colors w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/5 text-xl leading-none"
                 aria-label="Close chat"
               >
                 ×
@@ -78,11 +92,11 @@ export default function ChatWidget() {
             </div>
 
             {/* Messages */}
-            <div className="flex-1 overflow-y-auto px-4 py-4 space-y-3 min-h-0">
+            <div className="flex-1 overflow-y-auto px-3 sm:px-4 py-3 sm:py-4 space-y-2.5 min-h-0">
               {messages.length === 0 && (
                 <div className="flex flex-col items-start gap-2">
                   <div
-                    className="max-w-[88%] rounded-xl rounded-tl-sm px-3 py-2 text-sm leading-relaxed text-cream/90"
+                    className="max-w-[88%] rounded-xl rounded-tl-sm px-3 py-2 text-[13px] leading-relaxed text-cream/90"
                     style={{ background: 'color-mix(in srgb, var(--color-obsidian) 60%, transparent)' }}
                   >
                     {greetingLoading ? (
@@ -102,7 +116,7 @@ export default function ChatWidget() {
                   {!greetingLoading && (
                     <a
                       href="/reservations"
-                      className="btn-shimmer inline-flex items-center gap-2 rounded-lg px-4 py-2 text-xs font-display uppercase tracking-widest text-obsidian transition-opacity hover:opacity-90"
+                      className="btn-shimmer inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-[10px] font-display uppercase tracking-widest text-obsidian transition-opacity hover:opacity-90"
                       style={{ background: 'var(--color-ember)' }}
                     >
                       Reserve a table
@@ -129,7 +143,7 @@ export default function ChatWidget() {
                   className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
                   <div
-                    className={`max-w-[80%] rounded-xl px-3 py-2 text-sm leading-relaxed ${
+                    className={`max-w-[82%] rounded-xl px-3 py-2 text-[13px] leading-relaxed ${
                       message.role === 'user'
                         ? 'text-cream rounded-tr-sm'
                         : 'text-cream/90 rounded-tl-sm'
@@ -175,7 +189,7 @@ export default function ChatWidget() {
             {/* Input */}
             <form
               onSubmit={handleSubmit}
-              className="px-3 pb-3 pt-2 border-t border-steel/20 flex gap-2"
+              className="px-3 pb-3 pt-2 border-t border-steel/20 flex gap-2 shrink-0"
               style={{ background: 'var(--color-smoke)' }}
             >
               <input
@@ -183,12 +197,12 @@ export default function ChatWidget() {
                 onChange={(e) => setInput(e.target.value)}
                 disabled={isLoading}
                 placeholder="Type a message…"
-                className="flex-1 bg-obsidian/60 border border-steel/30 rounded-lg px-3 py-2 text-sm text-cream placeholder:text-cream/30 focus:outline-none focus:border-ember/50 transition-colors disabled:opacity-50"
+                className="flex-1 min-w-0 bg-obsidian/60 border border-steel/30 rounded-lg px-3 py-2 text-[13px] text-cream placeholder:text-cream/30 focus:outline-none focus:border-ember/50 transition-colors disabled:opacity-50"
               />
               <button
                 type="submit"
                 disabled={isLoading || !input.trim()}
-                className="bg-ember hover:bg-ember/80 disabled:opacity-40 disabled:cursor-not-allowed text-obsidian rounded-lg px-3 py-2 transition-colors font-display text-xs uppercase tracking-wider"
+                className="shrink-0 bg-ember hover:bg-ember/80 disabled:opacity-40 disabled:cursor-not-allowed text-obsidian rounded-lg px-3 py-2 transition-colors font-display text-[11px] uppercase tracking-wider"
               >
                 Send
               </button>
@@ -197,12 +211,15 @@ export default function ChatWidget() {
         )}
       </AnimatePresence>
 
-      {/* Toggle button */}
+      {/* Toggle button — hides on mobile while open so it doesn't cover the input */}
       <motion.button
         onClick={() => setOpen((o) => !o)}
         whileHover={{ scale: 1.08 }}
         whileTap={{ scale: 0.95 }}
-        className="w-14 h-14 rounded-full shadow-lg flex items-center justify-center transition-colors"
+        className={`fixed z-[999] rounded-full shadow-lg flex items-center justify-center transition-colors
+          bottom-5 left-5 w-12 h-12
+          sm:bottom-6 sm:right-6 sm:left-auto sm:w-14 sm:h-14
+          ${open ? 'hidden sm:flex' : 'flex'}`}
         style={{
           background: open ? 'var(--color-smoke)' : 'var(--color-ember)',
           border: open ? '1px solid color-mix(in srgb, var(--color-steel) 40%, transparent)' : 'none',
@@ -231,7 +248,7 @@ export default function ChatWidget() {
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               fill="currentColor"
-              className="w-6 h-6 text-obsidian"
+              className="w-5 h-5 sm:w-6 sm:h-6 text-obsidian"
             >
               <path
                 fillRule="evenodd"
@@ -242,6 +259,6 @@ export default function ChatWidget() {
           )}
         </AnimatePresence>
       </motion.button>
-    </div>
+    </>
   );
 }

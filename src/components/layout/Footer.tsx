@@ -73,7 +73,7 @@ export default function Footer() {
           onClick={open}
           whileHover={{ scale: 1.04 }}
           whileTap={{ scale: 0.97 }}
-          className="btn-shimmer px-10 py-4 rounded-full bg-gold text-obsidian text-[11px] sm:text-xs tracking-[0.25em] uppercase font-medium hover:shadow-[0_0_40px_color-mix(in_srgb,var(--color-ember)_45%,transparent)] transition-shadow duration-500"
+          className="btn-shimmer px-7 py-3 sm:px-10 sm:py-4 rounded-full bg-gold text-obsidian text-[11px] sm:text-xs tracking-[0.25em] uppercase font-medium hover:shadow-[0_0_40px_color-mix(in_srgb,var(--color-ember)_45%,transparent)] transition-shadow duration-500"
         >
           Book a Table
         </motion.button>

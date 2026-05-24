@@ -194,6 +194,15 @@ body::after {
 ::-webkit-scrollbar {
   width: 4px;
 }
+
+/* Utility — hide scrollbars on horizontally scrollable tab/nav rows */
+.scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
 ::-webkit-scrollbar-track {
   background: var(--color-smoke);
 }

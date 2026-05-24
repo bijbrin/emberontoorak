@@ -152,13 +152,13 @@ export default function Hero() {
             onClick={open}
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.97 }}
-            className='btn-shimmer px-8 py-4 rounded-full bg-gold text-obsidian text-[11px] sm:text-xs tracking-[0.25em] uppercase font-medium hover:shadow-[0_0_40px_color-mix(in_srgb,var(--color-ember)_55%,transparent)] transition-shadow duration-500'
+            className='btn-shimmer px-6 py-3 sm:px-8 sm:py-4 rounded-full bg-gold text-obsidian text-[11px] sm:text-xs tracking-[0.25em] uppercase font-medium hover:shadow-[0_0_40px_color-mix(in_srgb,var(--color-ember)_55%,transparent)] transition-shadow duration-500'
           >
             Reserve a Table
           </motion.button>
           <a
             href='#menu'
-            className='px-8 py-4 rounded-full border border-cream/30 text-cream/90 text-[11px] sm:text-xs tracking-[0.25em] uppercase hover:border-gold/60 hover:text-gold hover:bg-gold/10 transition-all duration-300 backdrop-blur-[2px]'
+            className='px-6 py-3 sm:px-8 sm:py-4 rounded-full border border-cream/30 text-cream/90 text-[11px] sm:text-xs tracking-[0.25em] uppercase hover:border-gold/60 hover:text-gold hover:bg-gold/10 transition-all duration-300 backdrop-blur-[2px]'
           >
             Explore the Menu
           </a>

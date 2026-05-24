@@ -143,19 +143,52 @@ export default function Header() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[998] bg-obsidian/95 backdrop-blur-xl flex flex-col items-center justify-center gap-7 md:hidden px-6"
+            className="fixed inset-0 z-[998] bg-obsidian/95 backdrop-blur-xl flex flex-col items-center justify-center gap-5 sm:gap-7 md:hidden px-6 pt-20 pb-24"
           >
             {navLinks.map((link, i) => (
               <motion.div key={link.href} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ delay: i * 0.07, duration: 0.4 }}>
                 <Link
                   href={link.href}
                   onClick={() => setMenuOpen(false)}
-                  className="font-serif italic text-4xl sm:text-5xl text-cream hover:text-gold transition-colors"
+                  className="font-serif italic text-[26px] sm:text-4xl text-cream hover:text-gold transition-colors"
                 >
                   {link.label}
                 </Link>
               </motion.div>
             ))}
+            {isAdmin && (
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ delay: navLinks.length * 0.07, duration: 0.4 }}
+              >
+                <Link
+                  href="/admin"
+                  onClick={() => setMenuOpen(false)}
+                  className="font-serif italic text-[26px] sm:text-4xl text-cream hover:text-gold transition-colors"
+                >
+                  Admin
+                </Link>
+              </motion.div>
+            )}
+            <Show when="signed-out">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ delay: (navLinks.length + (isAdmin ? 1 : 0)) * 0.07, duration: 0.4 }}
+              >
+                <SignInButton mode="modal">
+                  <button
+                    onClick={() => setMenuOpen(false)}
+                    className="text-[11px] tracking-[0.25em] uppercase text-cream/60 hover:text-gold transition-colors"
+                  >
+                    Sign in
+                  </button>
+                </SignInButton>
+              </motion.div>
+            </Show>
             <motion.button
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -164,7 +197,7 @@ export default function Header() {
                 setMenuOpen(false);
                 open();
               }}
-              className="btn-shimmer mt-6 px-10 py-4 rounded-full bg-gold text-obsidian text-xs tracking-[0.25em] uppercase font-medium"
+              className="btn-shimmer mt-3 sm:mt-6 px-7 py-3 sm:px-10 sm:py-4 rounded-full bg-gold text-obsidian text-[11px] tracking-[0.22em] uppercase font-medium"
             >
               Book a Table
             </motion.button>
@@ -181,7 +214,7 @@ export default function Header() {
             exit={{ opacity: 0, scale: 0.8 }}
             transition={{ delay: 0.3, duration: 0.5 }}
             onClick={open}
-            className="btn-shimmer fixed bottom-5 right-5 z-[997] md:hidden flex items-center gap-2 px-5 py-3 rounded-full bg-gold text-obsidian text-[11px] font-medium tracking-[0.2em] uppercase shadow-[0_8px_30px_color-mix(in_srgb,var(--color-ember)_35%,transparent)]"
+            className="btn-shimmer fixed bottom-5 right-5 z-[997] md:hidden flex items-center gap-2 px-4 py-2.5 rounded-full bg-gold text-obsidian text-[10px] font-medium tracking-[0.2em] uppercase shadow-[0_8px_30px_color-mix(in_srgb,var(--color-ember)_35%,transparent)]"
           >
             Book a Table
           </motion.button>

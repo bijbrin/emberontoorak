@@ -151,50 +151,72 @@ export default function ReservationManager({ reservations: initial }: { reservat
               <button
                 type="button"
                 onClick={() => setExpandedId(isExpanded ? null : r.id)}
-                className="w-full text-left px-5 py-3.5 grid grid-cols-[1fr_auto_auto_auto_auto] gap-x-5 items-center"
+                className="w-full text-left px-4 sm:px-5 py-3 sm:py-3.5"
               >
-                {/* Name + email */}
-                <div className="min-w-0">
-                  <span className="font-serif italic text-cream/85 text-base leading-tight block truncate">
-                    {r.firstName} {r.lastName}
-                  </span>
-                  <span className="text-cream/35 text-[11px] block truncate">{r.email}</span>
+                {/* Mobile layout: two rows */}
+                <div className="sm:hidden">
+                  <div className="flex items-start justify-between gap-3 mb-2">
+                    <div className="min-w-0 flex-1">
+                      <span className="font-serif italic text-cream/85 text-[15px] leading-tight block truncate">
+                        {r.firstName} {r.lastName}
+                      </span>
+                      <span className="text-cream/35 text-[11px] block truncate">{r.email}</span>
+                    </div>
+                    <svg
+                      className={`shrink-0 w-4 h-4 mt-1 text-cream/30 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`}
+                      fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </div>
+                  <div className="flex items-center gap-2 flex-wrap text-[11px] text-cream/55">
+                    <span className="whitespace-nowrap">{formatDate(r.date)}</span>
+                    <span className="text-cream/20">·</span>
+                    <span className="whitespace-nowrap">{formatTime(r.time)}</span>
+                    <span className="text-cream/20">·</span>
+                    <span className="whitespace-nowrap">{r.guests} {r.guests === 1 ? 'guest' : 'guests'}</span>
+                    <span className={`ml-auto text-[9px] tracking-[0.15em] uppercase px-2 py-0.5 rounded-full ${statusStyles[r.status]}`}>
+                      {r.status}
+                    </span>
+                  </div>
                 </div>
 
-                {/* Date + time */}
-                <div className="text-right shrink-0">
-                  <span className="block text-cream/60 text-[13px] whitespace-nowrap">{formatDate(r.date)}</span>
-                  <span className="block text-cream/35 text-[11px]">{formatTime(r.time)}</span>
-                </div>
-
-                {/* Guests */}
-                <div className="shrink-0 text-right">
-                  <span className="text-cream/50 text-[13px]">{r.guests}</span>
-                  <span className="text-cream/25 text-[10px] block">guests</span>
-                </div>
-
-                {/* Status badge */}
-                <div className="shrink-0">
-                  <span className={`text-[9px] tracking-[0.15em] uppercase px-2 py-0.5 rounded-full ${statusStyles[r.status]}`}>
-                    {r.status}
-                  </span>
-                </div>
-
-                {/* Chevron */}
-                <div className="shrink-0">
-                  <svg
-                    className={`w-4 h-4 text-cream/25 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`}
-                    fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                  </svg>
+                {/* Desktop layout: single grid row */}
+                <div className="hidden sm:grid grid-cols-[1fr_auto_auto_auto_auto] gap-x-5 items-center">
+                  <div className="min-w-0">
+                    <span className="font-serif italic text-cream/85 text-base leading-tight block truncate">
+                      {r.firstName} {r.lastName}
+                    </span>
+                    <span className="text-cream/35 text-[11px] block truncate">{r.email}</span>
+                  </div>
+                  <div className="text-right shrink-0">
+                    <span className="block text-cream/60 text-[13px] whitespace-nowrap">{formatDate(r.date)}</span>
+                    <span className="block text-cream/35 text-[11px]">{formatTime(r.time)}</span>
+                  </div>
+                  <div className="shrink-0 text-right">
+                    <span className="text-cream/50 text-[13px]">{r.guests}</span>
+                    <span className="text-cream/25 text-[10px] block">guests</span>
+                  </div>
+                  <div className="shrink-0">
+                    <span className={`text-[9px] tracking-[0.15em] uppercase px-2 py-0.5 rounded-full ${statusStyles[r.status]}`}>
+                      {r.status}
+                    </span>
+                  </div>
+                  <div className="shrink-0">
+                    <svg
+                      className={`w-4 h-4 text-cream/25 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`}
+                      fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </div>
                 </div>
               </button>
 
               {/* Expanded detail panel */}
               {isExpanded && (
-                <div className="px-5 pb-5 border-t border-gold/10 pt-4">
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-5">
+                <div className="px-4 sm:px-5 pb-5 border-t border-gold/10 pt-4">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 mb-5">
 
                     <div>
                       <p className="text-[9px] tracking-[0.25em] uppercase text-cream/30 mb-1">Full Name</p>
