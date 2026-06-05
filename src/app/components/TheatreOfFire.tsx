@@ -7,19 +7,19 @@ const filmStrip = [
     label: 'The Coal',
     description: '1,200° hardwood coals. No gas. No shortcuts.',
     gradient:
-      'radial-gradient(ellipse at 40% 60%, color-mix(in srgb, var(--color-ember) 75%, transparent) 0%, var(--color-surface) 35%, var(--color-obsidian) 70%, var(--color-obsidian) 100%)',
+      'radial-gradient(ellipse at 40% 60%, color-mix(in srgb, var(--color-accent) 75%, transparent) 0%, var(--color-surface) 35%, var(--color-background) 70%, var(--color-background) 100%)',
   },
   {
     label: 'The Sear',
     description: 'Maillard at its most violent. Crust formed in seconds.',
     gradient:
-      'radial-gradient(ellipse at 60% 40%, color-mix(in srgb, var(--color-ember) 55%, transparent) 0%, var(--color-smoke) 40%, var(--color-obsidian) 70%, var(--color-obsidian) 100%)',
+      'radial-gradient(ellipse at 60% 40%, color-mix(in srgb, var(--color-accent) 55%, transparent) 0%, var(--color-smoke) 40%, var(--color-background) 70%, var(--color-background) 100%)',
   },
   {
     label: 'The Rest',
     description: '28 days of dry-age. 4 minutes of patience.',
     gradient:
-      'radial-gradient(ellipse at 50% 70%, var(--color-steel) 0%, var(--color-surface) 40%, var(--color-obsidian) 70%, var(--color-obsidian) 100%)',
+      'radial-gradient(ellipse at 50% 70%, var(--color-muted) 0%, var(--color-surface) 40%, var(--color-background) 70%, var(--color-background) 100%)',
   },
 ];
 
@@ -55,7 +55,7 @@ export default function TheatreOfFire() {
       <div
         className="hidden lg:block pointer-events-none absolute inset-0 z-0 transition-opacity duration-300"
         style={{
-          background: `radial-gradient(700px circle at ${mousePos.x}px ${mousePos.y}px, color-mix(in srgb, var(--color-ember) 6%, transparent), transparent 70%)`,
+          background: `radial-gradient(700px circle at ${mousePos.x}px ${mousePos.y}px, color-mix(in srgb, var(--color-accent) 6%, transparent), transparent 70%)`,
         }}
       />
 
@@ -66,7 +66,7 @@ export default function TheatreOfFire() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
-            className="text-gold text-[10px] sm:text-xs tracking-[0.4em] uppercase mb-5 sm:mb-6"
+            className="text-accent text-[10px] sm:text-xs tracking-[0.4em] uppercase mb-5 sm:mb-6"
           >
             Our Philosophy
           </motion.p>
@@ -75,7 +75,7 @@ export default function TheatreOfFire() {
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="font-serif italic text-cream leading-[0.95] mb-6 sm:mb-8"
+            className="font-serif text-foreground leading-[0.95] mb-6 sm:mb-8"
             style={{ fontSize: 'clamp(40px, 7vw, 80px)' }}
           >
             Theatre <br className="sm:hidden" />of Fire
@@ -85,14 +85,14 @@ export default function TheatreOfFire() {
             initial={{ scaleX: 0 }}
             animate={isInView ? { scaleX: 1 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="w-12 sm:w-16 h-px bg-gold mb-5 sm:mb-6 origin-left"
+            className="w-12 sm:w-16 h-px bg-accent mb-5 sm:mb-6 origin-left"
           />
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-cream/70 text-base sm:text-lg leading-relaxed mb-5 sm:mb-6"
+            className="text-foreground/70 text-base sm:text-lg leading-relaxed mb-5 sm:mb-6"
             style={{ letterSpacing: '-0.01em' }}
           >
             We believe fire is not a tool. It is a collaborator.
@@ -102,7 +102,7 @@ export default function TheatreOfFire() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-cream/45 text-sm sm:text-base leading-relaxed mb-10 max-w-lg"
+            className="text-foreground/45 text-sm sm:text-base leading-relaxed mb-10 max-w-lg"
             style={{ letterSpacing: '-0.01em' }}
           >
             The 1,200° coals do not simply cook—they transform. Every cut of beef
@@ -124,17 +124,17 @@ export default function TheatreOfFire() {
                 whileHover={{ scale: 1.05 }}
                 animate={{
                   boxShadow: [
-                    '0 0 15px color-mix(in srgb, var(--color-ember) 12%, transparent)',
-                    '0 0 30px color-mix(in srgb, var(--color-ember) 30%, transparent)',
-                    '0 0 15px color-mix(in srgb, var(--color-ember) 12%, transparent)',
+                    '0 0 15px color-mix(in srgb, var(--color-accent) 12%, transparent)',
+                    '0 0 30px color-mix(in srgb, var(--color-accent) 30%, transparent)',
+                    '0 0 15px color-mix(in srgb, var(--color-accent) 12%, transparent)',
                   ],
                 }}
                 transition={{ duration: 2.5, delay: i * 0.4, repeat: Infinity }}
-                className="flex items-baseline gap-1.5 px-4 sm:px-5 py-2.5 sm:py-3 rounded-full border border-gold/20 bg-obsidian/60"
+                className="flex items-baseline gap-1.5 px-4 sm:px-5 py-2.5 sm:py-3 rounded-full border border-accent/20 bg-background/60"
               >
-                <span className="font-serif italic text-gold text-lg sm:text-xl">{s.value}</span>
-                {s.unit && <span className="text-gold text-xs sm:text-sm">{s.unit}</span>}
-                <span className="text-cream/50 text-[10px] sm:text-xs tracking-[0.2em] uppercase ml-1">
+                <span className="font-serif text-accent text-lg sm:text-xl">{s.value}</span>
+                {s.unit && <span className="text-accent text-xs sm:text-sm">{s.unit}</span>}
+                <span className="text-foreground/50 text-[10px] sm:text-xs tracking-[0.2em] uppercase ml-1">
                   {s.label}
                 </span>
               </motion.div>
@@ -160,15 +160,15 @@ export default function TheatreOfFire() {
                 className="absolute inset-0 transition-transform duration-700 group-hover:scale-105"
                 style={{ background: item.gradient }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-obsidian/95 via-obsidian/30 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/30 to-transparent" />
               <div className="absolute bottom-0 left-0 p-6 sm:p-8 right-0">
-                <p className="text-gold text-[10px] sm:text-xs tracking-[0.35em] uppercase mb-2">
+                <p className="text-accent text-[10px] sm:text-xs tracking-[0.35em] uppercase mb-2">
                   0{i + 1}
                 </p>
-                <h3 className="font-serif italic text-cream text-xl sm:text-2xl mb-1">
+                <h3 className="font-serif text-foreground text-xl sm:text-2xl mb-1">
                   {item.label}
                 </h3>
-                <p className="text-cream/55 text-xs sm:text-sm leading-relaxed">
+                <p className="text-foreground/55 text-xs sm:text-sm leading-relaxed">
                   {item.description}
                 </p>
               </div>

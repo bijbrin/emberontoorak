@@ -13,13 +13,32 @@ const navLinks = [
   { label: 'Reservations', href: '/reservations' },
 ];
 
+const LIGHT_THEMES = ['ivory', 'sand', 'sage']
+
+function getIsLightTheme() {
+  const theme = document.documentElement.getAttribute('data-theme')
+  return LIGHT_THEMES.includes(theme || '')
+}
+
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isLightTheme, setIsLightTheme] = useState(() =>
+    typeof document !== 'undefined' ? getIsLightTheme() : false
+  );
   const { open } = useBookingStore();
   const { user } = useUser();
   const isAdmin = user?.publicMetadata?.role === 'admin';
   const pathname = usePathname();
+
+  /* Watch for theme changes */
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      setIsLightTheme(getIsLightTheme())
+    })
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] })
+    return () => observer.disconnect()
+  }, [])
 
   useEffect(() => {
     const onScroll = () => {
@@ -45,16 +64,18 @@ export default function Header() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         className={`fixed top-0 left-0 right-0 z-[999] navbar-blur transition-[background-color,box-shadow,padding] duration-500 ${
-          scrolled || menuOpen ? 'glass glass-fire py-3 sm:py-4' : 'py-5 sm:py-6'
+          scrolled || menuOpen
+            ? 'glass glass-fire py-3 sm:py-4'
+            : `${isLightTheme ? 'bg-background/60' : ''} py-5 sm:py-6`
         }`}
       >
         <div className="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex items-center justify-between gap-4">
           {/* Logo */}
           <Link href="/" className="flex flex-col leading-none group shrink-0">
-            <span className="font-serif italic text-xl sm:text-2xl text-cream tracking-tight">
+            <span className="font-serif text-xl sm:text-2xl text-foreground tracking-tight" style={{ fontWeight: 600 }}>
               Ember
             </span>
-            <span className="text-[8px] sm:text-[9px] tracking-[0.35em] uppercase text-gold/70 group-hover:text-gold transition-colors">
+            <span className="font-display text-[8px] sm:text-[9px] tracking-[0.35em] uppercase text-accent/70 group-hover:text-accent transition-colors" style={{ fontWeight: 500 }}>
               on Toorak
             </span>
           </Link>
@@ -93,7 +114,7 @@ export default function Header() {
             </Show>
             <Show when="signed-out">
               <SignInButton mode="modal">
-                <button className="hidden md:inline-flex text-[10px] tracking-[0.2em] uppercase text-cream/40 hover:text-gold transition-colors duration-300">
+                <button className="hidden md:inline-flex text-[10px] tracking-[0.2em] uppercase text-foreground/40 hover:text-accent transition-colors duration-300">
                   Sign in
                 </button>
               </SignInButton>
@@ -102,7 +123,7 @@ export default function Header() {
               onClick={open}
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
-              className="hidden md:inline-flex items-center px-6 lg:px-7 py-3 rounded-full border border-gold/40 text-gold text-[11px] tracking-[0.2em] uppercase hover:bg-gold hover:text-obsidian hover:border-gold transition-all duration-300"
+              className="hidden md:inline-flex items-center px-6 lg:px-7 py-3 rounded-full border border-accent/40 text-accent text-[11px] tracking-[0.2em] uppercase hover:bg-accent hover:text-background hover:border-accent transition-all duration-300"
             >
               Book a Table
             </motion.button>
@@ -116,19 +137,19 @@ export default function Header() {
               <motion.span
                 animate={menuOpen ? { rotate: 45, y: 4 } : { rotate: 0, y: 0 }}
                 transition={{ duration: 0.3 }}
-                className="block w-5 h-px bg-cream origin-center"
+                className="block w-5 h-px bg-foreground origin-center"
               />
               <motion.span
                 animate={menuOpen ? { opacity: 0 } : { opacity: 1, y: 6 }}
                 initial={{ y: 6 }}
                 transition={{ duration: 0.2 }}
-                className="block w-5 h-px bg-cream"
+                className="block w-5 h-px bg-foreground"
               />
               <motion.span
                 animate={menuOpen ? { rotate: -45, y: -4 } : { rotate: 0, y: 12 }}
                 initial={{ y: 12 }}
                 transition={{ duration: 0.3 }}
-                className="block w-5 h-px bg-cream origin-center"
+                className="block w-5 h-px bg-foreground origin-center"
               />
             </button>
           </div>
@@ -143,14 +164,15 @@ export default function Header() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[998] bg-obsidian/95 backdrop-blur-xl flex flex-col items-center justify-center gap-5 sm:gap-7 md:hidden px-6 pt-20 pb-24"
+            className="fixed inset-0 z-[998] bg-background/95 backdrop-blur-xl flex flex-col items-center justify-center gap-5 sm:gap-7 md:hidden px-6 pt-20 pb-24"
           >
             {navLinks.map((link, i) => (
               <motion.div key={link.href} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ delay: i * 0.07, duration: 0.4 }}>
                 <Link
                   href={link.href}
                   onClick={() => setMenuOpen(false)}
-                  className="font-serif italic text-[26px] sm:text-4xl text-cream hover:text-gold transition-colors"
+                  className="font-serif text-[26px] sm:text-4xl text-foreground hover:text-accent transition-colors"
+                  style={{ fontWeight: 500 }}
                 >
                   {link.label}
                 </Link>
@@ -166,7 +188,8 @@ export default function Header() {
                 <Link
                   href="/admin"
                   onClick={() => setMenuOpen(false)}
-                  className="font-serif italic text-[26px] sm:text-4xl text-cream hover:text-gold transition-colors"
+                  className="font-serif text-[26px] sm:text-4xl text-foreground hover:text-accent transition-colors"
+                  style={{ fontWeight: 500 }}
                 >
                   Admin
                 </Link>
@@ -182,7 +205,7 @@ export default function Header() {
                 <SignInButton mode="modal">
                   <button
                     onClick={() => setMenuOpen(false)}
-                    className="text-[11px] tracking-[0.25em] uppercase text-cream/60 hover:text-gold transition-colors"
+                    className="text-[11px] tracking-[0.25em] uppercase text-foreground/60 hover:text-accent transition-colors"
                   >
                     Sign in
                   </button>
@@ -197,7 +220,7 @@ export default function Header() {
                 setMenuOpen(false);
                 open();
               }}
-              className="btn-shimmer mt-3 sm:mt-6 px-7 py-3 sm:px-10 sm:py-4 rounded-full bg-gold text-obsidian text-[11px] tracking-[0.22em] uppercase font-medium"
+              className="btn-shimmer mt-3 sm:mt-6 px-7 py-3 sm:px-10 sm:py-4 rounded-full bg-accent text-background text-[11px] tracking-[0.22em] uppercase font-medium"
             >
               Book a Table
             </motion.button>
@@ -214,7 +237,7 @@ export default function Header() {
             exit={{ opacity: 0, scale: 0.8 }}
             transition={{ delay: 0.3, duration: 0.5 }}
             onClick={open}
-            className="btn-shimmer fixed bottom-5 right-5 z-[997] md:hidden flex items-center gap-2 px-4 py-2.5 rounded-full bg-gold text-obsidian text-[10px] font-medium tracking-[0.2em] uppercase shadow-[0_8px_30px_color-mix(in_srgb,var(--color-ember)_35%,transparent)]"
+            className="btn-shimmer fixed bottom-5 right-5 z-[997] md:hidden flex items-center gap-2 px-4 py-2.5 rounded-full bg-accent text-background text-[10px] font-medium tracking-[0.2em] uppercase shadow-[0_8px_30px_color-mix(in_srgb,var(--color-accent)_35%,transparent)]"
           >
             Book a Table
           </motion.button>

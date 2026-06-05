@@ -27,7 +27,7 @@ export default function SignatureDishes() {
   const isInView = useInView(ref, { once: true, amount: 0.05 });
 
   return (
-    <section id="menu" ref={ref} className="bg-obsidian section-y section-x">
+    <section id="menu" ref={ref} className="bg-background section-y section-x">
       <div className="max-w-7xl mx-auto">
         {/* Section heading */}
         <motion.div
@@ -36,16 +36,16 @@ export default function SignatureDishes() {
           transition={{ duration: 0.7 }}
           className="mb-8 sm:mb-10 max-w-2xl"
         >
-          <p className="text-gold text-[10px] sm:text-xs tracking-[0.4em] uppercase mb-4 sm:mb-5">
+          <p className="text-accent text-[10px] sm:text-xs tracking-[0.4em] uppercase mb-4 sm:mb-5">
             The Menu
           </p>
           <h2
-            className="font-serif italic text-cream leading-[0.95] mb-5"
+            className="font-serif text-foreground leading-[0.95] mb-5"
             style={{ fontSize: 'clamp(36px, 6vw, 64px)' }}
           >
             Signature Dishes
           </h2>
-          <p className="text-cream/40 text-sm sm:text-base leading-relaxed">
+          <p className="text-foreground/40 text-sm sm:text-base leading-relaxed">
             From the coals, the cellar, and the ocean — three rooms of the Theatre.
           </p>
         </motion.div>
@@ -60,22 +60,22 @@ export default function SignatureDishes() {
             className="group relative rounded-2xl overflow-hidden inner-glow inner-glow-hover transition-all duration-500 cursor-default md:col-span-2 md:row-span-2 min-h-[480px] md:min-h-[560px]"
             style={{
               background:
-                'radial-gradient(ellipse at 35% 50%, color-mix(in srgb, var(--color-ember) 60%, transparent) 0%, var(--color-smoke) 40%, var(--color-smoke) 70%, var(--color-obsidian) 100%)',
+                'radial-gradient(ellipse at 35% 50%, color-mix(in srgb, var(--color-accent) 60%, transparent) 0%, var(--color-smoke) 40%, var(--color-smoke) 70%, var(--color-background) 100%)',
             }}
           >
-            <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/30 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
             <div
               className="absolute inset-0 transition-transform duration-700 group-hover:scale-[1.03]"
               style={{
-                background: 'radial-gradient(ellipse at 40% 45%, color-mix(in srgb, var(--color-ember) 8%, transparent) 0%, transparent 60%)',
+                background: 'radial-gradient(ellipse at 40% 45%, color-mix(in srgb, var(--color-accent) 8%, transparent) 0%, transparent 60%)',
               }}
             />
 
             <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8 md:p-10 lg:p-12">
-              <p className="text-gold text-[10px] sm:text-xs tracking-[0.4em] uppercase mb-3">
+              <p className="text-accent text-[10px] sm:text-xs tracking-[0.4em] uppercase mb-3">
                 Premium Cuts
               </p>
-              <h3 className="font-serif italic text-cream text-3xl sm:text-4xl md:text-5xl mb-5 sm:mb-7 leading-[0.95]">
+              <h3 className="font-serif text-foreground text-3xl sm:text-4xl md:text-5xl mb-5 sm:mb-7 leading-[0.95]">
                 Fire & Beef
               </h3>
               <div className="space-y-3 sm:space-y-4">
@@ -85,17 +85,17 @@ export default function SignatureDishes() {
                     initial={{ opacity: 0, x: -20 }}
                     animate={isInView ? { opacity: 1, x: 0 } : {}}
                     transition={{ duration: 0.6, delay: 0.4 + i * 0.1 }}
-                    className="flex items-baseline justify-between gap-3 border-t border-gold/10 pt-3 group/item"
+                    className="flex items-baseline justify-between gap-3 border-t border-accent/10 pt-3 group/item"
                   >
                     <div className="min-w-0">
-                      <p className="text-cream text-sm sm:text-base font-medium group-hover/item:text-gold transition-colors leading-snug">
+                      <p className="text-foreground text-sm sm:text-base font-medium group-hover/item:text-accent transition-colors leading-snug">
                         {steak.name}
                       </p>
-                      <p className="text-cream/40 text-[11px] sm:text-xs mt-0.5 leading-snug">
+                      <p className="text-foreground/40 text-[11px] sm:text-xs mt-0.5 leading-snug">
                         {steak.detail}
                       </p>
                     </div>
-                    <span className="text-gold font-serif italic text-base sm:text-lg shrink-0">
+                    <span className="text-accent font-serif text-base sm:text-lg shrink-0">
                       ${steak.price}
                     </span>
                   </motion.div>
@@ -106,7 +106,7 @@ export default function SignatureDishes() {
             <div
               className="absolute top-6 right-6 sm:top-8 sm:right-8 w-32 h-32 sm:w-40 sm:h-40 rounded-full opacity-30 group-hover:opacity-50 transition-opacity duration-700"
               style={{
-                background: 'radial-gradient(circle, color-mix(in srgb, var(--color-ember) 60%, transparent) 0%, transparent 70%)',
+                background: 'radial-gradient(circle, color-mix(in srgb, var(--color-accent) 60%, transparent) 0%, transparent 70%)',
               }}
             />
           </motion.div>
@@ -118,30 +118,30 @@ export default function SignatureDishes() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="group relative rounded-2xl overflow-hidden inner-glow inner-glow-hover transition-all duration-500 cursor-default min-h-[280px] md:min-h-0"
             style={{
-              background: 'radial-gradient(ellipse at 50% 30%, var(--color-surface) 0%, var(--color-smoke) 50%, var(--color-obsidian) 100%)',
+              background: 'radial-gradient(ellipse at 50% 30%, var(--color-surface) 0%, var(--color-smoke) 50%, var(--color-background) 100%)',
             }}
           >
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-obsidian/80" />
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background/80" />
             <div className="relative h-full p-6 sm:p-7 flex flex-col">
-              <p className="text-gold text-[10px] sm:text-xs tracking-[0.4em] uppercase mb-3">
+              <p className="text-accent text-[10px] sm:text-xs tracking-[0.4em] uppercase mb-3">
                 The Ocean
               </p>
-              <h3 className="font-serif italic text-cream text-2xl sm:text-3xl mb-5 leading-tight">
+              <h3 className="font-serif text-foreground text-2xl sm:text-3xl mb-5 leading-tight">
                 Raw Bar
               </h3>
               <div className="space-y-3 mt-auto">
                 {rawBar.map((item) => (
                   <div
                     key={item.name}
-                    className="flex justify-between items-baseline gap-3 border-t border-gold/10 pt-2.5"
+                    className="flex justify-between items-baseline gap-3 border-t border-accent/10 pt-2.5"
                   >
                     <div className="min-w-0">
-                      <p className="text-cream/80 text-xs sm:text-sm leading-snug">{item.name}</p>
-                      <p className="text-cream/35 text-[10px] sm:text-[11px] mt-0.5 leading-snug">
+                      <p className="text-foreground/80 text-xs sm:text-sm leading-snug">{item.name}</p>
+                      <p className="text-foreground/35 text-[10px] sm:text-[11px] mt-0.5 leading-snug">
                         {item.detail}
                       </p>
                     </div>
-                    <span className="text-gold/70 text-xs font-serif italic shrink-0">
+                    <span className="text-accent/70 text-xs font-serif shrink-0">
                       ${item.price}
                     </span>
                   </div>
@@ -157,14 +157,14 @@ export default function SignatureDishes() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="group relative rounded-2xl overflow-hidden inner-glow inner-glow-hover transition-all duration-500 cursor-default min-h-[280px] md:min-h-0"
             style={{
-              background: 'radial-gradient(ellipse at 50% 70%, var(--color-surface) 0%, var(--color-smoke) 50%, var(--color-obsidian) 100%)',
+              background: 'radial-gradient(ellipse at 50% 70%, var(--color-surface) 0%, var(--color-smoke) 50%, var(--color-background) 100%)',
             }}
           >
             <div className="relative h-full p-6 sm:p-7 flex flex-col">
-              <p className="text-gold text-[10px] sm:text-xs tracking-[0.4em] uppercase mb-3">
+              <p className="text-accent text-[10px] sm:text-xs tracking-[0.4em] uppercase mb-3">
                 Wine
               </p>
-              <h3 className="font-serif italic text-cream text-2xl sm:text-3xl mb-5 leading-tight">
+              <h3 className="font-serif text-foreground text-2xl sm:text-3xl mb-5 leading-tight">
                 The Cellar
               </h3>
               <div className="flex-1 overflow-hidden relative min-h-[120px]">
@@ -176,14 +176,14 @@ export default function SignatureDishes() {
                   {[...cellarPours, ...cellarPours].map((pour, i) => (
                     <p
                       key={i}
-                      className="text-cream/55 text-xs sm:text-sm border-b border-gold/8 pb-2.5"
+                      className="text-foreground/55 text-xs sm:text-sm border-b border-accent/8 pb-2.5"
                     >
                       {pour}
                     </p>
                   ))}
                 </motion.div>
-                <div className="absolute top-0 left-0 right-0 h-6 bg-gradient-to-b from-obsidian/60 to-transparent pointer-events-none" />
-                <div className="absolute bottom-0 left-0 right-0 h-6 bg-gradient-to-t from-obsidian/60 to-transparent pointer-events-none" />
+                <div className="absolute top-0 left-0 right-0 h-6 bg-gradient-to-b from-background/60 to-transparent pointer-events-none" />
+                <div className="absolute bottom-0 left-0 right-0 h-6 bg-gradient-to-t from-background/60 to-transparent pointer-events-none" />
               </div>
             </div>
           </motion.div>
@@ -198,10 +198,10 @@ export default function SignatureDishes() {
         >
           <Link
             href="/menu"
-            className="inline-flex items-center gap-3 text-[11px] sm:text-xs tracking-[0.3em] uppercase text-gold/70 hover:text-gold transition-colors group"
+            className="inline-flex items-center gap-3 text-[11px] sm:text-xs tracking-[0.3em] uppercase text-accent/70 hover:text-accent transition-colors group"
           >
             View Full Menu & Cellar
-            <span className="block w-8 h-px bg-gold/40 group-hover:w-16 group-hover:bg-gold transition-all duration-500" />
+            <span className="block w-8 h-px bg-accent/40 group-hover:w-16 group-hover:bg-accent transition-all duration-500" />
           </Link>
         </motion.div>
       </div>

@@ -94,7 +94,7 @@ export default function ReservationsPage() {
     <>
       <BookingPanel />
 
-      <main className='min-h-screen bg-obsidian'>
+      <main className='min-h-screen bg-background'>
         {/* Page layout: splits into two columns on large screens */}
         <div className='min-h-screen lg:flex lg:items-stretch'>
           {/* Left panel — atmospheric info */}
@@ -108,23 +108,23 @@ export default function ReservationsPage() {
               className='absolute inset-0 pointer-events-none'
               style={{
                 background:
-                  'radial-gradient(ellipse at 30% 60%, color-mix(in srgb, var(--color-ember) 8%, transparent) 0%, color-mix(in srgb, var(--color-steel) 5%, transparent) 30%, transparent 65%)',
+                  'radial-gradient(ellipse at 30% 60%, color-mix(in srgb, var(--color-accent) 8%, transparent) 0%, color-mix(in srgb, var(--color-muted) 5%, transparent) 30%, transparent 65%)',
               }}
             />
             <div
               className='absolute top-0 right-0 w-72 h-72 pointer-events-none'
               style={{
                 background:
-                  'radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--color-ember) 6%, transparent) 0%, transparent 60%)',
+                  'radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--color-accent) 6%, transparent) 0%, transparent 60%)',
               }}
             />
             {/* Vertical gold accent line */}
-            <div className='absolute right-0 top-1/4 bottom-1/4 w-px bg-gradient-to-b from-transparent via-gold/15 to-transparent hidden lg:block' />
+            <div className='absolute right-0 top-1/4 bottom-1/4 w-px bg-gradient-to-b from-transparent via-accent/15 to-transparent hidden lg:block' />
 
             {/* Floating embers */}
-            <div className='absolute top-32 left-16 w-1.5 h-1.5 rounded-full bg-ember/40 animate-drift1' />
-            <div className='absolute top-48 right-20 w-1 h-1 rounded-full bg-gold/30 animate-drift2' />
-            <div className='absolute bottom-40 left-24 w-1 h-1 rounded-full bg-ember/25 animate-drift3' />
+            <div className='absolute top-32 left-16 w-1.5 h-1.5 rounded-full bg-accent/40 animate-drift1' />
+            <div className='absolute top-48 right-20 w-1 h-1 rounded-full bg-accent/30 animate-drift2' />
+            <div className='absolute bottom-40 left-24 w-1 h-1 rounded-full bg-accent/25 animate-drift3' />
 
             <div className='relative z-10 w-full'>
               <AnimatePresence mode='wait'>
@@ -141,9 +141,9 @@ export default function ReservationsPage() {
                     >
                       <Link
                         href='/'
-                        className='inline-flex items-center gap-2 text-[10px] tracking-[0.3em] uppercase text-gold/45 hover:text-gold transition-colors mb-5 group'
+                        className='inline-flex items-center gap-2 text-[10px] tracking-[0.3em] uppercase text-accent/45 hover:text-accent transition-colors mb-5 group'
                       >
-                        <span className='block w-5 h-px bg-gold/35 group-hover:w-8 group-hover:bg-gold transition-all duration-400' />
+                        <span className='block w-5 h-px bg-accent/35 group-hover:w-8 group-hover:bg-accent transition-all duration-400' />
                         Ember on Toorak
                       </Link>
                     </motion.div>
@@ -152,7 +152,7 @@ export default function ReservationsPage() {
                       initial={{ opacity: 0, y: 16 }}
                       animate={isInfoInView ? { opacity: 1, y: 0 } : {}}
                       transition={{ duration: 0.6, delay: 0.15 }}
-                      className='text-gold text-[10px] tracking-[0.45em] uppercase mb-3'
+                      className='text-accent text-[10px] tracking-[0.45em] uppercase mb-3'
                     >
                       Reserve
                     </motion.p>
@@ -165,19 +165,19 @@ export default function ReservationsPage() {
                         delay: 0.25,
                         ease: [0.16, 1, 0.3, 1],
                       }}
-                      className='font-serif italic text-cream leading-[0.92] mb-4'
+                      className='font-serif text-foreground leading-[0.92] mb-4'
                       style={{ fontSize: 'clamp(38px, 6vw, 68px)' }}
                     >
                       A Table
                       <br />
-                      <span className='text-gold/60'>at Ember</span>
+                      <span className='text-accent/60'>at Ember</span>
                     </motion.h1>
 
                     <motion.p
                       initial={{ opacity: 0 }}
                       animate={isInfoInView ? { opacity: 1 } : {}}
                       transition={{ duration: 0.7, delay: 0.4 }}
-                      className='text-cream/35 text-sm leading-relaxed max-w-xs mb-5'
+                      className='text-foreground/35 text-sm leading-relaxed max-w-xs mb-5'
                     >
                       An evening at Ember is an invitation to slow down and let
                       fire do the talking. We look forward to welcoming you.
@@ -187,11 +187,11 @@ export default function ReservationsPage() {
                       initial={{ opacity: 0 }}
                       animate={isInfoInView ? { opacity: 1 } : {}}
                       transition={{ duration: 0.7, delay: 0.55 }}
-                      className='flex items-center gap-2 text-[10px] tracking-[0.3em] uppercase text-ember/60 mb-5'
+                      className='flex items-center gap-2 text-[10px] tracking-[0.3em] uppercase text-accent/60 mb-5'
                     >
                       <span className='relative flex w-1.5 h-1.5'>
-                        <span className='absolute inline-flex h-full w-full rounded-full bg-ember/60 animate-ping' />
-                        <span className='relative inline-flex w-1.5 h-1.5 rounded-full bg-ember' />
+                        <span className='absolute inline-flex h-full w-full rounded-full bg-accent/60 animate-ping' />
+                        <span className='relative inline-flex w-1.5 h-1.5 rounded-full bg-accent' />
                       </span>
                       Floor plan loading…
                     </motion.p>
@@ -203,7 +203,7 @@ export default function ReservationsPage() {
                       transition={{ duration: 0.6, delay: 0.5 }}
                       className='mb-4'
                     >
-                      <p className='text-[10px] tracking-[0.3em] uppercase text-gold/50 mb-2'>
+                      <p className='text-[10px] tracking-[0.3em] uppercase text-accent/50 mb-2'>
                         Hours
                       </p>
                       <div className='space-y-2'>
@@ -212,8 +212,8 @@ export default function ReservationsPage() {
                             key={h.day}
                             className='flex items-baseline justify-between gap-4'
                           >
-                            <p className='text-cream/50 text-xs'>{h.day}</p>
-                            <p className='text-cream/30 text-[11px] shrink-0'>
+                            <p className='text-foreground/50 text-xs'>{h.day}</p>
+                            <p className='text-foreground/30 text-[11px] shrink-0'>
                               {h.time}
                             </p>
                           </div>
@@ -226,24 +226,24 @@ export default function ReservationsPage() {
                       initial={{ opacity: 0, y: 16 }}
                       animate={isInfoInView ? { opacity: 1, y: 0 } : {}}
                       transition={{ duration: 0.6, delay: 0.6 }}
-                      className='border-t border-gold/10 pt-4'
+                      className='border-t border-accent/10 pt-4'
                     >
-                      <p className='text-[10px] tracking-[0.3em] uppercase text-gold/50 mb-2'>
+                      <p className='text-[10px] tracking-[0.3em] uppercase text-accent/50 mb-2'>
                         Contact
                       </p>
                       <div className='space-y-1'>
-                        <p className='text-cream/45 text-xs'>
+                        <p className='text-foreground/45 text-xs'>
                           328 Toorak Road, Toorak VIC 3142
                         </p>
                         <a
                           href='tel:0398247600'
-                          className='block text-cream/45 text-xs hover:text-gold transition-colors'
+                          className='block text-foreground/45 text-xs hover:text-accent transition-colors'
                         >
                           (03) 9824 7600
                         </a>
                         <a
                           href='mailto:reservations@emberontoorak.com.au'
-                          className='block text-cream/35 text-[11px] hover:text-gold transition-colors break-all'
+                          className='block text-foreground/35 text-[11px] hover:text-accent transition-colors break-all'
                         >
                           reservations@emberontoorak.com.au
                         </a>
@@ -259,25 +259,25 @@ export default function ReservationsPage() {
                   >
                     <Link
                       href='/'
-                      className='inline-flex items-center gap-2 text-[10px] tracking-[0.3em] uppercase text-gold/45 hover:text-gold transition-colors mb-2 group'
+                      className='inline-flex items-center gap-2 text-[10px] tracking-[0.3em] uppercase text-accent/45 hover:text-accent transition-colors mb-2 group'
                     >
-                      <span className='block w-5 h-px bg-gold/35 group-hover:w-8 group-hover:bg-gold transition-all duration-400' />
+                      <span className='block w-5 h-px bg-accent/35 group-hover:w-8 group-hover:bg-accent transition-all duration-400' />
                       Ember on Toorak
                     </Link>
 
-                    <p className='text-gold text-[10px] tracking-[0.45em] uppercase mb-1'>
+                    <p className='text-accent text-[10px] tracking-[0.45em] uppercase mb-1'>
                       Floor Plan
                     </p>
-                    <h2 className='font-serif italic text-cream text-xl sm:text-2xl leading-tight mb-1'>
-                      Choose <span className='text-gold/60'>your table</span>
+                    <h2 className='font-serif text-foreground text-xl sm:text-2xl leading-tight mb-1'>
+                      Choose <span className='text-accent/60'>your table</span>
                     </h2>
-                    <p className='text-cream/40 text-[11px] mb-3 max-w-xs'>
+                    <p className='text-foreground/40 text-[11px] mb-3 max-w-xs'>
                       Tap an available table to add it to your reservation.
                     </p>
 
                     {/* Floor plan canvas */}
                     <div
-                      className='relative w-full rounded-2xl border border-gold/15 bg-linear-to-br from-obsidian/90 via-smoke/70 to-obsidian/90 overflow-hidden shadow-[inset_0_0_60px_rgba(0,0,0,0.5)]'
+                      className='relative w-full rounded-2xl border border-accent/15 bg-linear-to-br from-background/90 via-smoke/70 to-background/90 overflow-hidden shadow-[inset_0_0_60px_rgba(0,0,0,0.5)]'
                       style={{ aspectRatio: '1 / 1' }}
                     >
                       {/* parquet texture */}
@@ -285,18 +285,18 @@ export default function ReservationsPage() {
                         className='absolute inset-0 opacity-[0.06] pointer-events-none'
                         style={{
                           backgroundImage:
-                            'repeating-linear-gradient(45deg, color-mix(in srgb, var(--color-ember) 60%, transparent) 0 1px, transparent 1px 14px)',
+                            'repeating-linear-gradient(45deg, color-mix(in srgb, var(--color-accent) 60%, transparent) 0 1px, transparent 1px 14px)',
                         }}
                       />
 
                       {/* Kitchen strip */}
-                      <div className='absolute top-2 left-2 right-2 h-8 rounded-md border border-ember/25 bg-ember/10 flex items-center justify-center gap-2 text-[9px] tracking-[0.3em] uppercase text-ember/75'>
+                      <div className='absolute top-2 left-2 right-2 h-8 rounded-md border border-accent/25 bg-accent/10 flex items-center justify-center gap-2 text-[9px] tracking-[0.3em] uppercase text-accent/75'>
                         <span className='text-[13px]'>🔥</span> Kitchen
                       </div>
 
                       {/* Restrooms */}
                       <div
-                        className='absolute right-2 w-10 h-10 rounded-md border border-steel/35 bg-steel/15 flex items-center justify-center text-[15px]'
+                        className='absolute right-2 w-10 h-10 rounded-md border border-muted/35 bg-muted/15 flex items-center justify-center text-[15px]'
                         style={{ top: 'calc(8px + 36px + 4px)' }}
                         title='Restrooms'
                       >
@@ -305,7 +305,7 @@ export default function ReservationsPage() {
 
                       {/* Bar */}
                       <div
-                        className='absolute left-2 w-9 rounded-md border border-gold/25 bg-gold/10 flex items-center justify-center text-[8px] tracking-[0.3em] uppercase text-gold/65'
+                        className='absolute left-2 w-9 rounded-md border border-accent/25 bg-accent/10 flex items-center justify-center text-[8px] tracking-[0.3em] uppercase text-accent/65'
                         style={{
                           top: 'calc(8px + 36px + 4px)',
                           height: '90px',
@@ -353,10 +353,10 @@ export default function ReservationsPage() {
                                 : 'rounded-lg'
                             } ${
                               isBooked
-                                ? 'bg-steel/25 border border-steel/40 text-cream/25 cursor-not-allowed'
+                                ? 'bg-muted/25 border border-muted/40 text-foreground/25 cursor-not-allowed'
                                 : isSelected
-                                  ? 'bg-ember text-obsidian border-2 border-gold shadow-[0_0_28px_color-mix(in_srgb,var(--color-ember)_65%,transparent)]'
-                                  : 'bg-gold/15 border border-gold/45 text-gold hover:bg-gold/25 hover:border-gold/80'
+                                  ? 'bg-accent text-background border-2 border-accent shadow-[0_0_28px_color-mix(in_srgb,var(--color-accent)_65%,transparent)]'
+                                  : 'bg-accent/15 border border-accent/45 text-accent hover:bg-accent/25 hover:border-accent/80'
                             }`}
                             style={{
                               left: `${t.x}%`,
@@ -373,12 +373,12 @@ export default function ReservationsPage() {
                               {t.id}
                             </span>
                             {t.accessible && (
-                              <span className='absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-steel border border-cream/30 text-cream text-[9px] flex items-center justify-center shadow'>
+                              <span className='absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-muted border border-foreground/30 text-foreground text-[9px] flex items-center justify-center shadow'>
                                 ♿
                               </span>
                             )}
                             {isBooked && (
-                              <span className='absolute inset-0 rounded-[inherit] flex items-center justify-center bg-obsidian/40 text-rose-300/80 text-[10px] tracking-widest uppercase'>
+                              <span className='absolute inset-0 rounded-[inherit] flex items-center justify-center bg-background/40 text-rose-300/80 text-[10px] tracking-widest uppercase'>
                                 ✕
                               </span>
                             )}
@@ -387,27 +387,27 @@ export default function ReservationsPage() {
                       })}
 
                       {/* Entry */}
-                      <div className='absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-1.5 px-3 py-1 rounded-full border border-cream/15 bg-obsidian/70 text-[8px] tracking-[0.3em] uppercase text-cream/45'>
+                      <div className='absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-1.5 px-3 py-1 rounded-full border border-foreground/15 bg-background/70 text-[8px] tracking-[0.3em] uppercase text-foreground/45'>
                         <span>↓</span> Entry
                       </div>
                     </div>
 
                     {/* Legend */}
-                    <div className='mt-3 grid grid-cols-2 lg:grid-cols-4 gap-x-3 gap-y-2 text-[10px] text-cream/55'>
+                    <div className='mt-3 grid grid-cols-2 lg:grid-cols-4 gap-x-3 gap-y-2 text-[10px] text-foreground/55'>
                       <div className='flex items-center gap-2'>
-                        <span className='w-3.5 h-3.5 rounded bg-gold/20 border border-gold/50' />{' '}
+                        <span className='w-3.5 h-3.5 rounded bg-accent/20 border border-accent/50' />{' '}
                         Available
                       </div>
                       <div className='flex items-center gap-2'>
-                        <span className='w-3.5 h-3.5 rounded bg-ember border border-gold' />{' '}
+                        <span className='w-3.5 h-3.5 rounded bg-accent border border-accent' />{' '}
                         Selected
                       </div>
                       <div className='flex items-center gap-2'>
-                        <span className='w-3.5 h-3.5 rounded bg-steel/30 border border-steel/50' />{' '}
+                        <span className='w-3.5 h-3.5 rounded bg-muted/30 border border-muted/50' />{' '}
                         Booked
                       </div>
                       <div className='flex items-center gap-2'>
-                        <span className='w-3.5 h-3.5 rounded-full bg-steel text-cream text-[8px] flex items-center justify-center'>
+                        <span className='w-3.5 h-3.5 rounded-full bg-muted text-foreground text-[8px] flex items-center justify-center'>
                           ♿
                         </span>{' '}
                         Accessible
@@ -421,27 +421,27 @@ export default function ReservationsPage() {
                           initial={{ opacity: 0, y: 8 }}
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: 8 }}
-                          className='mt-4 p-3 rounded-lg border border-gold/30 bg-gold/8 flex items-center justify-between gap-3'
+                          className='mt-4 p-3 rounded-lg border border-accent/30 bg-accent/8 flex items-center justify-between gap-3'
                         >
-                          <div className='text-[11px] text-cream/70'>
-                            <span className='text-gold font-medium'>
+                          <div className='text-[11px] text-foreground/70'>
+                            <span className='text-accent font-medium'>
                               {selectedTable.id}
                             </span>{' '}
                             · {selectedTable.seats} seats
                             {selectedTable.label && (
-                              <span className='text-cream/45'>
+                              <span className='text-foreground/45'>
                                 {' '}
                                 · {selectedTable.label}
                               </span>
                             )}
                             {selectedTable.accessible && (
-                              <span className='text-steel'> · ♿</span>
+                              <span className='text-muted'> · ♿</span>
                             )}
                           </div>
                           <button
                             type='button'
                             onClick={() => setSelectedTable(null)}
-                            className='text-[9px] tracking-[0.25em] uppercase text-cream/40 hover:text-ember transition-colors'
+                            className='text-[9px] tracking-[0.25em] uppercase text-foreground/40 hover:text-accent transition-colors'
                           >
                             Clear
                           </button>
@@ -457,7 +457,7 @@ export default function ReservationsPage() {
           {/* Right panel — form */}
           <div
             ref={formRef}
-            className='flex-1 bg-obsidian border-l border-gold/8 px-6 sm:px-10 lg:px-16 xl:px-20 py-16 lg:py-28'
+            className='flex-1 bg-background border-l border-accent/8 px-6 sm:px-10 lg:px-16 xl:px-20 py-16 lg:py-28'
           >
             <div className='max-w-xl mx-auto lg:mx-0'>
               <AnimatePresence mode='wait'>
@@ -473,21 +473,21 @@ export default function ReservationsPage() {
                     <motion.div
                       animate={{
                         boxShadow: [
-                          '0 0 20px color-mix(in srgb, var(--color-ember) 20%, transparent)',
-                          '0 0 50px color-mix(in srgb, var(--color-ember) 50%, transparent)',
-                          '0 0 20px color-mix(in srgb, var(--color-ember) 20%, transparent)',
+                          '0 0 20px color-mix(in srgb, var(--color-accent) 20%, transparent)',
+                          '0 0 50px color-mix(in srgb, var(--color-accent) 50%, transparent)',
+                          '0 0 20px color-mix(in srgb, var(--color-accent) 20%, transparent)',
                         ],
                       }}
                       transition={{ duration: 2.5, repeat: Infinity }}
-                      className='w-20 h-20 rounded-full border border-gold/60 flex items-center justify-center text-gold text-3xl mb-2'
+                      className='w-20 h-20 rounded-full border border-accent/60 flex items-center justify-center text-accent text-3xl mb-2'
                     >
                       ✓
                     </motion.div>
                     <div>
-                      <p className='font-serif italic text-3xl sm:text-4xl text-cream mb-3'>
+                      <p className='font-serif text-3xl sm:text-4xl text-foreground mb-3'>
                         Reservation Received
                       </p>
-                      <p className='text-cream/45 text-sm leading-relaxed max-w-xs mx-auto'>
+                      <p className='text-foreground/45 text-sm leading-relaxed max-w-xs mx-auto'>
                         We&apos;ll confirm your table at Ember on Toorak
                         shortly. A confirmation will be sent to your email.
                       </p>
@@ -495,13 +495,13 @@ export default function ReservationsPage() {
                     <div className='flex flex-col sm:flex-row gap-3 mt-4'>
                       <button
                         onClick={() => setSubmitted(false)}
-                        className='px-7 py-3 rounded-full border border-gold/30 text-gold/70 text-[11px] tracking-[0.2em] uppercase hover:border-gold hover:text-gold transition-all duration-300'
+                        className='px-7 py-3 rounded-full border border-accent/30 text-accent/70 text-[11px] tracking-[0.2em] uppercase hover:border-accent hover:text-accent transition-all duration-300'
                       >
                         Make Another
                       </button>
                       <Link
                         href='/menu'
-                        className='px-7 py-3 rounded-full bg-gold/10 text-gold/70 text-[11px] tracking-[0.2em] uppercase hover:bg-gold/20 hover:text-gold transition-all duration-300'
+                        className='px-7 py-3 rounded-full bg-accent/10 text-accent/70 text-[11px] tracking-[0.2em] uppercase hover:bg-accent/20 hover:text-accent transition-all duration-300'
                       >
                         View Menu
                       </Link>
@@ -522,7 +522,7 @@ export default function ReservationsPage() {
                       animate={isFormInView ? { opacity: 1, y: 0 } : {}}
                       transition={{ duration: 0.7, delay: 0.1 }}
                     >
-                      <p className='text-[10px] tracking-[0.35em] uppercase text-gold/55 mb-5 pb-3 border-b border-gold/10'>
+                      <p className='text-[10px] tracking-[0.35em] uppercase text-accent/55 mb-5 pb-3 border-b border-accent/10'>
                         Your Details
                       </p>
                       <div className='grid grid-cols-2 gap-4 mb-4'>
@@ -576,7 +576,7 @@ export default function ReservationsPage() {
                       animate={isFormInView ? { opacity: 1, y: 0 } : {}}
                       transition={{ duration: 0.7, delay: 0.2 }}
                     >
-                      <p className='text-[10px] tracking-[0.35em] uppercase text-gold/55 mb-5 pb-3 border-b border-gold/10'>
+                      <p className='text-[10px] tracking-[0.35em] uppercase text-accent/55 mb-5 pb-3 border-b border-accent/10'>
                         Reservation Details
                       </p>
                       <div className='grid grid-cols-2 gap-4 mb-4'>
@@ -644,27 +644,27 @@ export default function ReservationsPage() {
                             }}
                             className='overflow-hidden'
                           >
-                            <div className='mt-4 p-4 rounded-xl border border-gold/30 bg-linear-to-r from-gold/10 to-ember/5 flex items-center justify-between gap-3'>
+                            <div className='mt-4 p-4 rounded-xl border border-accent/30 bg-linear-to-r from-accent/10 to-accent/5 flex items-center justify-between gap-3'>
                               <div className='flex items-center gap-3'>
                                 <div className='relative'>
-                                  <span className='w-10 h-10 rounded-full bg-gold/20 border border-gold/55 flex items-center justify-center text-gold text-sm font-semibold'>
+                                  <span className='w-10 h-10 rounded-full bg-accent/20 border border-accent/55 flex items-center justify-center text-accent text-sm font-semibold'>
                                     {selectedTable.seats}
                                   </span>
                                   {selectedTable.accessible && (
-                                    <span className='absolute -top-1 -right-1 w-4 h-4 rounded-full bg-steel text-cream text-[9px] flex items-center justify-center'>
+                                    <span className='absolute -top-1 -right-1 w-4 h-4 rounded-full bg-muted text-foreground text-[9px] flex items-center justify-center'>
                                       ♿
                                     </span>
                                   )}
                                 </div>
                                 <div>
-                                  <p className='text-[10px] tracking-[0.25em] uppercase text-gold/75'>
+                                  <p className='text-[10px] tracking-[0.25em] uppercase text-accent/75'>
                                     Selected Table
                                   </p>
-                                  <p className='text-cream/85 text-sm'>
+                                  <p className='text-foreground/85 text-sm'>
                                     {selectedTable.id} · {selectedTable.seats}{' '}
                                     seats
                                     {selectedTable.label && (
-                                      <span className='text-cream/50'>
+                                      <span className='text-foreground/50'>
                                         {' '}
                                         · {selectedTable.label}
                                       </span>
@@ -675,7 +675,7 @@ export default function ReservationsPage() {
                               <button
                                 type='button'
                                 onClick={() => setSelectedTable(null)}
-                                className='text-[10px] tracking-[0.25em] uppercase text-cream/45 hover:text-ember transition-colors shrink-0'
+                                className='text-[10px] tracking-[0.25em] uppercase text-foreground/45 hover:text-accent transition-colors shrink-0'
                               >
                                 Change
                               </button>
@@ -691,9 +691,9 @@ export default function ReservationsPage() {
                       animate={isFormInView ? { opacity: 1, y: 0 } : {}}
                       transition={{ duration: 0.7, delay: 0.3 }}
                     >
-                      <p className='text-[10px] tracking-[0.35em] uppercase text-gold/55 mb-5 pb-3 border-b border-gold/10'>
+                      <p className='text-[10px] tracking-[0.35em] uppercase text-accent/55 mb-5 pb-3 border-b border-accent/10'>
                         Occasion{' '}
-                        <span className='text-cream/20 normal-case tracking-normal'>
+                        <span className='text-foreground/20 normal-case tracking-normal'>
                           (optional)
                         </span>
                       </p>
@@ -705,8 +705,8 @@ export default function ReservationsPage() {
                             onClick={() => setOccasion(occasion === o ? '' : o)}
                             className={`px-4 py-2 rounded-full text-[11px] tracking-[0.15em] uppercase transition-all duration-300 ${
                               occasion === o
-                                ? 'bg-gold/20 border border-gold/60 text-gold'
-                                : 'border border-gold/15 text-cream/35 hover:border-gold/35 hover:text-cream/60'
+                                ? 'bg-accent/20 border border-accent/60 text-accent'
+                                : 'border border-accent/15 text-foreground/35 hover:border-accent/35 hover:text-foreground/60'
                             }`}
                           >
                             {o}
@@ -721,9 +721,9 @@ export default function ReservationsPage() {
                       animate={isFormInView ? { opacity: 1, y: 0 } : {}}
                       transition={{ duration: 0.7, delay: 0.4 }}
                     >
-                      <p className='text-[10px] tracking-[0.35em] uppercase text-gold/55 mb-5 pb-3 border-b border-gold/10'>
+                      <p className='text-[10px] tracking-[0.35em] uppercase text-accent/55 mb-5 pb-3 border-b border-accent/10'>
                         Special Requests{' '}
-                        <span className='text-cream/20 normal-case tracking-normal'>
+                        <span className='text-foreground/20 normal-case tracking-normal'>
                           (optional)
                         </span>
                       </p>
@@ -761,35 +761,35 @@ export default function ReservationsPage() {
                         disabled={submitting}
                         whileHover={{ scale: submitting ? 1 : 1.02 }}
                         whileTap={{ scale: submitting ? 1 : 0.98 }}
-                        className='btn-shimmer w-full py-4 bg-gold text-obsidian text-[11px] sm:text-xs tracking-[0.25em] uppercase font-medium rounded-full hover:shadow-[0_0_40px_color-mix(in_srgb,var(--color-ember)_45%,transparent)] transition-shadow duration-500 disabled:opacity-60'
+                        className='btn-shimmer w-full py-4 bg-accent text-background text-[11px] sm:text-xs tracking-[0.25em] uppercase font-medium rounded-full hover:shadow-[0_0_40px_color-mix(in_srgb,var(--color-accent)_45%,transparent)] transition-shadow duration-500 disabled:opacity-60'
                       >
                         {submitting ? 'Sending…' : 'Confirm Reservation'}
                       </motion.button>
 
                       <div className='flex items-center gap-4 mt-5'>
-                        <div className='flex-1 h-px bg-gold/10' />
-                        <p className='text-[11px] text-cream/25 shrink-0'>or</p>
-                        <div className='flex-1 h-px bg-gold/10' />
+                        <div className='flex-1 h-px bg-accent/10' />
+                        <p className='text-[11px] text-foreground/25 shrink-0'>or</p>
+                        <div className='flex-1 h-px bg-accent/10' />
                       </div>
 
-                      <p className='text-center text-[11px] text-cream/30 mt-4'>
+                      <p className='text-center text-[11px] text-foreground/30 mt-4'>
                         Call us directly at{' '}
                         <a
                           href='tel:0398247600'
-                          className='text-gold/60 hover:text-gold transition-colors'
+                          className='text-accent/60 hover:text-accent transition-colors'
                         >
                           (03) 9824 7600
                         </a>
-                        <span className='text-cream/20 mx-2'>·</span>
+                        <span className='text-foreground/20 mx-2'>·</span>
                         <a
                           href='mailto:reservations@emberontoorak.com.au'
-                          className='text-gold/60 hover:text-gold transition-colors'
+                          className='text-accent/60 hover:text-accent transition-colors'
                         >
                           reservations@emberontoorak.com.au
                         </a>
                       </p>
 
-                      <p className='text-center text-[10px] text-cream/18 mt-3'>
+                      <p className='text-center text-[10px] text-foreground/18 mt-3'>
                         For groups of 9 or more, please contact us directly to
                         arrange private dining.
                       </p>

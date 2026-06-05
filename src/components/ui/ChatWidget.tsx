@@ -66,25 +66,25 @@ export default function ChatWidget() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.97 }}
             transition={{ type: 'spring', stiffness: 320, damping: 30 }}
-            className="fixed z-[998] flex flex-col overflow-hidden shadow-2xl border border-steel/30
+            className="fixed z-[998] flex flex-col overflow-hidden shadow-2xl border border-muted/30
               inset-x-3 top-20 bottom-3 rounded-2xl
               sm:inset-auto sm:top-auto sm:bottom-24 sm:right-6 sm:w-[360px] sm:max-h-[520px]"
             style={{ background: 'var(--color-surface)' }}
           >
             {/* Header */}
             <div
-              className="flex items-center justify-between px-4 py-3 border-b border-steel/20 shrink-0"
+              className="flex items-center justify-between px-4 py-3 border-b border-muted/20 shrink-0"
               style={{ background: 'var(--color-smoke)' }}
             >
               <div>
-                <p className="font-display text-[11px] uppercase tracking-widest text-ember">
+                <p className="font-display text-[11px] uppercase tracking-widest text-accent">
                   Ember on Toorak
                 </p>
-                <p className="text-cream/70 text-[10px] mt-0.5">Ask us anything</p>
+                <p className="text-foreground/70 text-[10px] mt-0.5">Ask us anything</p>
               </div>
               <button
                 onClick={() => setOpen(false)}
-                className="text-cream/60 hover:text-cream transition-colors w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/5 text-xl leading-none"
+                className="text-foreground/60 hover:text-foreground transition-colors w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/5 text-xl leading-none"
                 aria-label="Close chat"
               >
                 ×
@@ -96,15 +96,15 @@ export default function ChatWidget() {
               {messages.length === 0 && (
                 <div className="flex flex-col items-start gap-2">
                   <div
-                    className="max-w-[88%] rounded-xl rounded-tl-sm px-3 py-2 text-[13px] leading-relaxed text-cream/90"
-                    style={{ background: 'color-mix(in srgb, var(--color-obsidian) 60%, transparent)' }}
+                    className="max-w-[88%] rounded-xl rounded-tl-sm px-3 py-2 text-[13px] leading-relaxed text-foreground/90"
+                    style={{ background: 'color-mix(in srgb, var(--color-background) 60%, transparent)' }}
                   >
                     {greetingLoading ? (
                       <span className="inline-flex gap-1 py-0.5">
                         {[0, 1, 2].map((i) => (
                           <span
                             key={i}
-                            className="w-1.5 h-1.5 rounded-full bg-ember/60 animate-bounce"
+                            className="w-1.5 h-1.5 rounded-full bg-accent/60 animate-bounce"
                             style={{ animationDelay: `${i * 0.15}s` }}
                           />
                         ))}
@@ -116,8 +116,8 @@ export default function ChatWidget() {
                   {!greetingLoading && (
                     <a
                       href="/reservations"
-                      className="btn-shimmer inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-[10px] font-display uppercase tracking-widest text-obsidian transition-opacity hover:opacity-90"
-                      style={{ background: 'var(--color-ember)' }}
+                      className="btn-shimmer inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-[10px] font-display uppercase tracking-widest text-background transition-opacity hover:opacity-90"
+                      style={{ background: 'var(--color-accent)' }}
                     >
                       Reserve a table
                       <svg
@@ -145,14 +145,14 @@ export default function ChatWidget() {
                   <div
                     className={`max-w-[82%] rounded-xl px-3 py-2 text-[13px] leading-relaxed ${
                       message.role === 'user'
-                        ? 'text-cream rounded-tr-sm'
-                        : 'text-cream/90 rounded-tl-sm'
+                        ? 'text-foreground rounded-tr-sm'
+                        : 'text-foreground/90 rounded-tl-sm'
                     }`}
                     style={{
                       background:
                         message.role === 'user'
-                          ? 'color-mix(in srgb, var(--color-ember) 25%, transparent)'
-                          : 'color-mix(in srgb, var(--color-obsidian) 60%, transparent)',
+                          ? 'color-mix(in srgb, var(--color-accent) 25%, transparent)'
+                          : 'color-mix(in srgb, var(--color-background) 60%, transparent)',
                     }}
                   >
                     {message.parts.map((part, i) =>
@@ -168,13 +168,13 @@ export default function ChatWidget() {
                 <div className="flex justify-start">
                   <div
                     className="rounded-xl rounded-tl-sm px-4 py-3"
-                    style={{ background: 'color-mix(in srgb, var(--color-obsidian) 60%, transparent)' }}
+                    style={{ background: 'color-mix(in srgb, var(--color-background) 60%, transparent)' }}
                   >
                     <span className="inline-flex gap-1">
                       {[0, 1, 2].map((i) => (
                         <span
                           key={i}
-                          className="w-1.5 h-1.5 rounded-full bg-ember/60 animate-bounce"
+                          className="w-1.5 h-1.5 rounded-full bg-accent/60 animate-bounce"
                           style={{ animationDelay: `${i * 0.15}s` }}
                         />
                       ))}
@@ -189,7 +189,7 @@ export default function ChatWidget() {
             {/* Input */}
             <form
               onSubmit={handleSubmit}
-              className="px-3 pb-3 pt-2 border-t border-steel/20 flex gap-2 shrink-0"
+              className="px-3 pb-3 pt-2 border-t border-muted/20 flex gap-2 shrink-0"
               style={{ background: 'var(--color-smoke)' }}
             >
               <input
@@ -197,12 +197,12 @@ export default function ChatWidget() {
                 onChange={(e) => setInput(e.target.value)}
                 disabled={isLoading}
                 placeholder="Type a message…"
-                className="flex-1 min-w-0 bg-obsidian/60 border border-steel/30 rounded-lg px-3 py-2 text-[13px] text-cream placeholder:text-cream/30 focus:outline-none focus:border-ember/50 transition-colors disabled:opacity-50"
+                className="flex-1 min-w-0 bg-background/60 border border-muted/30 rounded-lg px-3 py-2 text-[13px] text-foreground placeholder:text-foreground/30 focus:outline-none focus:border-accent/50 transition-colors disabled:opacity-50"
               />
               <button
                 type="submit"
                 disabled={isLoading || !input.trim()}
-                className="shrink-0 bg-ember hover:bg-ember/80 disabled:opacity-40 disabled:cursor-not-allowed text-obsidian rounded-lg px-3 py-2 transition-colors font-display text-[11px] uppercase tracking-wider"
+                className="shrink-0 bg-accent hover:bg-accent/80 disabled:opacity-40 disabled:cursor-not-allowed text-background rounded-lg px-3 py-2 transition-colors font-display text-[11px] uppercase tracking-wider"
               >
                 Send
               </button>
@@ -221,8 +221,8 @@ export default function ChatWidget() {
           sm:bottom-6 sm:right-6 sm:left-auto sm:w-14 sm:h-14
           ${open ? 'hidden sm:flex' : 'flex'}`}
         style={{
-          background: open ? 'var(--color-smoke)' : 'var(--color-ember)',
-          border: open ? '1px solid color-mix(in srgb, var(--color-steel) 40%, transparent)' : 'none',
+          background: open ? 'var(--color-smoke)' : 'var(--color-accent)',
+          border: open ? '1px solid color-mix(in srgb, var(--color-muted) 40%, transparent)' : 'none',
         }}
         aria-label={open ? 'Close chat' : 'Open chat'}
       >
@@ -234,7 +234,7 @@ export default function ChatWidget() {
               animate={{ rotate: 0, opacity: 1 }}
               exit={{ rotate: 90, opacity: 0 }}
               transition={{ duration: 0.15 }}
-              className="text-cream text-xl leading-none"
+              className="text-foreground text-xl leading-none"
             >
               ×
             </motion.span>
@@ -248,7 +248,7 @@ export default function ChatWidget() {
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               fill="currentColor"
-              className="w-5 h-5 sm:w-6 sm:h-6 text-obsidian"
+              className="w-5 h-5 sm:w-6 sm:h-6 text-background"
             >
               <path
                 fillRule="evenodd"

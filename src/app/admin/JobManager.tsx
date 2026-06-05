@@ -213,21 +213,21 @@ export default function JobManager({ jobs: initial }: { jobs: JobRow[] }) {
       )}
 
       {/* New job */}
-      <div className="rounded-2xl border border-gold/15 bg-smoke/30 p-4 sm:p-5">
+      <div className="rounded-2xl border border-accent/15 bg-surface/40 p-4 sm:p-5">
         {!creating ? (
           <button
             onClick={() => setCreating(true)}
             className="w-full flex items-center justify-between gap-3 text-left group"
           >
             <span>
-              <span className="block text-[10px] tracking-[0.3em] uppercase text-gold/55 mb-1">New role</span>
-              <span className="block font-serif italic text-cream/90 text-lg">Add a position</span>
+              <span className="block text-[10px] tracking-[0.3em] uppercase text-accent/70 mb-1">New role</span>
+              <span className="block font-serif text-foreground/90 text-lg">Add a position</span>
             </span>
-            <span className="w-9 h-9 rounded-full border border-gold/35 flex items-center justify-center text-gold text-lg group-hover:bg-gold/15 transition-colors">+</span>
+            <span className="w-9 h-9 rounded-full border border-accent/35 flex items-center justify-center text-accent text-lg group-hover:bg-accent/15 transition-colors">+</span>
           </button>
         ) : (
           <div className="space-y-3">
-            <p className="text-[10px] tracking-[0.3em] uppercase text-gold/55 mb-1">New role</p>
+            <p className="text-[10px] tracking-[0.3em] uppercase text-accent/70 mb-1">New role</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
                 <label className={labelClass}>Title</label>
@@ -270,8 +270,8 @@ export default function JobManager({ jobs: initial }: { jobs: JobRow[] }) {
             </div>
             {createError && <p className="text-[11px] text-red-300/85">{createError}</p>}
             <div className="flex items-center gap-2 justify-end">
-              <button onClick={() => { setCreating(false); setNewDraft(empty); setCreateError(null) }} className="px-4 py-2 rounded-full border border-cream/15 text-cream/55 text-[10px] tracking-[0.2em] uppercase hover:text-cream/85 transition-colors">Cancel</button>
-              <button onClick={create} className="px-5 py-2 rounded-full bg-gold/20 border border-gold/55 text-gold text-[10px] tracking-[0.2em] uppercase hover:bg-gold/30 transition-colors">Create</button>
+              <button onClick={() => { setCreating(false); setNewDraft(empty); setCreateError(null) }} className="px-4 py-2 rounded-full border border-foreground/15 text-foreground/55 text-[10px] tracking-[0.2em] uppercase hover:text-foreground/85 transition-colors">Cancel</button>
+              <button onClick={create} className="px-5 py-2 rounded-full bg-accent/20 border border-accent/55 text-accent text-[10px] tracking-[0.2em] uppercase hover:bg-accent/30 transition-colors">Create</button>
             </div>
           </div>
         )}
@@ -279,7 +279,7 @@ export default function JobManager({ jobs: initial }: { jobs: JobRow[] }) {
 
       {/* Job list */}
       {jobs.length === 0 && (
-        <div className="rounded-2xl border border-dashed border-gold/15 p-8 text-center text-cream/40 text-sm">
+        <div className="rounded-2xl border border-dashed border-accent/15 p-8 text-center text-foreground/40 text-sm">
           No jobs yet. Add the first role above.
         </div>
       )}
@@ -289,29 +289,29 @@ export default function JobManager({ jobs: initial }: { jobs: JobRow[] }) {
         const isOpen = expanded === j.id
         const dirty = draftIsDirty(d, j)
         return (
-          <article key={j.id} className={`rounded-2xl border transition-colors ${j.published ? 'border-gold/15 bg-surface/30' : 'border-cream/10 bg-smoke/20 opacity-70'}`}>
+          <article key={j.id} className={`rounded-2xl border transition-colors ${j.published ? 'border-accent/15 bg-surface/30' : 'border-foreground/10 bg-surface/30 opacity-70'}`}>
             <button type="button" onClick={() => setExpanded(isOpen ? null : j.id)} className="w-full text-left px-5 py-4 flex items-center justify-between gap-4" aria-expanded={isOpen}>
               <div className="min-w-0">
                 <div className="flex items-center gap-2 flex-wrap mb-1">
-                  <span className="text-[9px] tracking-[0.25em] uppercase text-gold/55">{j.department}</span>
-                  <span className="text-cream/20 text-[9px]">·</span>
-                  <span className="text-[9px] tracking-[0.2em] uppercase text-cream/40">{j.type}</span>
-                  <span className="text-cream/20 text-[9px]">·</span>
-                  <span className="text-[9px] tracking-[0.2em] uppercase text-cream/40">{j.salary}</span>
+                  <span className="text-[9px] tracking-[0.25em] uppercase text-accent/70">{j.department}</span>
+                  <span className="text-muted text-[9px]">·</span>
+                  <span className="text-[9px] tracking-[0.2em] uppercase text-foreground/60">{j.type}</span>
+                  <span className="text-muted text-[9px]">·</span>
+                  <span className="text-[9px] tracking-[0.2em] uppercase text-foreground/60">{j.salary}</span>
                 </div>
-                <h3 className="font-serif italic text-cream text-lg sm:text-xl leading-tight truncate">{j.title}</h3>
+                <h3 className="font-serif text-foreground text-lg sm:text-xl leading-tight truncate">{j.title}</h3>
               </div>
               <div className="flex items-center gap-2 shrink-0">
-                {dirty && <span className="text-[9px] tracking-[0.2em] uppercase text-gold">Unsaved</span>}
-                <span className={`text-[9px] tracking-[0.15em] uppercase px-2.5 py-1 rounded-full border ${j.published ? 'border-emerald-500/30 text-emerald-400' : 'border-cream/20 text-cream/40'}`}>
+                {dirty && <span className="text-[9px] tracking-[0.2em] uppercase text-accent">Unsaved</span>}
+                <span className={`text-[9px] tracking-[0.15em] uppercase px-2.5 py-1 rounded-full border ${j.published ? 'border-emerald-500/30 text-emerald-400' : 'border-foreground/25 text-foreground/60'}`}>
                   {j.published ? 'Live' : 'Hidden'}
                 </span>
-                <span className={`w-7 h-7 rounded-full border border-gold/25 flex items-center justify-center text-gold text-sm transition-transform ${isOpen ? 'rotate-45' : ''}`} aria-hidden>+</span>
+                <span className={`w-7 h-7 rounded-full border border-accent/25 flex items-center justify-center text-accent text-sm transition-transform ${isOpen ? 'rotate-45' : ''}`} aria-hidden>+</span>
               </div>
             </button>
 
             {isOpen && (
-              <div className="px-5 pb-5 pt-1 border-t border-gold/10 space-y-3">
+              <div className="px-5 pb-5 pt-1 border-t border-accent/10 space-y-3">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div>
                     <label className={labelClass}>Title</label>
@@ -359,14 +359,14 @@ export default function JobManager({ jobs: initial }: { jobs: JobRow[] }) {
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between gap-3 pt-2 border-t border-gold/8">
+                <div className="flex items-center justify-between gap-3 pt-2 border-t border-accent/8">
                   <div className="flex items-center gap-2">
                     <button
                       onClick={() => togglePublished(j)}
                       disabled={toggling === j.id}
                       className={`text-[10px] tracking-[0.15em] uppercase px-3 py-1.5 rounded-full border transition-colors disabled:opacity-40 ${
                         j.published
-                          ? 'border-cream/20 text-cream/55 hover:bg-cream/10'
+                          ? 'border-foreground/20 text-foreground/55 hover:bg-foreground/10'
                           : 'border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/10'
                       }`}
                     >
@@ -384,7 +384,7 @@ export default function JobManager({ jobs: initial }: { jobs: JobRow[] }) {
                     {dirty && (
                       <button
                         onClick={() => setDrafts((prev) => { const next = { ...prev }; delete next[j.id]; return next })}
-                        className="text-[10px] tracking-[0.15em] uppercase px-3 py-1.5 rounded-full border border-cream/15 text-cream/45 hover:text-cream/85 transition-colors"
+                        className="text-[10px] tracking-[0.15em] uppercase px-3 py-1.5 rounded-full border border-foreground/15 text-foreground/45 hover:text-foreground/85 transition-colors"
                       >
                         Revert
                       </button>
@@ -392,7 +392,7 @@ export default function JobManager({ jobs: initial }: { jobs: JobRow[] }) {
                     <button
                       onClick={() => save(j)}
                       disabled={!dirty || saving === j.id}
-                      className="text-[10px] tracking-[0.15em] uppercase px-4 py-1.5 rounded-full bg-gold/20 border border-gold/55 text-gold hover:bg-gold/30 transition-colors disabled:opacity-30 disabled:hover:bg-gold/20"
+                      className="text-[10px] tracking-[0.15em] uppercase px-4 py-1.5 rounded-full bg-accent/20 border border-accent/55 text-accent hover:bg-accent/30 transition-colors disabled:opacity-30 disabled:hover:bg-accent/20"
                     >
                       {saving === j.id ? 'Saving…' : 'Save'}
                     </button>

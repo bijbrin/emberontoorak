@@ -7,15 +7,15 @@ export type ThemeSettings = {
 export function defaultThemeSettings(): ThemeSettings {
   return {
     mode: 'auto',
-    manual: 'rose-pine-moon',
+    manual: 'ember',
     schedule: {
-      '1': 'rose-pine-moon',
-      '2': 'catppuccin-mocha',
-      '3': 'tokyo-night',
-      '4': 'gruvbox-dark',
-      '5': 'nord',
-      '6': 'dracula',
-      '0': 'flexoki-dark',
+      '1': 'ember',
+      '2': 'noir',
+      '3': 'midnight',
+      '4': 'forest',
+      '5': 'wine',
+      '6': 'ocean',
+      '0': 'copper',
     },
   }
 }

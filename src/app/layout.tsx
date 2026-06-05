@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Oswald, Cormorant_Garamond } from "next/font/google";
+import { Geist, Outfit, Playfair_Display } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import { unstable_cache } from "next/cache";
 import "./globals.css";
@@ -14,16 +14,16 @@ const geistSans = Geist({
   subsets: ["latin"],
 });
 
-const oswald = Oswald({
-  variable: "--font-oswald",
+const outfit = Outfit({
+  variable: "--font-outfit",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700", "800", "900"],
 });
 
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
+  weight: ["400", "500", "600", "700", "800", "900"],
   style: ["normal", "italic"],
 });
 
@@ -124,9 +124,9 @@ export default async function RootLayout({
     <html
       lang="en-AU"
       data-theme={activeTheme}
-      className={`${geistSans.variable} ${oswald.variable} ${cormorant.variable} relative h-full antialiased`}
+      className={`${geistSans.variable} ${outfit.variable} ${playfair.variable} relative h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-obsidian text-cream">
+      <body className="min-h-full flex flex-col bg-background text-foreground">
         <ClerkProvider>
           <ScrollProgress />
           <Header />

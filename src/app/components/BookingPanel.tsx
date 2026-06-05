@@ -105,23 +105,23 @@ export default function BookingPanel() {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-            className="fixed inset-0 sm:left-auto sm:top-0 sm:right-0 sm:bottom-0 z-[1001] w-full sm:max-w-md bg-surface sm:border-l border-gold/10 flex flex-col"
+            className="fixed inset-0 sm:left-auto sm:top-0 sm:right-0 sm:bottom-0 z-[1001] w-full sm:max-w-md bg-surface sm:border-l border-accent/10 flex flex-col"
           >
             <div className="p-6 sm:p-8 flex-1 overflow-y-auto overscroll-contain flex flex-col">
               {/* Header */}
               <div className="flex items-start justify-between mb-7">
                 <div>
-                  <p className="text-gold text-[10px] sm:text-xs tracking-[0.35em] uppercase mb-1.5">
+                  <p className="text-accent text-[10px] sm:text-xs tracking-[0.35em] uppercase mb-1.5">
                     Reserve
                   </p>
-                  <h2 className="font-serif italic text-3xl sm:text-4xl text-cream leading-none">
+                  <h2 className="font-serif text-3xl sm:text-4xl text-foreground leading-none">
                     A Table{' '}
-                    <span className="text-gold/60">at Ember</span>
+                    <span className="text-accent/60">at Ember</span>
                   </h2>
                 </div>
                 <button
                   onClick={close}
-                  className="w-10 h-10 -mt-2 -mr-2 flex items-center justify-center text-cream/40 hover:text-gold transition-colors text-2xl rounded-full"
+                  className="w-10 h-10 -mt-2 -mr-2 flex items-center justify-center text-foreground/40 hover:text-accent transition-colors text-2xl rounded-full"
                   aria-label="Close"
                 >
                   ×
@@ -137,30 +137,30 @@ export default function BookingPanel() {
                   <motion.div
                     animate={{
                       boxShadow: [
-                        '0 0 20px color-mix(in srgb, var(--color-ember) 30%, transparent)',
-                        '0 0 40px color-mix(in srgb, var(--color-ember) 60%, transparent)',
-                        '0 0 20px color-mix(in srgb, var(--color-ember) 30%, transparent)',
+                        '0 0 20px color-mix(in srgb, var(--color-accent) 30%, transparent)',
+                        '0 0 40px color-mix(in srgb, var(--color-accent) 60%, transparent)',
+                        '0 0 20px color-mix(in srgb, var(--color-accent) 30%, transparent)',
                       ],
                     }}
                     transition={{ duration: 2, repeat: Infinity }}
-                    className="w-16 h-16 rounded-full border border-gold flex items-center justify-center text-gold text-2xl"
+                    className="w-16 h-16 rounded-full border border-accent flex items-center justify-center text-accent text-2xl"
                   >
                     ✓
                   </motion.div>
-                  <p className="font-serif italic text-2xl text-cream">Reservation Received</p>
-                  <p className="text-sm text-cream/55 leading-relaxed max-w-xs">
+                  <p className="font-serif text-2xl text-foreground">Reservation Received</p>
+                  <p className="text-sm text-foreground/55 leading-relaxed max-w-xs">
                     We&apos;ll confirm your table at Ember on Toorak shortly. A confirmation will be sent to your email.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-3 mt-2">
                     <button
                       onClick={resetForm}
-                      className="px-6 py-2.5 rounded-full border border-gold/30 text-gold/70 text-[11px] tracking-[0.2em] uppercase hover:border-gold hover:text-gold transition-all duration-300"
+                      className="px-6 py-2.5 rounded-full border border-accent/30 text-accent/70 text-[11px] tracking-[0.2em] uppercase hover:border-accent hover:text-accent transition-all duration-300"
                     >
                       Make Another
                     </button>
                     <button
                       onClick={close}
-                      className="px-6 py-2.5 rounded-full bg-gold/10 text-gold/70 text-[11px] tracking-[0.2em] uppercase hover:bg-gold/20 hover:text-gold transition-all duration-300"
+                      className="px-6 py-2.5 rounded-full bg-accent/10 text-accent/70 text-[11px] tracking-[0.2em] uppercase hover:bg-accent/20 hover:text-accent transition-all duration-300"
                     >
                       Close
                     </button>
@@ -229,7 +229,7 @@ export default function BookingPanel() {
                   <div>
                     <p className={sectionLabel}>
                       Occasion{' '}
-                      <span className="text-cream/20 normal-case tracking-normal">(optional)</span>
+                      <span className="text-foreground/20 normal-case tracking-normal">(optional)</span>
                     </p>
                     <div className="flex flex-wrap gap-2">
                       {OCCASIONS.map((o) => (
@@ -239,8 +239,8 @@ export default function BookingPanel() {
                           onClick={() => setOccasion(occasion === o ? '' : o)}
                           className={`px-3.5 py-1.5 rounded-full text-[11px] tracking-[0.15em] uppercase transition-all duration-300 ${
                             occasion === o
-                              ? 'bg-gold/20 border border-gold/60 text-gold'
-                              : 'border border-gold/15 text-cream/35 hover:border-gold/35 hover:text-cream/60'
+                              ? 'bg-accent/20 border border-accent/60 text-accent'
+                              : 'border border-accent/15 text-foreground/35 hover:border-accent/35 hover:text-foreground/60'
                           }`}
                         >
                           {o}
@@ -253,28 +253,28 @@ export default function BookingPanel() {
                   <div>
                     <p className={sectionLabel}>
                       Choose a Table{' '}
-                      <span className="text-cream/20 normal-case tracking-normal">(optional)</span>
+                      <span className="text-foreground/20 normal-case tracking-normal">(optional)</span>
                     </p>
-                    <p className="text-[11px] text-cream/35 mb-3">Tap an available table to add it to your reservation.</p>
+                    <p className="text-[11px] text-foreground/35 mb-3">Tap an available table to add it to your reservation.</p>
 
                     <div
-                      className="relative w-full rounded-xl border border-gold/15 bg-gradient-to-br from-obsidian/90 via-smoke/70 to-obsidian/90 overflow-hidden shadow-[inset_0_0_40px_rgba(0,0,0,0.5)]"
+                      className="relative w-full rounded-xl border border-accent/15 bg-gradient-to-br from-background/90 via-smoke/70 to-background/90 overflow-hidden shadow-[inset_0_0_40px_rgba(0,0,0,0.5)]"
                       style={{ aspectRatio: '1 / 1' }}
                     >
                       {/* parquet texture */}
                       <div
                         className="absolute inset-0 opacity-[0.06] pointer-events-none"
-                        style={{ backgroundImage: 'repeating-linear-gradient(45deg, color-mix(in srgb, var(--color-ember) 60%, transparent) 0 1px, transparent 1px 14px)' }}
+                        style={{ backgroundImage: 'repeating-linear-gradient(45deg, color-mix(in srgb, var(--color-accent) 60%, transparent) 0 1px, transparent 1px 14px)' }}
                       />
 
                       {/* Kitchen strip */}
-                      <div className="absolute top-2 left-2 right-2 h-7 rounded-md border border-ember/25 bg-ember/10 flex items-center justify-center gap-1.5 text-[8px] tracking-[0.3em] uppercase text-ember/75">
+                      <div className="absolute top-2 left-2 right-2 h-7 rounded-md border border-accent/25 bg-accent/10 flex items-center justify-center gap-1.5 text-[8px] tracking-[0.3em] uppercase text-accent/75">
                         <span className="text-[11px]">🔥</span> Kitchen
                       </div>
 
                       {/* Restrooms */}
                       <div
-                        className="absolute right-2 w-8 h-8 rounded-md border border-steel/35 bg-steel/15 flex items-center justify-center text-[13px]"
+                        className="absolute right-2 w-8 h-8 rounded-md border border-muted/35 bg-muted/15 flex items-center justify-center text-[13px]"
                         style={{ top: 'calc(8px + 32px + 4px)' }}
                         title="Restrooms"
                       >
@@ -283,7 +283,7 @@ export default function BookingPanel() {
 
                       {/* Bar */}
                       <div
-                        className="absolute left-2 w-8 rounded-md border border-gold/25 bg-gold/10 flex items-center justify-center text-[7px] tracking-[0.3em] uppercase text-gold/65"
+                        className="absolute left-2 w-8 rounded-md border border-accent/25 bg-accent/10 flex items-center justify-center text-[7px] tracking-[0.3em] uppercase text-accent/65"
                         style={{ top: 'calc(8px + 32px + 4px)', height: '80px', writingMode: 'vertical-rl' }}
                       >
                         Bar
@@ -310,22 +310,22 @@ export default function BookingPanel() {
                               t.shape === 'round' ? 'rounded-full' : 'rounded-lg'
                             } ${
                               isBooked
-                                ? 'bg-steel/25 border border-steel/40 text-cream/25 cursor-not-allowed'
+                                ? 'bg-muted/25 border border-muted/40 text-foreground/25 cursor-not-allowed'
                                 : isSelected
-                                  ? 'bg-ember text-obsidian border-2 border-gold shadow-[0_0_24px_color-mix(in_srgb,var(--color-ember)_65%,transparent)]'
-                                  : 'bg-gold/15 border border-gold/45 text-gold hover:bg-gold/25 hover:border-gold/80'
+                                  ? 'bg-accent text-background border-2 border-accent shadow-[0_0_24px_color-mix(in_srgb,var(--color-accent)_65%,transparent)]'
+                                  : 'bg-accent/15 border border-accent/45 text-accent hover:bg-accent/25 hover:border-accent/80'
                             }`}
                             style={{ left: `${t.x}%`, top: `${t.y}%`, width: w, height: h, transform: 'translate(-50%, -50%)' }}
                           >
                             <span className="text-[11px] leading-none">{t.seats}</span>
                             <span className="text-[6px] tracking-[0.15em] opacity-75 mt-0.5">{t.id}</span>
                             {t.accessible && (
-                              <span className="absolute -top-1.5 -right-1.5 w-3.5 h-3.5 rounded-full bg-steel border border-cream/30 text-cream text-[8px] flex items-center justify-center shadow">
+                              <span className="absolute -top-1.5 -right-1.5 w-3.5 h-3.5 rounded-full bg-muted border border-foreground/30 text-foreground text-[8px] flex items-center justify-center shadow">
                                 ♿
                               </span>
                             )}
                             {isBooked && (
-                              <span className="absolute inset-0 rounded-[inherit] flex items-center justify-center bg-obsidian/40 text-rose-300/80 text-[9px] tracking-widest uppercase">
+                              <span className="absolute inset-0 rounded-[inherit] flex items-center justify-center bg-background/40 text-rose-300/80 text-[9px] tracking-widest uppercase">
                                 ✕
                               </span>
                             )}
@@ -334,24 +334,24 @@ export default function BookingPanel() {
                       })}
 
                       {/* Entry */}
-                      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-1 px-2.5 py-1 rounded-full border border-cream/15 bg-obsidian/70 text-[7px] tracking-[0.3em] uppercase text-cream/45">
+                      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-1 px-2.5 py-1 rounded-full border border-foreground/15 bg-background/70 text-[7px] tracking-[0.3em] uppercase text-foreground/45">
                         <span>↓</span> Entry
                       </div>
                     </div>
 
                     {/* Legend */}
-                    <div className="mt-2.5 grid grid-cols-4 gap-x-2 gap-y-1.5 text-[9px] text-cream/50">
+                    <div className="mt-2.5 grid grid-cols-4 gap-x-2 gap-y-1.5 text-[9px] text-foreground/50">
                       <div className="flex items-center gap-1.5">
-                        <span className="w-3 h-3 rounded bg-gold/20 border border-gold/50 shrink-0" /> Available
+                        <span className="w-3 h-3 rounded bg-accent/20 border border-accent/50 shrink-0" /> Available
                       </div>
                       <div className="flex items-center gap-1.5">
-                        <span className="w-3 h-3 rounded bg-ember border border-gold shrink-0" /> Selected
+                        <span className="w-3 h-3 rounded bg-accent border border-accent shrink-0" /> Selected
                       </div>
                       <div className="flex items-center gap-1.5">
-                        <span className="w-3 h-3 rounded bg-steel/30 border border-steel/50 shrink-0" /> Booked
+                        <span className="w-3 h-3 rounded bg-muted/30 border border-muted/50 shrink-0" /> Booked
                       </div>
                       <div className="flex items-center gap-1.5">
-                        <span className="w-3 h-3 rounded-full bg-steel text-cream text-[7px] flex items-center justify-center shrink-0">♿</span> Access
+                        <span className="w-3 h-3 rounded-full bg-muted text-foreground text-[7px] flex items-center justify-center shrink-0">♿</span> Access
                       </div>
                     </div>
 
@@ -364,17 +364,17 @@ export default function BookingPanel() {
                           exit={{ opacity: 0, y: 8, height: 0 }}
                           className="overflow-hidden"
                         >
-                          <div className="mt-3 p-3 rounded-lg border border-gold/30 bg-gold/8 flex items-center justify-between gap-3">
-                            <div className="text-[11px] text-cream/70">
-                              <span className="text-gold font-medium">{selectedTable.id}</span>{' '}
+                          <div className="mt-3 p-3 rounded-lg border border-accent/30 bg-accent/8 flex items-center justify-between gap-3">
+                            <div className="text-[11px] text-foreground/70">
+                              <span className="text-accent font-medium">{selectedTable.id}</span>{' '}
                               · {selectedTable.seats} seats
-                              {selectedTable.label && <span className="text-cream/45"> · {selectedTable.label}</span>}
-                              {selectedTable.accessible && <span className="text-steel"> · ♿</span>}
+                              {selectedTable.label && <span className="text-foreground/45"> · {selectedTable.label}</span>}
+                              {selectedTable.accessible && <span className="text-muted"> · ♿</span>}
                             </div>
                             <button
                               type="button"
                               onClick={() => setSelectedTable(null)}
-                              className="text-[9px] tracking-[0.25em] uppercase text-cream/40 hover:text-ember transition-colors shrink-0"
+                              className="text-[9px] tracking-[0.25em] uppercase text-foreground/40 hover:text-accent transition-colors shrink-0"
                             >
                               Clear
                             </button>
@@ -388,7 +388,7 @@ export default function BookingPanel() {
                   <div>
                     <p className={sectionLabel}>
                       Special Requests{' '}
-                      <span className="text-cream/20 normal-case tracking-normal">(optional)</span>
+                      <span className="text-foreground/20 normal-case tracking-normal">(optional)</span>
                     </p>
                     <div className="mb-3">
                       <label className={labelClass}>Dietary Requirements</label>
@@ -417,13 +417,13 @@ export default function BookingPanel() {
                       disabled={submitting}
                       whileHover={{ scale: submitting ? 1 : 1.02 }}
                       whileTap={{ scale: submitting ? 1 : 0.98 }}
-                      className="btn-shimmer w-full py-4 bg-gold text-obsidian text-[11px] sm:text-xs tracking-[0.25em] uppercase font-medium rounded-full hover:shadow-[0_0_30px_color-mix(in_srgb,var(--color-ember)_40%,transparent)] transition-shadow duration-500 disabled:opacity-60"
+                      className="btn-shimmer w-full py-4 bg-accent text-background text-[11px] sm:text-xs tracking-[0.25em] uppercase font-medium rounded-full hover:shadow-[0_0_30px_color-mix(in_srgb,var(--color-accent)_40%,transparent)] transition-shadow duration-500 disabled:opacity-60"
                     >
                       {submitting ? 'Sending…' : 'Confirm Reservation'}
                     </motion.button>
-                    <p className="text-center text-[11px] text-cream/30 mt-4">
+                    <p className="text-center text-[11px] text-foreground/30 mt-4">
                       Or call us at{' '}
-                      <a href="tel:0398247600" className="text-gold/70 hover:text-gold transition-colors">
+                      <a href="tel:0398247600" className="text-accent/70 hover:text-accent transition-colors">
                         (03) 9824 7600
                       </a>
                     </p>

@@ -20,13 +20,13 @@ interface Reservation {
 }
 
 const statusStyles: Record<Status, string> = {
-  PENDING:   'bg-gold/15 text-gold border border-gold/30',
+  PENDING:   'bg-accent/15 text-accent border border-accent/30',
   CONFIRMED: 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30',
   CANCELLED: 'bg-red-500/10 text-red-400/70 border border-red-500/20',
 }
 
 const statusDot: Record<Status, string> = {
-  PENDING:   'bg-gold',
+  PENDING:   'bg-accent',
   CONFIRMED: 'bg-emerald-400',
   CANCELLED: 'bg-red-400/70',
 }
@@ -95,14 +95,14 @@ export default function ReservationManager({ reservations: initial }: { reservat
   }
 
   if (reservations.length === 0) {
-    return <p className="text-cream/30 text-sm py-12 text-center">No reservations yet.</p>
+    return <p className="text-foreground/30 text-sm py-12 text-center">No reservations yet.</p>
   }
 
   return (
     <div className="relative">
       {/* Toast */}
       {toastMsg && (
-        <div className="fixed bottom-6 right-6 z-50 px-5 py-3 rounded-xl bg-surface border border-gold/30 text-cream/80 text-sm shadow-2xl backdrop-blur-sm animate-fade-in">
+        <div className="fixed bottom-6 right-6 z-50 px-5 py-3 rounded-xl bg-surface border border-accent/30 text-foreground/80 text-sm shadow-2xl backdrop-blur-sm animate-fade-in">
           {toastMsg}
         </div>
       )}
@@ -115,13 +115,13 @@ export default function ReservationManager({ reservations: initial }: { reservat
             onClick={() => setFilterStatus(s)}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[10px] tracking-[0.15em] uppercase transition-all duration-150 ${
               filterStatus === s
-                ? 'bg-gold/15 border border-gold/35 text-gold'
-                : 'border border-transparent text-cream/35 hover:text-cream/55 hover:border-gold/15'
+                ? 'bg-accent/15 border border-accent/35 text-accent'
+                : 'border border-transparent text-foreground/35 hover:text-foreground/55 hover:border-accent/15'
             }`}
           >
             {s !== 'ALL' && <span className={`w-1.5 h-1.5 rounded-full ${statusDot[s as Status]}`} />}
             {s}
-            <span className={`ml-0.5 ${filterStatus === s ? 'text-gold/60' : 'text-cream/20'}`}>
+            <span className={`ml-0.5 ${filterStatus === s ? 'text-accent/60' : 'text-foreground/20'}`}>
               {counts[s]}
             </span>
           </button>
@@ -129,7 +129,7 @@ export default function ReservationManager({ reservations: initial }: { reservat
       </div>
 
       {filtered.length === 0 && (
-        <p className="text-cream/30 text-sm py-8 text-center">No {filterStatus.toLowerCase()} reservations.</p>
+        <p className="text-foreground/30 text-sm py-8 text-center">No {filterStatus.toLowerCase()} reservations.</p>
       )}
 
       {/* Cards */}
@@ -143,8 +143,8 @@ export default function ReservationManager({ reservations: initial }: { reservat
               key={r.id}
               className={`rounded-xl border transition-all duration-200 overflow-hidden ${
                 isExpanded
-                  ? 'border-gold/30 bg-smoke/60'
-                  : 'border-gold/8 bg-smoke/20 hover:border-gold/20 hover:bg-smoke/40'
+                  ? 'border-accent/30 bg-smoke/60'
+                  : 'border-accent/8 bg-smoke/20 hover:border-accent/20 hover:bg-smoke/40'
               }`}
             >
               {/* Summary row — click to expand */}
@@ -157,23 +157,23 @@ export default function ReservationManager({ reservations: initial }: { reservat
                 <div className="sm:hidden">
                   <div className="flex items-start justify-between gap-3 mb-2">
                     <div className="min-w-0 flex-1">
-                      <span className="font-serif italic text-cream/85 text-[15px] leading-tight block truncate">
+                      <span className="font-serif text-foreground/85 text-[15px] leading-tight block truncate">
                         {r.firstName} {r.lastName}
                       </span>
-                      <span className="text-cream/35 text-[11px] block truncate">{r.email}</span>
+                      <span className="text-foreground/35 text-[11px] block truncate">{r.email}</span>
                     </div>
                     <svg
-                      className={`shrink-0 w-4 h-4 mt-1 text-cream/30 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`}
+                      className={`shrink-0 w-4 h-4 mt-1 text-foreground/30 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`}
                       fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}
                     >
                       <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                     </svg>
                   </div>
-                  <div className="flex items-center gap-2 flex-wrap text-[11px] text-cream/55">
+                  <div className="flex items-center gap-2 flex-wrap text-[11px] text-foreground/55">
                     <span className="whitespace-nowrap">{formatDate(r.date)}</span>
-                    <span className="text-cream/20">·</span>
+                    <span className="text-foreground/20">·</span>
                     <span className="whitespace-nowrap">{formatTime(r.time)}</span>
-                    <span className="text-cream/20">·</span>
+                    <span className="text-foreground/20">·</span>
                     <span className="whitespace-nowrap">{r.guests} {r.guests === 1 ? 'guest' : 'guests'}</span>
                     <span className={`ml-auto text-[9px] tracking-[0.15em] uppercase px-2 py-0.5 rounded-full ${statusStyles[r.status]}`}>
                       {r.status}
@@ -184,18 +184,18 @@ export default function ReservationManager({ reservations: initial }: { reservat
                 {/* Desktop layout: single grid row */}
                 <div className="hidden sm:grid grid-cols-[1fr_auto_auto_auto_auto] gap-x-5 items-center">
                   <div className="min-w-0">
-                    <span className="font-serif italic text-cream/85 text-base leading-tight block truncate">
+                    <span className="font-serif text-foreground/85 text-base leading-tight block truncate">
                       {r.firstName} {r.lastName}
                     </span>
-                    <span className="text-cream/35 text-[11px] block truncate">{r.email}</span>
+                    <span className="text-foreground/35 text-[11px] block truncate">{r.email}</span>
                   </div>
                   <div className="text-right shrink-0">
-                    <span className="block text-cream/60 text-[13px] whitespace-nowrap">{formatDate(r.date)}</span>
-                    <span className="block text-cream/35 text-[11px]">{formatTime(r.time)}</span>
+                    <span className="block text-foreground/60 text-[13px] whitespace-nowrap">{formatDate(r.date)}</span>
+                    <span className="block text-foreground/35 text-[11px]">{formatTime(r.time)}</span>
                   </div>
                   <div className="shrink-0 text-right">
-                    <span className="text-cream/50 text-[13px]">{r.guests}</span>
-                    <span className="text-cream/25 text-[10px] block">guests</span>
+                    <span className="text-foreground/50 text-[13px]">{r.guests}</span>
+                    <span className="text-foreground/25 text-[10px] block">guests</span>
                   </div>
                   <div className="shrink-0">
                     <span className={`text-[9px] tracking-[0.15em] uppercase px-2 py-0.5 rounded-full ${statusStyles[r.status]}`}>
@@ -204,7 +204,7 @@ export default function ReservationManager({ reservations: initial }: { reservat
                   </div>
                   <div className="shrink-0">
                     <svg
-                      className={`w-4 h-4 text-cream/25 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`}
+                      className={`w-4 h-4 text-foreground/25 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`}
                       fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}
                     >
                       <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
@@ -215,76 +215,76 @@ export default function ReservationManager({ reservations: initial }: { reservat
 
               {/* Expanded detail panel */}
               {isExpanded && (
-                <div className="px-4 sm:px-5 pb-5 border-t border-gold/10 pt-4">
+                <div className="px-4 sm:px-5 pb-5 border-t border-accent/10 pt-4">
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 mb-5">
 
                     <div>
-                      <p className="text-[9px] tracking-[0.25em] uppercase text-cream/30 mb-1">Full Name</p>
-                      <p className="text-cream/75 text-sm">{r.firstName} {r.lastName}</p>
+                      <p className="text-[9px] tracking-[0.25em] uppercase text-foreground/30 mb-1">Full Name</p>
+                      <p className="text-foreground/75 text-sm">{r.firstName} {r.lastName}</p>
                     </div>
 
                     <div>
-                      <p className="text-[9px] tracking-[0.25em] uppercase text-cream/30 mb-1">Email</p>
-                      <a href={`mailto:${r.email}`} className="text-steel hover:text-gold transition-colors text-sm break-all">
+                      <p className="text-[9px] tracking-[0.25em] uppercase text-foreground/30 mb-1">Email</p>
+                      <a href={`mailto:${r.email}`} className="text-muted hover:text-accent transition-colors text-sm break-all">
                         {r.email}
                       </a>
                     </div>
 
                     <div>
-                      <p className="text-[9px] tracking-[0.25em] uppercase text-cream/30 mb-1">Phone</p>
-                      <p className="text-cream/75 text-sm">
+                      <p className="text-[9px] tracking-[0.25em] uppercase text-foreground/30 mb-1">Phone</p>
+                      <p className="text-foreground/75 text-sm">
                         {r.phone
-                          ? <a href={`tel:${r.phone}`} className="hover:text-gold transition-colors">{r.phone}</a>
-                          : <span className="text-cream/25">—</span>
+                          ? <a href={`tel:${r.phone}`} className="hover:text-accent transition-colors">{r.phone}</a>
+                          : <span className="text-foreground/25">—</span>
                         }
                       </p>
                     </div>
 
                     <div>
-                      <p className="text-[9px] tracking-[0.25em] uppercase text-cream/30 mb-1">Date</p>
-                      <p className="text-cream/75 text-sm">{formatDate(r.date)}</p>
+                      <p className="text-[9px] tracking-[0.25em] uppercase text-foreground/30 mb-1">Date</p>
+                      <p className="text-foreground/75 text-sm">{formatDate(r.date)}</p>
                     </div>
 
                     <div>
-                      <p className="text-[9px] tracking-[0.25em] uppercase text-cream/30 mb-1">Time</p>
-                      <p className="text-cream/75 text-sm">{formatTime(r.time)}</p>
+                      <p className="text-[9px] tracking-[0.25em] uppercase text-foreground/30 mb-1">Time</p>
+                      <p className="text-foreground/75 text-sm">{formatTime(r.time)}</p>
                     </div>
 
                     <div>
-                      <p className="text-[9px] tracking-[0.25em] uppercase text-cream/30 mb-1">Party Size</p>
-                      <p className="text-cream/75 text-sm">{r.guests} {r.guests === 1 ? 'guest' : 'guests'}</p>
+                      <p className="text-[9px] tracking-[0.25em] uppercase text-foreground/30 mb-1">Party Size</p>
+                      <p className="text-foreground/75 text-sm">{r.guests} {r.guests === 1 ? 'guest' : 'guests'}</p>
                     </div>
 
                     {r.occasion && (
                       <div>
-                        <p className="text-[9px] tracking-[0.25em] uppercase text-cream/30 mb-1">Occasion</p>
-                        <p className="text-cream/75 text-sm">{r.occasion}</p>
+                        <p className="text-[9px] tracking-[0.25em] uppercase text-foreground/30 mb-1">Occasion</p>
+                        <p className="text-foreground/75 text-sm">{r.occasion}</p>
                       </div>
                     )}
 
                     {r.dietary && (
                       <div>
-                        <p className="text-[9px] tracking-[0.25em] uppercase text-cream/30 mb-1">Dietary</p>
-                        <p className="text-cream/75 text-sm">{r.dietary}</p>
+                        <p className="text-[9px] tracking-[0.25em] uppercase text-foreground/30 mb-1">Dietary</p>
+                        <p className="text-foreground/75 text-sm">{r.dietary}</p>
                       </div>
                     )}
 
                     <div>
-                      <p className="text-[9px] tracking-[0.25em] uppercase text-cream/30 mb-1">Booked</p>
-                      <p className="text-cream/50 text-[11px]">{formatCreated(r.createdAt)}</p>
+                      <p className="text-[9px] tracking-[0.25em] uppercase text-foreground/30 mb-1">Booked</p>
+                      <p className="text-foreground/50 text-[11px]">{formatCreated(r.createdAt)}</p>
                     </div>
                   </div>
 
                   {r.notes && (
-                    <div className="mb-5 p-3 rounded-lg bg-obsidian/40 border border-gold/10">
-                      <p className="text-[9px] tracking-[0.25em] uppercase text-cream/30 mb-1.5">Notes</p>
-                      <p className="text-cream/65 text-sm leading-relaxed">{r.notes}</p>
+                    <div className="mb-5 p-3 rounded-lg bg-background/40 border border-accent/10">
+                      <p className="text-[9px] tracking-[0.25em] uppercase text-foreground/30 mb-1.5">Notes</p>
+                      <p className="text-foreground/65 text-sm leading-relaxed">{r.notes}</p>
                     </div>
                   )}
 
                   {/* Actions */}
                   <div className="flex items-center gap-2 flex-wrap">
-                    <span className="text-[9px] tracking-[0.2em] uppercase text-cream/25 mr-1">Change status:</span>
+                    <span className="text-[9px] tracking-[0.2em] uppercase text-foreground/25 mr-1">Change status:</span>
 
                     {r.status !== 'CONFIRMED' && (
                       <button
@@ -320,7 +320,7 @@ export default function ReservationManager({ reservations: initial }: { reservat
                       <button
                         onClick={() => updateStatus(r.id, 'PENDING')}
                         disabled={isLoading}
-                        className="px-3 py-1.5 rounded-lg bg-gold/8 border border-gold/20 text-gold/60 text-[10px] tracking-[0.12em] uppercase hover:bg-gold/15 transition-colors disabled:opacity-40"
+                        className="px-3 py-1.5 rounded-lg bg-accent/8 border border-accent/20 text-accent/60 text-[10px] tracking-[0.12em] uppercase hover:bg-accent/15 transition-colors disabled:opacity-40"
                       >
                         {isLoading ? '…' : 'Set Pending'}
                       </button>
@@ -328,7 +328,7 @@ export default function ReservationManager({ reservations: initial }: { reservat
                   </div>
 
                   {(r.status === 'CONFIRMED' || r.status === 'CANCELLED') && (
-                    <p className="mt-2 text-[10px] text-cream/25">
+                    <p className="mt-2 text-[10px] text-foreground/25">
                       An email was sent to the guest when this status was last set.
                     </p>
                   )}

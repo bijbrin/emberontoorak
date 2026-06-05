@@ -1,182 +1,224 @@
 @import "tailwindcss";
 
+/* ============================================
+   THEME CONFIGURATION — @theme inline
+   ============================================ */
 
-@theme {
-  --color-obsidian: #141210;
-  --color-smoke: #1A1816;
-  --color-surface: #211F1C;
-  --color-steel: #447D9B;
-  --color-gold: #FE7743;
-  --color-ember: #FE7743;
-  --color-cream: #F0EAE0;
-  --color-chalk: #FDFBF7;
-  --font-serif: var(--font-cormorant);
+@theme inline {
+  /* Core colors */
+  --color-background: var(--bg);
+  --color-foreground: var(--fg);
+  --color-muted: var(--muted-color);
+  --color-accent: var(--accent);
+  --color-accent-secondary: var(--accent2);
+  --color-surface: var(--card-bg);
+  --color-surface-border: var(--card-border);
+  --color-nav: var(--nav-bg);
+
+  /* Semantic aliases for backward compatibility */
+  --color-smoke: var(--smoke);
+  --color-chalk: var(--chalk);
+  --color-steel: var(--steel);
+
+  /* Radius */
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  /* Fonts */
+  --font-serif: var(--font-playfair);
   --font-sans: var(--font-geist-sans);
-  --font-display: var(--font-oswald);
+  --font-display: var(--font-outfit);
 }
 
+/* ============================================
+   THEME DEFINITIONS
+   ============================================ */
 
+/* ====== DEFAULT: Ember ====== */
 :root {
-  --background: var(--color-obsidian);
-  --foreground: var(--color-cream);
+  --bg: #0A0A0A;
+  --fg: #FFFFFF;
+  --muted-color: #8A8A8A;
+  --accent: #D4A853;
+  --accent2: #C17F4E;
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --card-border: rgba(255, 255, 255, 0.06);
+  --nav-bg: rgba(10, 10, 10, 0.9);
+  --radius: 0rem;
+  --smoke: #111111;
+  --chalk: #F2F2F2;
+  --steel: #8A8A8A;
 }
 
-
-/* ── Theme overrides via data-theme on <html> ── */
-
-
-/*
- * 1. ROSE PINE MOON
- * Source: rosepinetheme.com/palette
- * Warm purple-dusk dark — elegant, literary, muted mauve surfaces
- * Accent: Love (#eb6f92) — warm rose pink
- */
-html[data-theme="rose-pine-moon"] {
-  --color-obsidian: #232136; /* base */
-  --color-smoke: #2a273f;    /* surface */
-  --color-surface: #393552;  /* overlay */
-  --color-steel: #6e6a86;    /* muted */
-  --color-gold: #eb6f92;     /* love — rose accent */
-  --color-ember: #f6c177;    /* gold — warm amber */
-  --color-cream: #e0def4;    /* text */
+/* ====== Noir ====== */
+[data-theme="noir"] {
+  --bg: #000000;
+  --fg: #FFFFFF;
+  --muted-color: #666666;
+  --accent: #FFFFFF;
+  --accent2: #AAAAAA;
+  --card-bg: rgba(255, 255, 255, 0.02);
+  --card-border: rgba(255, 255, 255, 0.08);
+  --nav-bg: rgba(0, 0, 0, 0.95);
+  --smoke: #0A0A0A;
+  --chalk: #EEEEEE;
+  --steel: #666666;
 }
 
-
-/*
- * 2. CATPPUCCIN MOCHA
- * Source: catppuccin.com — official mocha variant
- * Deep blue-tinted dark — balanced, dev-centric, widely loved
- * Accent: Peach (#fab387) — warm orange-peach
- */
-html[data-theme="catppuccin-mocha"] {
-  --color-obsidian: #1B3C53; /* palette — darkest teal navy */
-  --color-smoke: #234C6A;    /* palette — section layering */
-  --color-surface: #293e4e;  /* palette — cards & panels */
-  --color-steel: #7A9BB5;    /* derived — muted blue for borders */
-  --color-gold: #f8ddc0;     /* derived — warm tan from sand */
-  --color-ember: #d08963;    /* derived — earthy coral CTA */
-  --color-cream: #f3f4f4;    /* palette — warm sand text */
+/* ====== Midnight ====== */
+[data-theme="midnight"] {
+  --bg: #060B14;
+  --fg: #E8ECF1;
+  --muted-color: #6B7B8F;
+  --accent: #5B8DEF;
+  --accent2: #3D6BC0;
+  --card-bg: rgba(91, 141, 239, 0.04);
+  --card-border: rgba(91, 141, 239, 0.1);
+  --nav-bg: rgba(6, 11, 20, 0.92);
+  --smoke: #0D1522;
+  --chalk: #D8E0EA;
+  --steel: #6B7B8F;
 }
 
-
-/*
- * 3. TOKYO NIGHT
- * Source: colorpickercode.com/dark-mode-palettes/tokyo-night
- * Deep navy-indigo city aesthetic — popular in the dev community
- * Accent: Orange (#ff9e64) — warm city-light orange
- */
-html[data-theme="tokyo-night"] {
-  --color-obsidian: #432E54; /* deep plum — page bg */
-  --color-smoke: #382549;    /* derived — darker plum for depth */
-  --color-surface: #4B4376;  /* mid violet — cards & panels */
-  --color-steel: #AE445A;    /* rose crimson — borders & muted */
-  --color-gold: #FFC85C;     /* warm gold — secondary accent */
-  --color-ember: #FF653F;    /* bright orange-red — CTA */
-  --color-cream: #F3F4F4;    /* soft blush — body text */
+/* ====== Forest ====== */
+[data-theme="forest"] {
+  --bg: #081C15;
+  --fg: #E9F5EC;
+  --muted-color: #6B9080;
+  --accent: #52B788;
+  --accent2: #40916C;
+  --card-bg: rgba(82, 183, 136, 0.04);
+  --card-border: rgba(82, 183, 136, 0.1);
+  --nav-bg: rgba(8, 28, 21, 0.92);
+  --smoke: #0E2A1E;
+  --chalk: #D4F0DE;
+  --steel: #6B9080;
 }
 
-
-/*
- * 4. GRUVBOX DARK
- * Source: lospec.com/palette-list/gruvbox-dark
- * Retro earthy warm dark — beloved terminal/vim aesthetic since 2012
- * Accent: Yellow (#d79921) — classic gruvbox gold
- */
-html[data-theme="gruvbox-dark"] {
-  --color-obsidian: #1d2021; /* bg0_h — hard variant */
-  --color-smoke: #282828;    /* bg0 */
-  --color-surface: #3c3836;  /* bg1 */
-  --color-steel: #928374;    /* gray */
-  --color-gold: #d79921;     /* yellow accent */
-  --color-ember: #cc241d;    /* red accent */
-  --color-cream: #ebdbb2;    /* fg */
+/* ====== Wine ====== */
+[data-theme="wine"] {
+  --bg: #1A0A0E;
+  --fg: #F2E8E8;
+  --muted-color: #9B6B7B;
+  --accent: #C97B8B;
+  --accent2: #A8546A;
+  --card-bg: rgba(201, 123, 139, 0.04);
+  --card-border: rgba(201, 123, 139, 0.1);
+  --nav-bg: rgba(26, 10, 14, 0.92);
+  --smoke: #241016;
+  --chalk: #ECDADA;
+  --steel: #9B6B7B;
 }
 
-
-/*
- * 5. NORD
- * Source: nordtheme.com — official palette values
- * Arctic-inspired calm blues and frosted whites — clean, minimal
- * Accent: Frost (#88c0d0) — icy light cyan
- */
-html[data-theme="nord"] {
-  --color-obsidian: #2e3440; /* nord0 */
-  --color-smoke: #3b4252;    /* nord1 */
-  --color-surface: #434c5e;  /* nord2 */
-  --color-steel: #4c566a;    /* nord3 */
-  --color-gold: #88c0d0;     /* frost — ice blue accent */
-  --color-ember: #ebcb8b;    /* aurora yellow */
-  --color-cream: #eceff4;    /* snow white */
+/* ====== Ivory (light) ====== */
+[data-theme="ivory"] {
+  --bg: #FAF8F5;
+  --fg: #1A1A1A;
+  --muted-color: #7A7568;
+  --accent: #B8960C;
+  --accent2: #8B7200;
+  --card-bg: rgba(0, 0, 0, 0.02);
+  --card-border: rgba(0, 0, 0, 0.06);
+  --nav-bg: rgba(250, 248, 245, 0.92);
+  --smoke: #F0EDE8;
+  --chalk: #0D0D0D;
+  --steel: #7A7568;
 }
 
-
-/*
- * 6. DRACULA
- * Source: draculatheme.com — official Dracula palette
- * High-contrast dark — iconic purple/pink dev theme
- * Accent: Purple (#bd93f9) — signature Dracula violet
- */
-html[data-theme="dracula"] {
-  --color-obsidian: #282a36; /* background */
-  --color-smoke: #1e1f29;    /* darker bg */
-  --color-surface: #44475a;  /* current line */
-  --color-steel: #6272a4;    /* comment */
-  --color-gold: #ff79c6;     /* pink accent */
-  --color-ember: #bd93f9;    /* purple accent */
-  --color-cream: #f8f8f2;    /* foreground */
+/* ====== Sand (light) ====== */
+[data-theme="sand"] {
+  --bg: #F5F0E8;
+  --fg: #2C2420;
+  --muted-color: #8B7D6B;
+  --accent: #A67C52;
+  --accent2: #7D5A3C;
+  --card-bg: rgba(0, 0, 0, 0.02);
+  --card-border: rgba(0, 0, 0, 0.06);
+  --nav-bg: rgba(245, 240, 232, 0.92);
+  --smoke: #E8E3DB;
+  --chalk: #1A1510;
+  --steel: #8B7D6B;
 }
 
-
-/*
- * 7. FLEXOKI DARK
- * Source: stephango.com/flexoki — dark variant
- * Ink-on-paper analog warmth — warm monochromatic, organic feel
- * Accent: Orange (#da702c) — warm ink orange
- */
-html[data-theme="flexoki-dark"] {
-  --color-obsidian: #100F0F; /* black */
-  --color-smoke: #1C1B1A;    /* base-950 */
-  --color-surface: #282726;  /* base-900 */
-  --color-steel: #6F6E69;    /* base-600 */
-  --color-gold: #da702c;     /* orange-400 accent */
-  --color-ember: #d0a215;    /* yellow-400 accent */
-  --color-cream: #CECDC3;    /* base-200 */
+/* ====== Sage (light) ====== */
+[data-theme="sage"] {
+  --bg: #F0F4F0;
+  --fg: #1E2A1E;
+  --muted-color: #6B7D6B;
+  --accent: #5E8B5E;
+  --accent2: #4A704A;
+  --card-bg: rgba(0, 0, 0, 0.02);
+  --card-border: rgba(0, 0, 0, 0.06);
+  --nav-bg: rgba(240, 244, 240, 0.92);
+  --smoke: #E4EAE4;
+  --chalk: #151F15;
+  --steel: #6B7D6B;
 }
 
-
-/*
- * 8. FLEXOKI DAWN  ← Light Theme
- * Source: stephango.com/flexoki — dawn (light) variant
- * Warm paper + ink — analog warmth, maximum readability
- * Accent: Cyan (#24837B) — soft ink teal
- */
-html[data-theme="flexoki-dawn"] {
-  --color-obsidian: #0C1322; /* deep mission-control navy */
-  --color-smoke: #111C32;    /* section layering navy */
-  --color-surface: #1A2B48;  /* card/panel navy */
-  --color-steel: #5C7499;    /* slate blue-grey — borders & muted */
-  --color-gold: #D4601A;     /* retro orange — secondary accent */
-  --color-ember: #F07030;    /* bright orbital orange — CTA */
-  --color-cream: #EDE8DC;    /* warm off-white — body text */
+/* ====== Ocean ====== */
+[data-theme="ocean"] {
+  --bg: #0A1628;
+  --fg: #E0E8F0;
+  --muted-color: #5A7A9A;
+  --accent: #4ECDC4;
+  --accent2: #2AA89E;
+  --card-bg: rgba(78, 205, 196, 0.04);
+  --card-border: rgba(78, 205, 196, 0.1);
+  --nav-bg: rgba(10, 22, 40, 0.92);
+  --smoke: #0F1E36;
+  --chalk: #C8D8E8;
+  --steel: #5A7A9A;
 }
 
-
-
-* {
-  box-sizing: border-box;
+/* ====== Copper ====== */
+[data-theme="copper"] {
+  --bg: #14100C;
+  --fg: #F0E8E0;
+  --muted-color: #8B7D6B;
+  --accent: #B87333;
+  --accent2: #8B5A2B;
+  --card-bg: rgba(184, 115, 51, 0.04);
+  --card-border: rgba(184, 115, 51, 0.1);
+  --nav-bg: rgba(20, 16, 12, 0.92);
+  --smoke: #1E1812;
+  --chalk: #E8DDD0;
+  --steel: #8B7D6B;
 }
 
-html {
-  scroll-behavior: smooth;
-}
+/* ============================================
+   BASE STYLES
+   ============================================ */
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-geist-sans), -apple-system, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
+@layer base {
+  * {
+    box-sizing: border-box;
+    border-color: var(--card-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-geist-sans), -apple-system, sans-serif;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-playfair), serif;
+    font-weight: 500;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--color-accent) 30%, transparent);
+    color: var(--color-foreground);
+  }
 }
 
 /* Grain overlay */
@@ -195,6 +237,15 @@ body::after {
   width: 4px;
 }
 
+::-webkit-scrollbar-track {
+  background: var(--color-smoke);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-accent);
+  border-radius: 2px;
+}
+
 /* Utility — hide scrollbars on horizontally scrollable tab/nav rows */
 .scrollbar-hide {
   scrollbar-width: none;
@@ -203,15 +254,11 @@ body::after {
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
-::-webkit-scrollbar-track {
-  background: var(--color-smoke);
-}
-::-webkit-scrollbar-thumb {
-  background: var(--color-ember);
-  border-radius: 2px;
-}
 
-/* Ember drift animations */
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
 @keyframes drift1 {
   0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.5; }
   33% { transform: translate(40px, -30px) scale(1.15); opacity: 0.7; }
@@ -240,8 +287,8 @@ body::after {
 }
 
 @keyframes pulse-gold {
-  0%, 100% { box-shadow: 0 0 20px rgba(254, 119, 67, 0.2); }
-  50% { box-shadow: 0 0 40px rgba(254, 119, 67, 0.5); }
+  0%, 100% { box-shadow: 0 0 20px color-mix(in srgb, var(--color-accent) 20%, transparent); }
+  50% { box-shadow: 0 0 40px color-mix(in srgb, var(--color-accent) 50%, transparent); }
 }
 
 .animate-drift1 {
@@ -267,9 +314,9 @@ body::after {
 .shimmer-text {
   background: linear-gradient(
     105deg,
-    #FE7743 20%,
-    #FFB89A 40%,
-    #FE7743 60%
+    var(--color-accent) 20%,
+    color-mix(in srgb, var(--color-accent) 50%, var(--color-foreground)) 40%,
+    var(--color-accent) 60%
   );
   background-size: 200% auto;
   -webkit-background-clip: text;
@@ -278,26 +325,29 @@ body::after {
   animation: shimmer 3s linear infinite;
 }
 
+/* ============================================
+   GLASS & BLUR UTILITIES
+   ============================================ */
+
 /* Permanent blur layer — always on, prevents compositing flash on class toggle */
 .navbar-blur {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 }
 
-/* Glass background — activated when scrolled; no border (replaced by fire glow box-shadow) */
+/* Glass background — activated when scrolled */
 .glass {
-  background: rgba(20, 18, 16, 0.80);
+  background: color-mix(in srgb, var(--color-background) 80%, transparent);
 }
 
-/* Fire border animation — box-shadow only (GPU-composited, no layout reflow).
-   Asymmetric keyframes cycle ember orange → amber → red coal → bright flame. */
+/* Fire border animation — box-shadow only (GPU-composited, no layout reflow) */
 @keyframes fire-glow {
-  0%   { box-shadow: 0 0 0 1px rgba(254,119,67,0.25), 0 0 12px 2px rgba(254,119,67,0.28), 0 0 32px 4px rgba(254,119,67,0.08); }
-  22%  { box-shadow: 0 0 0 1px rgba(255,148,60,0.55), 0 0 20px 4px rgba(255,168,60,0.48), 0 0 55px 10px rgba(254,119,67,0.20); }
-  47%  { box-shadow: 0 0 0 1px rgba(210,55,15,0.38), 0 0 9px 1px rgba(210,70,15,0.28), 0 0 20px 2px rgba(254,80,30,0.09); }
-  63%  { box-shadow: 0 0 0 1px rgba(255,185,80,0.60), 0 0 22px 5px rgba(255,165,60,0.52), 0 0 65px 12px rgba(254,119,67,0.22); }
-  82%  { box-shadow: 0 0 0 1px rgba(254,100,40,0.35), 0 0 13px 2px rgba(240,90,30,0.32), 0 0 38px 6px rgba(200,45,10,0.11); }
-  100% { box-shadow: 0 0 0 1px rgba(254,119,67,0.25), 0 0 12px 2px rgba(254,119,67,0.28), 0 0 32px 4px rgba(254,119,67,0.08); }
+  0%   { box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-accent) 25%, transparent), 0 0 12px 2px color-mix(in srgb, var(--color-accent) 28%, transparent), 0 0 32px 4px color-mix(in srgb, var(--color-accent) 8%, transparent); }
+  22%  { box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-accent) 55%, transparent), 0 0 20px 4px color-mix(in srgb, var(--color-accent) 48%, transparent), 0 0 55px 10px color-mix(in srgb, var(--color-accent) 20%, transparent); }
+  47%  { box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-accent-secondary) 38%, transparent), 0 0 9px 1px color-mix(in srgb, var(--color-accent-secondary) 28%, transparent), 0 0 20px 2px color-mix(in srgb, var(--color-accent-secondary) 9%, transparent); }
+  63%  { box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-accent) 60%, transparent), 0 0 22px 5px color-mix(in srgb, var(--color-accent) 52%, transparent), 0 0 65px 12px color-mix(in srgb, var(--color-accent) 22%, transparent); }
+  82%  { box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-accent) 35%, transparent), 0 0 13px 2px color-mix(in srgb, var(--color-accent) 32%, transparent), 0 0 38px 6px color-mix(in srgb, var(--color-accent) 11%, transparent); }
+  100% { box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-accent) 25%, transparent), 0 0 12px 2px color-mix(in srgb, var(--color-accent) 28%, transparent), 0 0 32px 4px color-mix(in srgb, var(--color-accent) 8%, transparent); }
 }
 
 .glass-fire {
@@ -307,19 +357,19 @@ body::after {
 @media (prefers-reduced-motion: reduce) {
   .glass-fire {
     animation: none;
-    box-shadow: 0 0 0 1px rgba(254,119,67,0.2), 0 0 8px 1px rgba(254,119,67,0.15);
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-accent) 20%, transparent), 0 0 8px 1px color-mix(in srgb, var(--color-accent) 15%, transparent);
   }
 }
 
 /* Inner glow for bento cards */
 .inner-glow {
-  box-shadow: inset 0 0 60px rgba(254, 119, 67, 0.04),
-              0 0 0 1px rgba(254, 119, 67, 0.08);
+  box-shadow: inset 0 0 60px color-mix(in srgb, var(--color-accent) 4%, transparent),
+              0 0 0 1px color-mix(in srgb, var(--color-accent) 8%, transparent);
 }
 
 .inner-glow-hover:hover {
-  box-shadow: inset 0 0 80px rgba(254, 119, 67, 0.08),
-              0 0 0 1px rgba(254, 119, 67, 0.2);
+  box-shadow: inset 0 0 80px color-mix(in srgb, var(--color-accent) 8%, transparent),
+              0 0 0 1px color-mix(in srgb, var(--color-accent) 20%, transparent);
 }
 
 /* Shimmer button effect */
@@ -334,7 +384,7 @@ body::after {
   background: linear-gradient(
     105deg,
     transparent 30%,
-    rgba(255, 255, 255, 0.35) 50%,
+    color-mix(in srgb, var(--color-foreground) 35%, transparent) 50%,
     transparent 70%
   );
   transform: translateX(-110%);
@@ -345,15 +395,18 @@ body::after {
   transform: translateX(110%);
 }
 
-/* Semantic form classes — single source of truth for all inputs/labels */
+/* ============================================
+   SEMANTIC FORM CLASSES
+   ============================================ */
+
 .form-input {
   width: 100%;
   border-radius: 0.5rem;
   padding: 0.75rem 1rem;
   font-size: 0.875rem;
-  color: #F0EAE0;
-  background: rgba(26, 24, 22, 0.80);
-  border: 1px solid rgba(254, 119, 67, 0.22);
+  color: var(--color-foreground);
+  background: color-mix(in srgb, var(--color-smoke) 80%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-accent) 22%, transparent);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   transition: border-color 300ms ease, box-shadow 300ms ease, background 300ms ease;
@@ -361,13 +414,13 @@ body::after {
   outline: none;
 }
 .form-input::placeholder {
-  color: rgba(148, 163, 184, 0.55);
+  color: color-mix(in srgb, var(--color-muted) 55%, transparent);
 }
 .form-input:focus {
-  border-color: rgba(254, 119, 67, 0.65);
-  background: rgba(26, 24, 22, 0.92);
-  box-shadow: 0 0 0 3px rgba(254, 119, 67, 0.08),
-              0 0 18px rgba(254, 119, 67, 0.14);
+  border-color: color-mix(in srgb, var(--color-accent) 65%, transparent);
+  background: color-mix(in srgb, var(--color-smoke) 92%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 8%, transparent),
+              0 0 18px color-mix(in srgb, var(--color-accent) 14%, transparent);
 }
 
 .form-label {
@@ -375,7 +428,7 @@ body::after {
   font-size: 10px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #94A3B8;
+  color: var(--color-muted);
   margin-bottom: 0.5rem;
 }
 
@@ -383,19 +436,24 @@ body::after {
   font-size: 10px;
   letter-spacing: 0.35em;
   text-transform: uppercase;
-  color: rgba(254, 119, 67, 0.70);
+  color: color-mix(in srgb, var(--color-accent) 70%, transparent);
   margin-bottom: 1rem;
   padding-bottom: 0.75rem;
-  border-bottom: 1px solid rgba(254, 119, 67, 0.12);
+  border-bottom: 1px solid color-mix(in srgb, var(--color-accent) 12%, transparent);
 }
 
-/* Nav links with center-outward underline slide */
+/* ============================================
+   NAV LINK
+   ============================================ */
+
 .nav-link {
   position: relative;
-  font-size: 11px;
-  letter-spacing: 0.2em;
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: #E4E4E7;
+  color: var(--color-foreground);
   transition: color 280ms ease;
 }
 .nav-link::after {
@@ -407,19 +465,24 @@ body::after {
   transform-origin: center;
   width: 100%;
   height: 1px;
-  background: #FE7743;
+  background: var(--color-accent);
   transition: transform 220ms ease-out;
 }
 .nav-link:hover,
 .nav-link-active {
-  color: #FE7743;
+  color: var(--color-accent);
 }
 .nav-link:hover::after,
 .nav-link-active::after {
   transform: translateX(-50%) scaleX(1);
 }
 
-/* Date/time picker icon — tint amber so it's visible on dark backgrounds */
+/* ============================================
+   DATE/TIME PICKER ICON
+   ============================================ */
+
+/* Tints the calendar/clock icon to match the accent colour.
+   Note: hue-rotate is tuned for warm accents; may shift on cool themes. */
 input[type="date"]::-webkit-calendar-picker-indicator,
 input[type="time"]::-webkit-calendar-picker-indicator {
   filter: invert(55%) sepia(80%) saturate(500%) hue-rotate(330deg) brightness(1.1);
@@ -427,7 +490,10 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   cursor: pointer;
 }
 
-/* Section spacing helper */
+/* ============================================
+   SECTION SPACING HELPERS
+   ============================================ */
+
 .section-y {
   padding-top: 3rem;
   padding-bottom: 3rem;
@@ -462,7 +528,10 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   }
 }
 
-/* Reduce motion for accessibility */
+/* ============================================
+   REDUCE MOTION
+   ============================================ */
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

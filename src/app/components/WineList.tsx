@@ -74,17 +74,17 @@ export default function WineList() {
           className="flex flex-col md:flex-row md:items-end md:justify-between gap-5"
         >
           <div className="max-w-2xl">
-            <p className="text-gold text-[10px] sm:text-xs tracking-[0.4em] uppercase mb-4 sm:mb-5">
+            <p className="text-accent text-[10px] sm:text-xs tracking-[0.4em] uppercase mb-4 sm:mb-5">
               The Cellar
             </p>
             <h2
-              className="font-serif italic text-cream leading-[0.95]"
+              className="font-serif text-foreground leading-[0.95]"
               style={{ fontSize: 'clamp(36px, 6vw, 64px)' }}
             >
               Wine & Spirits
             </h2>
           </div>
-          <p className="text-cream/45 text-xs sm:text-sm max-w-xs leading-relaxed">
+          <p className="text-foreground/45 text-xs sm:text-sm max-w-xs leading-relaxed">
             Drag to explore our curated cellar of over 400 labels, chosen by our Head Sommelier.
           </p>
         </motion.div>
@@ -114,13 +114,13 @@ export default function WineList() {
               whileHover={{ y: -6 }}
               className={`relative rounded-2xl overflow-hidden flex-shrink-0 inner-glow transition-all duration-500 ${
                 wine.featured
-                  ? 'border border-gold/50 bg-surface'
-                  : 'border border-gold/10 bg-obsidian hover:border-gold/30'
+                  ? 'border border-accent/50 bg-surface'
+                  : 'border border-accent/10 bg-background hover:border-accent/30'
               }`}
               style={{ width: 'min(78vw, 290px)', minHeight: '380px' }}
             >
               {wine.featured && (
-                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold to-transparent" />
+                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent to-transparent" />
               )}
 
               <div className="p-7 sm:p-8 h-full flex flex-col">
@@ -128,40 +128,40 @@ export default function WineList() {
                   <motion.span
                     animate={{
                       boxShadow: [
-                        '0 0 8px color-mix(in srgb, var(--color-ember) 20%, transparent)',
-                        '0 0 22px color-mix(in srgb, var(--color-ember) 55%, transparent)',
-                        '0 0 8px color-mix(in srgb, var(--color-ember) 20%, transparent)',
+                        '0 0 8px color-mix(in srgb, var(--color-accent) 20%, transparent)',
+                        '0 0 22px color-mix(in srgb, var(--color-accent) 55%, transparent)',
+                        '0 0 8px color-mix(in srgb, var(--color-accent) 20%, transparent)',
                       ],
                     }}
                     transition={{ duration: 2, repeat: Infinity }}
-                    className="inline-block mb-5 text-[9px] tracking-[0.35em] uppercase text-obsidian bg-gold px-3 py-1 rounded-full self-start"
+                    className="inline-block mb-5 text-[9px] tracking-[0.35em] uppercase text-background bg-accent px-3 py-1 rounded-full self-start"
                   >
                     Tonight&apos;s Pour
                   </motion.span>
                 )}
 
                 <div className="flex-1">
-                  <p className="text-[10px] sm:text-xs tracking-[0.25em] uppercase text-gold/70 mb-2">
+                  <p className="text-[10px] sm:text-xs tracking-[0.25em] uppercase text-accent/70 mb-2">
                     {wine.varietal}
                   </p>
                   <h3
-                    className={`font-serif italic leading-tight mb-1 ${
-                      wine.featured ? 'text-gold text-2xl sm:text-3xl' : 'text-cream text-xl sm:text-2xl'
+                    className={`font-serif leading-tight mb-1 ${
+                      wine.featured ? 'text-accent text-2xl sm:text-3xl' : 'text-foreground text-xl sm:text-2xl'
                     }`}
                   >
                     {wine.name}
                   </h3>
-                  <p className="text-cream/35 text-xs sm:text-sm">{wine.year}</p>
+                  <p className="text-foreground/35 text-xs sm:text-sm">{wine.year}</p>
                 </div>
 
-                <div className="mt-6 pt-5 border-t border-gold/10">
-                  <p className="text-cream/45 text-xs leading-relaxed mb-4">{wine.note}</p>
-                  <p className="text-cream/35 text-[10px] tracking-[0.2em] uppercase mb-1.5">
+                <div className="mt-6 pt-5 border-t border-accent/10">
+                  <p className="text-foreground/45 text-xs leading-relaxed mb-4">{wine.note}</p>
+                  <p className="text-foreground/35 text-[10px] tracking-[0.2em] uppercase mb-1.5">
                     {wine.region}
                   </p>
                   <p
-                    className={`font-serif italic text-xl ${
-                      wine.featured ? 'text-gold' : 'text-cream/75'
+                    className={`font-serif text-xl ${
+                      wine.featured ? 'text-accent' : 'text-foreground/75'
                     }`}
                   >
                     ${wine.price}
@@ -174,7 +174,7 @@ export default function WineList() {
                   className="absolute inset-0 pointer-events-none"
                   style={{
                     background:
-                      'radial-gradient(ellipse at 50% 100%, color-mix(in srgb, var(--color-ember) 6%, transparent) 0%, transparent 70%)',
+                      'radial-gradient(ellipse at 50% 100%, color-mix(in srgb, var(--color-accent) 6%, transparent) 0%, transparent 70%)',
                   }}
                 />
               )}
@@ -188,7 +188,7 @@ export default function WineList() {
         initial={{ opacity: 0 }}
         animate={isInView ? { opacity: 1 } : {}}
         transition={{ delay: 0.8 }}
-        className="text-center text-[10px] sm:text-xs tracking-[0.25em] uppercase text-cream/25 mt-6 sm:mt-8 px-6"
+        className="text-center text-[10px] sm:text-xs tracking-[0.25em] uppercase text-foreground/25 mt-6 sm:mt-8 px-6"
       >
         ← Drag to explore →
       </motion.p>
