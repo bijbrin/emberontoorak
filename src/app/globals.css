@@ -66,36 +66,6 @@
   --steel: #666666;
 }
 
-/* ====== Midnight ====== */
-[data-theme="midnight"] {
-  --bg: #060B14;
-  --fg: #E8ECF1;
-  --muted-color: #6B7B8F;
-  --accent: #5B8DEF;
-  --accent2: #3D6BC0;
-  --card-bg: rgba(91, 141, 239, 0.04);
-  --card-border: rgba(91, 141, 239, 0.1);
-  --nav-bg: rgba(6, 11, 20, 0.92);
-  --smoke: #0D1522;
-  --chalk: #D8E0EA;
-  --steel: #6B7B8F;
-}
-
-/* ====== Forest ====== */
-[data-theme="forest"] {
-  --bg: #081C15;
-  --fg: #E9F5EC;
-  --muted-color: #6B9080;
-  --accent: #52B788;
-  --accent2: #40916C;
-  --card-bg: rgba(82, 183, 136, 0.04);
-  --card-border: rgba(82, 183, 136, 0.1);
-  --nav-bg: rgba(8, 28, 21, 0.92);
-  --smoke: #0E2A1E;
-  --chalk: #D4F0DE;
-  --steel: #6B9080;
-}
-
 /* ====== Wine ====== */
 [data-theme="wine"] {
   --bg: #1A0A0E;
@@ -111,66 +81,6 @@
   --steel: #9B6B7B;
 }
 
-/* ====== Ivory (light) ====== */
-[data-theme="ivory"] {
-  --bg: #FAF8F5;
-  --fg: #1A1A1A;
-  --muted-color: #7A7568;
-  --accent: #B8960C;
-  --accent2: #8B7200;
-  --card-bg: rgba(0, 0, 0, 0.02);
-  --card-border: rgba(0, 0, 0, 0.06);
-  --nav-bg: rgba(250, 248, 245, 0.92);
-  --smoke: #F0EDE8;
-  --chalk: #0D0D0D;
-  --steel: #7A7568;
-}
-
-/* ====== Sand (light) ====== */
-[data-theme="sand"] {
-  --bg: #F5F0E8;
-  --fg: #2C2420;
-  --muted-color: #8B7D6B;
-  --accent: #A67C52;
-  --accent2: #7D5A3C;
-  --card-bg: rgba(0, 0, 0, 0.02);
-  --card-border: rgba(0, 0, 0, 0.06);
-  --nav-bg: rgba(245, 240, 232, 0.92);
-  --smoke: #E8E3DB;
-  --chalk: #1A1510;
-  --steel: #8B7D6B;
-}
-
-/* ====== Sage (light) ====== */
-[data-theme="sage"] {
-  --bg: #F0F4F0;
-  --fg: #1E2A1E;
-  --muted-color: #6B7D6B;
-  --accent: #5E8B5E;
-  --accent2: #4A704A;
-  --card-bg: rgba(0, 0, 0, 0.02);
-  --card-border: rgba(0, 0, 0, 0.06);
-  --nav-bg: rgba(240, 244, 240, 0.92);
-  --smoke: #E4EAE4;
-  --chalk: #151F15;
-  --steel: #6B7D6B;
-}
-
-/* ====== Ocean ====== */
-[data-theme="ocean"] {
-  --bg: #0A1628;
-  --fg: #E0E8F0;
-  --muted-color: #5A7A9A;
-  --accent: #4ECDC4;
-  --accent2: #2AA89E;
-  --card-bg: rgba(78, 205, 196, 0.04);
-  --card-border: rgba(78, 205, 196, 0.1);
-  --nav-bg: rgba(10, 22, 40, 0.92);
-  --smoke: #0F1E36;
-  --chalk: #C8D8E8;
-  --steel: #5A7A9A;
-}
-
 /* ====== Copper ====== */
 [data-theme="copper"] {
   --bg: #14100C;
@@ -184,6 +94,126 @@
   --smoke: #1E1812;
   --chalk: #E8DDD0;
   --steel: #8B7D6B;
+}
+
+/* ====== Truffle — champagne gold on near-black ====== */
+[data-theme="truffle"] {
+  --bg: #0C0A08;
+  --fg: #F5F0E8;
+  --muted-color: #8C8276;
+  --accent: #CBB78F;
+  --accent2: #A8946E;
+  --card-bg: rgba(203, 183, 143, 0.04);
+  --card-border: rgba(203, 183, 143, 0.1);
+  --nav-bg: rgba(12, 10, 8, 0.92);
+  --smoke: #14110C;
+  --chalk: #EDE6D8;
+  --steel: #8C8276;
+}
+
+/* ====== Espresso — warm cocoa + caramel ====== */
+[data-theme="espresso"] {
+  --bg: #120D0A;
+  --fg: #EFE4D8;
+  --muted-color: #8A7A68;
+  --accent: #C9A06A;
+  --accent2: #9E7B4A;
+  --card-bg: rgba(201, 160, 106, 0.04);
+  --card-border: rgba(201, 160, 106, 0.1);
+  --nav-bg: rgba(18, 13, 10, 0.92);
+  --smoke: #1C150F;
+  --chalk: #E6D8C8;
+  --steel: #8A7A68;
+}
+
+/* ====== Aubergine — deep plum + mauve ====== */
+[data-theme="aubergine"] {
+  --bg: #140A18;
+  --fg: #EFE6F2;
+  --muted-color: #8A7592;
+  --accent: #B98AC9;
+  --accent2: #946AA6;
+  --card-bg: rgba(185, 138, 201, 0.04);
+  --card-border: rgba(185, 138, 201, 0.1);
+  --nav-bg: rgba(20, 10, 24, 0.92);
+  --smoke: #1E1024;
+  --chalk: #E2D4E8;
+  --steel: #8A7592;
+}
+
+/* ====== Slate — muted steel-blue + warm brass ====== */
+[data-theme="slate"] {
+  --bg: #0D1117;
+  --fg: #E6EAF0;
+  --muted-color: #7A8696;
+  --accent: #A8895E;
+  --accent2: #846A46;
+  --card-bg: rgba(168, 137, 94, 0.04);
+  --card-border: rgba(168, 137, 94, 0.1);
+  --nav-bg: rgba(13, 17, 23, 0.92);
+  --smoke: #141A22;
+  --chalk: #D6DCE6;
+  --steel: #7A8696;
+}
+
+/* ====== Emerald — deep muted malachite + jade ====== */
+[data-theme="emerald"] {
+  --bg: #08140F;
+  --fg: #E4F0E9;
+  --muted-color: #6F8A7E;
+  --accent: #4FA77E;
+  --accent2: #3A7D5E;
+  --card-bg: rgba(79, 167, 126, 0.04);
+  --card-border: rgba(79, 167, 126, 0.1);
+  --nav-bg: rgba(8, 20, 15, 0.92);
+  --smoke: #0E2018;
+  --chalk: #D2E8DC;
+  --steel: #6F8A7E;
+}
+
+/* ====== Sapphire — deep navy + champagne gold ====== */
+[data-theme="sapphire"] {
+  --bg: #0A0E1C;
+  --fg: #E6E8F2;
+  --muted-color: #707A96;
+  --accent: #C7A95C;
+  --accent2: #9C8344;
+  --card-bg: rgba(199, 169, 92, 0.04);
+  --card-border: rgba(199, 169, 92, 0.1);
+  --nav-bg: rgba(10, 14, 28, 0.92);
+  --smoke: #10162A;
+  --chalk: #D4D8E8;
+  --steel: #707A96;
+}
+
+/* ====== Burgundy — deep oxblood + brass ====== */
+[data-theme="burgundy"] {
+  --bg: #160A0A;
+  --fg: #F0E4E0;
+  --muted-color: #8C7068;
+  --accent: #C0894A;
+  --accent2: #97672F;
+  --card-bg: rgba(192, 137, 74, 0.04);
+  --card-border: rgba(192, 137, 74, 0.1);
+  --nav-bg: rgba(22, 10, 10, 0.92);
+  --smoke: #20100E;
+  --chalk: #E8D6CE;
+  --steel: #8C7068;
+}
+
+/* ====== Platinum — cool silver monochrome on graphite ====== */
+[data-theme="platinum"] {
+  --bg: #0B0D10;
+  --fg: #EDF0F3;
+  --muted-color: #828A94;
+  --accent: #B9C2CC;
+  --accent2: #8A949E;
+  --card-bg: rgba(185, 194, 204, 0.03);
+  --card-border: rgba(185, 194, 204, 0.09);
+  --nav-bg: rgba(11, 13, 16, 0.94);
+  --smoke: #12151A;
+  --chalk: #DDE2E8;
+  --steel: #828A94;
 }
 
 /* ============================================
@@ -329,15 +359,30 @@ body::after {
    GLASS & BLUR UTILITIES
    ============================================ */
 
-/* Permanent blur layer — always on, prevents compositing flash on class toggle */
+/* Permanent blur layer — kept mounted at blur(0) so toggling to .glass
+   transitions smoothly without a compositing flash, while leaving the
+   header fully transparent (no grey frost) at the top of the page. */
 .navbar-blur {
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+  transition: backdrop-filter 500ms ease, -webkit-backdrop-filter 500ms ease;
+}
+
+/* Soft scrim at the top of the page — a gentle gradient instead of a frosted
+   panel, so the hero shows through and the accent colour stays vivid. */
+.nav-scrim {
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--color-background) 55%, transparent),
+    transparent
+  );
 }
 
 /* Glass background — activated when scrolled */
 .glass {
   background: color-mix(in srgb, var(--color-background) 80%, transparent);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 /* Fire border animation — box-shadow only (GPU-composited, no layout reflow) */

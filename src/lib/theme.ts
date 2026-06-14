@@ -11,10 +11,10 @@ export function defaultThemeSettings(): ThemeSettings {
     schedule: {
       '1': 'ember',
       '2': 'noir',
-      '3': 'midnight',
-      '4': 'forest',
+      '3': 'truffle',
+      '4': 'espresso',
       '5': 'wine',
-      '6': 'ocean',
+      '6': 'aubergine',
       '0': 'copper',
     },
   }
